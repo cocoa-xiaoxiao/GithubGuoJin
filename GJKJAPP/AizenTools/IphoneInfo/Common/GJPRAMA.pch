@@ -1,0 +1,110 @@
+//
+//  GJPRAMA.pch
+//  GJKJAPP
+//
+//  Created by 谭耀焯 on 2018/1/17.
+//  Copyright © 2018年 谭耀焯. All rights reserved.
+//
+
+#ifndef GJPRAMA_pch
+#define GJPRAMA_pch
+
+
+#pragma mark - Frame
+#import "AizenStorage.h"
+#define WIDTH_SCREEN        [UIScreen mainScreen].bounds.size.width
+#define HEIGHT_SCREEN       [UIScreen mainScreen].bounds.size.height
+
+#define BASIS_URL           @"http://120.78.148.58/ApiLogin"
+#define DO_MAIN             @"http://120.78.148.58"
+
+#define kAppMainColor [UIColor colorWithRed:1/255.0 green:137/255.0 blue:255/255.0 alpha:1]
+#define kCacheHttpRoot [AizenStorage readUserDataWithKey:@"DO_MAIN"]
+#define kRootDataKey   @"AppendData"
+#define kUserDefualtImage [UIImage imageNamed:@"gj_msglogo2"]
+#import "NSString+ImgUrl.h"
+#import "BaseTablewView.h"
+#import "BaseViewController.h"
+#import "UISearchController+BRUIDoneSearchController.h"
+#import "BaseTextFeild.h"
+#import <Masonry/Masonry.h>
+#import "HTTPOpration.h"
+#import "UIViewController+addFresh.h"
+#import <MJRefresh/MJRefresh.h>
+#import "UIImageView+SDWebImageModify.h"
+#import "zxHeader.h"
+
+#import "GJToolsHelp.h"
+#import "UIViewController+addTablew.h"
+#import "UITableView+BRFitSize.h"
+#import "UITableViewCell+GetIdentifier.h"
+#import "HttpService+users.h"
+#import "UIView+Size.h"
+#import "NSAttributedString+customMethod.h"
+#import "NSString+Extension.h"
+#define GRAY_BACKGROUND    [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1]
+
+#define HEIGHT_NC          [UIScreen mainScreen].bounds.size.height - 20 - 44
+#define iPhoneXSeries (([[UIApplication sharedApplication] statusBarFrame].size.height == 44.0f) ? (YES):(NO))
+static inline CGFloat _kHeight() {
+    
+    return [[UIScreen mainScreen] bounds].size.height;
+}
+
+static inline CGFloat _navHeight(){
+    if (iPhoneXSeries) {
+        return 88.0f;
+    }
+    return 64.0f;
+}
+static inline CGFloat _tabbarHeight(){
+    if (iPhoneXSeries) {
+        return 83.0f;
+    }
+    return 49.0f;
+}
+static inline BOOL kIsIphoneX(){
+    
+    if (_kHeight() == 812.0) {
+        return  true;
+    }
+    return  false;
+}
+
+static inline CGFloat kIphonexButtomHeight(){
+    
+    if (kIsIphoneX()) {
+        return 34.0;
+    }
+    return 0.0;
+}
+static inline UIColor * UIColorFromRGBStatic(NSInteger rgbValue){
+    
+    return  (UIColor *)[UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0];
+}
+static inline UIColor* kTablewBgColorLight() {
+    
+    return UIColorFromRGBStatic(0xf2f2f2);
+}
+
+#define HEIGHT_STATUSBAR    20
+#define HEIGHT_TABBAR       49
+#define HEIGHT_NAVBAR       (kIsIphoneX() ? (88.0 - 20) : 44.0)
+#define HEIGHT_CHATBOXVIEW  215
+#define HEIGHT_ROW          64
+
+
+#define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self;
+
+
+#endif /* GJPRAMA_pch */
+
+#ifdef DEBUG
+#define NSLog(...) NSLog(__VA_ARGS__)
+#define debugMethod() NSLog(@"%s", __func__)
+#else
+#define NSLog(...)
+#define debugMethod()
+
+#endif
+

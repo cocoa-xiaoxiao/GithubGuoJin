@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BRAllPeopleViewTableViewCell" rowHeight="70" id="KGk-i7-Jjw" customClass="BRAllPeopleViewTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ip3-Wa-gfj">
+                        <rect key="frame" x="10" y="9.5" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="0Lf-72-u1j"/>
+                            <constraint firstAttribute="width" secondItem="Ip3-Wa-gfj" secondAttribute="height" id="W4u-jc-7og"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="掩盖光" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="REV-Sg-IAh">
+                        <rect key="frame" x="70" y="11.5" width="43" height="17"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="电话：21312312414" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IZn-CF-ZgU">
+                        <rect key="frame" x="70" y="38.5" width="119.5" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="IZn-CF-ZgU" firstAttribute="top" secondItem="REV-Sg-IAh" secondAttribute="bottom" constant="10" id="1Uc-6q-Izo"/>
+                    <constraint firstItem="IZn-CF-ZgU" firstAttribute="leading" secondItem="REV-Sg-IAh" secondAttribute="leading" id="Fd9-jU-NuJ"/>
+                    <constraint firstItem="REV-Sg-IAh" firstAttribute="top" secondItem="Ip3-Wa-gfj" secondAttribute="top" constant="2" id="TdI-N2-Fwq"/>
+                    <constraint firstItem="Ip3-Wa-gfj" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="aj4-cX-Jt7"/>
+                    <constraint firstItem="REV-Sg-IAh" firstAttribute="leading" secondItem="Ip3-Wa-gfj" secondAttribute="trailing" constant="10" id="xTw-I1-nz3"/>
+                    <constraint firstItem="Ip3-Wa-gfj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="zqu-7O-ulM"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="headerImg" destination="Ip3-Wa-gfj" id="MAG-40-wxn"/>
+                <outlet property="nameLabel" destination="REV-Sg-IAh" id="Wbh-rg-wJg"/>
+                <outlet property="telNameLabel" destination="IZn-CF-ZgU" id="GEl-mb-ROG"/>
+            </connections>
+            <point key="canvasLocation" x="-87" y="-2"/>
+        </tableViewCell>
+    </objects>
+</document>

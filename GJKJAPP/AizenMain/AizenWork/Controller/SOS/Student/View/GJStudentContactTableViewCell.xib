@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="GJStudentContactTableViewCell" id="KGk-i7-Jjw" customClass="GJStudentContactTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="教师： 李四" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCE-0E-okb">
+                        <rect key="frame" x="10" y="13.5" width="144" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dianhua" translatesAutoresizingMaskIntoConstraints="NO" id="vKr-9G-9bB">
+                        <rect key="frame" x="280" y="12" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="bIF-mg-bHI"/>
+                            <constraint firstAttribute="width" secondItem="vKr-9G-9bB" secondAttribute="height" id="vfG-QI-HRr"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1359301239" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wlD-MK-RoT">
+                        <rect key="frame" x="159" y="13.5" width="81" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="LCE-0E-okb" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.45" id="2al-77-jFS"/>
+                    <constraint firstAttribute="trailing" secondItem="vKr-9G-9bB" secondAttribute="trailing" constant="20" id="6Se-I1-SnK"/>
+                    <constraint firstItem="vKr-9G-9bB" firstAttribute="leading" secondItem="wlD-MK-RoT" secondAttribute="trailing" constant="40" id="ASn-uv-AO9"/>
+                    <constraint firstItem="wlD-MK-RoT" firstAttribute="leading" secondItem="LCE-0E-okb" secondAttribute="trailing" constant="5" id="CUt-ay-53Q"/>
+                    <constraint firstItem="wlD-MK-RoT" firstAttribute="centerY" secondItem="LCE-0E-okb" secondAttribute="centerY" id="OKw-Nl-yez"/>
+                    <constraint firstItem="LCE-0E-okb" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bwY-L0-Zf4"/>
+                    <constraint firstItem="LCE-0E-okb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="cqr-62-mYj"/>
+                    <constraint firstItem="vKr-9G-9bB" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="rFs-zT-fnO"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="teacherNameLabel" destination="LCE-0E-okb" id="Cq3-Uo-YBq"/>
+                <outlet property="teacherNameLabelLeftConstraint" destination="cqr-62-mYj" id="uW7-mO-e5I"/>
+                <outlet property="telLabel" destination="wlD-MK-RoT" id="PeE-r4-yFp"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="dianhua" width="32" height="32"/>
+    </resources>
+</document>

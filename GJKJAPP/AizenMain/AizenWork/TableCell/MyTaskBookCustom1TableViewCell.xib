@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MyTaskBookCustom1CellID" id="KGk-i7-Jjw" customClass="MyTaskBookCustom1TableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hfj-JN-dk1">
+                        <rect key="frame" x="10" y="5" width="300" height="39.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kHw-aE-rc1">
+                                <rect key="frame" x="8" y="11.5" width="35.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n4N-ft-r4U">
+                                <rect key="frame" x="230" y="7.5" width="55" height="25"/>
+                                <color key="backgroundColor" red="0.29411764709999999" green="0.56862745100000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="lE5-nZ-oG7"/>
+                                    <constraint firstAttribute="width" constant="55" id="pOB-Ni-OJ5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="团队合作">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="n4N-ft-r4U" firstAttribute="centerY" secondItem="hfj-JN-dk1" secondAttribute="centerY" id="MuD-IJ-fXP"/>
+                            <constraint firstItem="kHw-aE-rc1" firstAttribute="centerY" secondItem="hfj-JN-dk1" secondAttribute="centerY" id="NX9-wi-K7g"/>
+                            <constraint firstItem="kHw-aE-rc1" firstAttribute="leading" secondItem="hfj-JN-dk1" secondAttribute="leading" constant="8" id="Van-Ec-sEK"/>
+                            <constraint firstAttribute="trailing" secondItem="n4N-ft-r4U" secondAttribute="trailing" constant="15" id="bcx-0g-6ym"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorWithUIColor">
+                                <color key="value" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="hfj-JN-dk1" secondAttribute="bottom" constant="5" id="EW8-cT-m9L"/>
+                    <constraint firstItem="hfj-JN-dk1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Obd-Kj-Emo"/>
+                    <constraint firstItem="hfj-JN-dk1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="iix-JY-7ai"/>
+                    <constraint firstAttribute="trailing" secondItem="hfj-JN-dk1" secondAttribute="trailing" constant="10" id="tzV-gK-z2S"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="nameLabel" destination="kHw-aE-rc1" id="EbP-JG-mpN"/>
+                <outlet property="teamButton" destination="n4N-ft-r4U" id="lhT-Wi-EOP"/>
+            </connections>
+            <point key="canvasLocation" x="18" y="77"/>
+        </tableViewCell>
+    </objects>
+</document>

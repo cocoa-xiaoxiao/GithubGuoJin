@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="GJSOSRecordListTableViewCell" rowHeight="140" id="KGk-i7-Jjw" customClass="GJSOSRecordListTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="139.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qiandao_logo" translatesAutoresizingMaskIntoConstraints="NO" id="xc0-9v-LT5">
+                        <rect key="frame" x="10" y="10" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="5oz-h5-n9r"/>
+                            <constraint firstAttribute="width" secondItem="xc0-9v-LT5" secondAttribute="height" multiplier="1:1" id="oNk-uE-Lbx"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="李红洲" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgd-de-oRh">
+                        <rect key="frame" x="50" y="13" width="46" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="李红2018-01-5 12:20:30" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="idS-NL-nW9">
+                        <rect key="frame" x="162" y="14" width="148" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="李红2018-01-5 撒娇的卡拉胶上地理课啊 dasd" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XJw-Ia-BFT">
+                        <rect key="frame" x="50" y="36" width="260" height="31.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="接受人手机的卡拉斯京的卡拉胶上的卡拉胶的撒点就困了" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m2e-qJ-DtW">
+                        <rect key="frame" x="50" y="75.5" width="260" height="31.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="32" id="Jg0-lW-Lgh"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="SOS预警:已发送" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jmu-N4-Pji">
+                        <rect key="frame" x="50" y="112" width="96.5" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="预警处理:待处理" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mbp-Jh-xJb">
+                        <rect key="frame" x="213" y="112" width="97" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="jmu-N4-Pji" firstAttribute="leading" secondItem="m2e-qJ-DtW" secondAttribute="leading" id="0h8-Mc-iH9"/>
+                    <constraint firstItem="XJw-Ia-BFT" firstAttribute="leading" secondItem="vgd-de-oRh" secondAttribute="leading" id="6ae-bB-eiN"/>
+                    <constraint firstItem="xc0-9v-LT5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="A9C-UE-3mW"/>
+                    <constraint firstItem="vgd-de-oRh" firstAttribute="top" secondItem="xc0-9v-LT5" secondAttribute="top" constant="3" id="B8F-BK-yVm"/>
+                    <constraint firstItem="Mbp-Jh-xJb" firstAttribute="trailing" secondItem="m2e-qJ-DtW" secondAttribute="trailing" id="CF6-wo-bve"/>
+                    <constraint firstItem="m2e-qJ-DtW" firstAttribute="trailing" secondItem="XJw-Ia-BFT" secondAttribute="trailing" id="MRf-F7-HAn"/>
+                    <constraint firstItem="XJw-Ia-BFT" firstAttribute="top" secondItem="vgd-de-oRh" secondAttribute="bottom" constant="5" id="OXD-Qg-UbW"/>
+                    <constraint firstItem="Mbp-Jh-xJb" firstAttribute="centerY" secondItem="jmu-N4-Pji" secondAttribute="centerY" id="R4b-dI-RAW"/>
+                    <constraint firstItem="vgd-de-oRh" firstAttribute="leading" secondItem="xc0-9v-LT5" secondAttribute="trailing" constant="10" id="T2n-Dp-bg7"/>
+                    <constraint firstItem="idS-NL-nW9" firstAttribute="centerY" secondItem="vgd-de-oRh" secondAttribute="centerY" id="Zf4-fZ-ed9"/>
+                    <constraint firstAttribute="bottom" secondItem="jmu-N4-Pji" secondAttribute="bottom" constant="11" id="Znp-Ns-9lt"/>
+                    <constraint firstItem="m2e-qJ-DtW" firstAttribute="top" secondItem="XJw-Ia-BFT" secondAttribute="bottom" constant="8" id="ghR-zm-lc6"/>
+                    <constraint firstItem="jmu-N4-Pji" firstAttribute="top" secondItem="m2e-qJ-DtW" secondAttribute="bottom" constant="5" id="kP2-8u-0hp"/>
+                    <constraint firstItem="xc0-9v-LT5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="lws-Yr-9ng"/>
+                    <constraint firstItem="m2e-qJ-DtW" firstAttribute="leading" secondItem="XJw-Ia-BFT" secondAttribute="leading" id="mOT-0a-ZEB"/>
+                    <constraint firstItem="XJw-Ia-BFT" firstAttribute="trailing" secondItem="idS-NL-nW9" secondAttribute="trailing" id="r8P-aw-OK3"/>
+                    <constraint firstAttribute="trailing" secondItem="idS-NL-nW9" secondAttribute="trailing" constant="10" id="yZM-WJ-ANg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="nameLabel" destination="vgd-de-oRh" id="xbu-1S-ZeW"/>
+                <outlet property="placeLabel" destination="m2e-qJ-DtW" id="7Jg-El-LOk"/>
+                <outlet property="reasonLabel" destination="XJw-Ia-BFT" id="lZc-5Q-I8h"/>
+                <outlet property="timeLabel" destination="idS-NL-nW9" id="SVK-OU-QQD"/>
+                <outlet property="typeLabel" destination="Mbp-Jh-xJb" id="zeR-Iz-Pob"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="102"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="qiandao_logo" width="200" height="200"/>
+    </resources>
+</document>
