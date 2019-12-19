@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '59520E8BC6B0DB25CF0A4C95B5820241'
-               BlueprintName = 'swizzleMethod'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libswizzleMethod.a'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F01BD12181D69402C860BB329958B22E"
+               BuildableName = "libswizzleMethod.a"
+               BlueprintName = "swizzleMethod"
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

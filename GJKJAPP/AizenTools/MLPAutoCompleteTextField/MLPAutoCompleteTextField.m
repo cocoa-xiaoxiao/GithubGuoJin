@@ -44,7 +44,7 @@ static NSString *BackgroundColorKeyPath = @"backgroundColor";
 @property (assign) CGColorRef originalShadowColor;
 @property (assign) CGSize originalShadowOffset;
 @property (assign) CGFloat originalShadowOpacity;
-@property UIView *maskView;
+
 
 - (void)initialize;
 - (void)beginObservingKeyPathsAndNotifications;
@@ -460,8 +460,8 @@ withAutoCompleteString:(NSString *)string
 + (CGRect)autoCompleteTableViewFrameForTextField:(MLPAutoCompleteTextField *)textField
 {
     CGRect frame = textField.frame;
-    frame.origin.y += textField.frame.size.height;
-    frame.origin.x += textField.autoCompleteTableOriginOffset.width;
+    frame.origin.y += textField.frame.size.height + 20;
+    frame.origin.x += textField.autoCompleteTableOriginOffset.width + 15;
     frame.origin.y += textField.autoCompleteTableOriginOffset.height;
     frame = CGRectInset(frame, 1, 0);
     

@@ -12,7 +12,6 @@
 #import "RAlertView.h"
 #import "AddStationTwoViewController.h"
 #import "CompanyDetailViewController.h"
-#import "DGActivityIndicatorView.h"
 #import "AizenMD5.h"
 #import "AizenHttp.h"
 #import "AizenStorage.h"
@@ -52,7 +51,6 @@
 @property(nonatomic,strong) UILabel *bottomLab;
 
 @property(nonatomic,strong) UIButton *nextBtn;
-@property(nonatomic,strong) DGActivityIndicatorView *activityIndicatorView;
 
 
 @property(nonatomic,strong) NSString *uploadID;
@@ -69,12 +67,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"添加企业信息";
+    self.navigationItem.title = @"企业提交";
     
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:19.0]}];
     
     _getCompanyDic = [[NSDictionary alloc]init];
-    [[self rdv_tabBarController] setTabBarHidden:YES animated:YES];
     [self startLayout];
     
     UIBarButtonItem *backBtnItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(backAction:)];
@@ -84,14 +81,9 @@
 -(void) startLayout{
     _contentView = [[IQPreviousNextView alloc]init];
     _contentView.frame = CGRectMake(0, HEIGHT_STATUSBAR + HEIGHT_NAVBAR, self.view.frame.size.width, self.view.frame.size.height - (HEIGHT_STATUSBAR + HEIGHT_NAVBAR));
-    _contentView.backgroundColor = [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1];
+    _contentView.backgroundColor = [UIColor whiteColor];
     _contentView.userInteractionEnabled = YES;
     [self.view addSubview:_contentView];
-    
-    _activityIndicatorView = [[DGActivityIndicatorView alloc] initWithType:(DGActivityIndicatorAnimationType)DGActivityIndicatorAnimationTypeBallClipRotatePulse tintColor:[UIColor grayColor]];
-    _activityIndicatorView.frame = CGRectMake((self.view.frame.size.width - 100)/2, (self.view.frame.size.height - 200)/2, 100, 100);
-    [_contentView addSubview:_activityIndicatorView];
-    
     
     _nextBtn = [[UIButton alloc]init];
     _nextBtn.frame = CGRectMake(0, _contentView.frame.size.height - HEIGHT_TABBAR, _contentView.frame.size.width, HEIGHT_TABBAR);
@@ -101,147 +93,88 @@
     [_contentView addSubview:_nextBtn];
     
     _titleView = [[UIView alloc]init];
-    _titleView.frame = CGRectMake(0, 0, _contentView.frame.size.width, _contentView.frame.size.height * 0.05);
+    _titleView.frame = CGRectMake(0, 0, _contentView.frame.size.width, _contentView.frame.size.height * 0.08);
     [_contentView addSubview:_titleView];
     
     _titleLab = [[UILabel alloc]init];
     _titleLab.frame = CGRectMake(_titleView.frame.size.width * 0.05, 0, _titleView.frame.size.width * 0.45, _titleView.frame.size.height);
     _titleLab.text = @"企业信息";
-    _titleLab.font = [UIFont systemFontOfSize:13.0];
+    _titleLab.font = [UIFont systemFontOfSize:18.0];
     _titleLab.textColor = [UIColor colorWithRed:113/255.0 green:113/255.0 blue:113/255.0 alpha:1];
     [_titleView addSubview:_titleLab];
     
-    _companyView = [[UIView alloc]init];
-    _companyView.frame = CGRectMake(0, _titleView.frame.origin.y + _titleView.frame.size.height, _contentView.frame.size.width, _contentView.frame.size.height * 0.08);
+    _companyView = [self normalView];
+    _companyView.frame = CGRectMake(_contentView.frame.size.width * 0.02 , _titleView.frame.origin.y + _titleView.frame.size.height, _contentView.frame.size.width * 0.96, _contentView.frame.size.height * 0.08);
     _companyView.backgroundColor = [UIColor whiteColor];
     _companyView.userInteractionEnabled = YES;
     [_contentView addSubview:_companyView];
 
-    _companyLab = [[UILabel alloc]init];
-    _companyLab.frame = CGRectMake(_companyView.frame.size.width * 0.05, 0, _companyView.frame.size.width * 0.45, _companyView.frame.size.height);
-    _companyLab.text = @"企业名称";
-    _companyLab.textColor = [UIColor blackColor];
-    _companyLab.font = [UIFont systemFontOfSize:18.0];
-    [_companyView addSubview:_companyLab];
-
-
     _companyField = [[UILabel alloc]init];
-    _companyField.frame = CGRectMake(_companyLab.frame.origin.x + _companyLab.frame.size.width, 0, _companyView.frame.size.width * 0.45, _companyView.frame.size.height);
-    _companyField.text = @"请输入";
+    _companyField.frame = CGRectMake(_companyView.size.height * 0.85 , 0, _companyView.frame.size.width * 0.45, _companyView.frame.size.height);
+    _companyField.text = @"请输入企业名称";
     _companyField.textColor = [UIColor colorWithRed:200/255.0 green:200/255.0 blue:205/255.0 alpha:1];
-    _companyField.textAlignment = UITextAlignmentRight;
-    _companyField.font = [UIFont systemFontOfSize:18.0];
+    _companyField.textAlignment = NSTextAlignmentLeft;
+    _companyField.font = [UIFont systemFontOfSize:16.0];
     _companyField.userInteractionEnabled = YES;
     UITapGestureRecognizer *companyTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(companyAction:)];
     [_companyField addGestureRecognizer:companyTap];
     [_companyView addSubview:_companyField];
-    
 
-    UIView * line1 = [[UIView alloc]init];
-    line1.frame = CGRectMake(_companyView.frame.size.width * 0.05, _companyView.frame.size.height - 1, _companyView.frame.size.width * 0.95, 1);
-    line1.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1];
-    [_companyView addSubview:line1];
-
-
-    _companyCodeView = [[UIView alloc]init];
-    _companyCodeView.frame = CGRectMake(0, _companyView.frame.origin.y + _companyView.frame.size.height, _contentView.frame.size.width, _contentView.frame.size.height * 0.08);
+    _companyCodeView = [self normalView];
+    _companyCodeView.frame = CGRectMake(_contentView.frame.size.width * 0.02 , _companyView.xo_bottomY + _contentView.xo_width * 0.03, _contentView.frame.size.width * 0.96, _contentView.frame.size.height * 0.08);
     _companyCodeView.backgroundColor = [UIColor whiteColor];
     [_contentView addSubview:_companyCodeView];
 
-    _companyCodeLab = [[UILabel alloc]init];
-    _companyCodeLab.frame = CGRectMake(_companyCodeView.frame.size.width * 0.05, 0, _companyCodeView.frame.size.width * 0.45, _companyCodeView.frame.size.height);
-    _companyCodeLab.text = @"企业代码";
-    _companyCodeLab.textColor = [UIColor blackColor];
-    _companyCodeLab.font = [UIFont systemFontOfSize:18.0];
-    [_companyCodeView addSubview:_companyCodeLab];
-
-
     _companyCodeField = [[BaseTextFeild alloc]init];
-    _companyCodeField.frame = CGRectMake(_companyCodeLab.frame.origin.x + _companyCodeLab.frame.size.width, 0, _companyCodeView.frame.size.width * 0.45, _companyCodeView.frame.size.height);
-    _companyCodeField.placeholder = @"请输入";
-    _companyCodeField.textAlignment = UITextAlignmentRight;
-    _companyCodeField.font = [UIFont systemFontOfSize:18.0];
+    _companyCodeField.frame = CGRectMake(_companyCodeView.size.height * 0.85 , 0, _companyCodeView.frame.size.width * 0.45, _companyCodeView.frame.size.height);
+    _companyCodeField.placeholder = @"请输入统一信用代码";
+    _companyCodeField.textAlignment = NSTextAlignmentLeft;
+    _companyCodeField.font = [UIFont systemFontOfSize:16.0];
     [_companyCodeView addSubview:_companyCodeField];
     _companyCodeField.delegate = self;
 
-
-
-    UIView * line2 = [[UIView alloc]init];
-    line2.frame = CGRectMake(_companyCodeView.frame.size.width * 0.05, _companyCodeView.frame.size.height - 1, _companyCodeView.frame.size.width * 0.95, 1);
-    line2.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1];
-    [_companyCodeView addSubview:line2];
-
-
-    _addressView = [[UIView alloc]init];
-    _addressView.frame = CGRectMake(0, _companyCodeView.frame.origin.y + _companyCodeView.frame.size.height, _contentView.frame.size.width, _contentView.frame.size.height * 0.08);
+    _addressView = [self normalView];
+    _addressView.frame = CGRectMake(_contentView.frame.size.width * 0.02 , _companyCodeView.xo_bottomY + _contentView.xo_width * 0.03, _contentView.frame.size.width * 0.96, _contentView.frame.size.height * 0.08);
     _addressView.backgroundColor = [UIColor whiteColor];
     [_contentView addSubview:_addressView];
 
-    _addressLab = [[UILabel alloc]init];
-    _addressLab.frame = CGRectMake(_addressView.frame.size.width * 0.05, 0, _addressView.frame.size.width * 0.45, _addressView.frame.size.height);
-    _addressLab.text = @"企业地址";
-    _addressLab.textColor = [UIColor blackColor];
-    _addressLab.font = [UIFont systemFontOfSize:18.0];
-    [_addressView addSubview:_addressLab];
-
-
     _addressField = [[BaseTextFeild alloc]init];
-    _addressField.frame = CGRectMake(_addressLab.frame.origin.x + _addressLab.frame.size.width, 0, _addressView.frame.size.width * 0.45, _addressView.frame.size.height);
-    _addressField.placeholder = @"请输入";
-    _addressField.textAlignment = UITextAlignmentRight;
-    _addressField.font = [UIFont systemFontOfSize:18.0];
+    _addressField.frame = CGRectMake(_addressView.size.height * 0.85 , 0, _companyCodeView.frame.size.width * 0.45, _companyCodeView.frame.size.height);
+    _addressField.placeholder = @"请输入企业地址";
+    _addressField.textAlignment = NSTextAlignmentLeft;
+    _addressField.font = [UIFont systemFontOfSize:16.0];
     [_addressView addSubview:_addressField];
     _addressField.delegate = self;
 
-
-    UIView * line3 = [[UIView alloc]init];
-    line3.frame = CGRectMake(_addressView.frame.size.width * 0.05, _addressView.frame.size.height - 1, _addressView.frame.size.width * 0.95, 1);
-    line3.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1];
-    [_addressView addSubview:line3];
-
-
-    _peopleCountView = [[UIView alloc]init];
-    _peopleCountView.frame = CGRectMake(0, _addressView.frame.origin.y + _addressView.frame.size.height, _contentView.frame.size.width, _contentView.frame.size.height * 0.08);
+    _peopleCountView = [self normalView];
+    _peopleCountView.frame = CGRectMake(_contentView.frame.size.width * 0.02 , _addressView.xo_bottomY + _contentView.xo_width * 0.03, _contentView.frame.size.width * 0.96, _contentView.frame.size.height * 0.08);
     _peopleCountView.backgroundColor = [UIColor whiteColor];
     [_contentView addSubview:_peopleCountView];
 
-    _peopleCountLab = [[UILabel alloc]init];
-    _peopleCountLab.frame = CGRectMake(_peopleCountView.frame.size.width * 0.05, 0, _peopleCountView.frame.size.width * 0.45, _peopleCountView.frame.size.height);
-    _peopleCountLab.text = @"员工总数";
-    _peopleCountLab.textColor = [UIColor blackColor];
-    _peopleCountLab.font = [UIFont systemFontOfSize:18.0];
-    [_peopleCountView addSubview:_peopleCountLab];
-
-
     _peopleCountField = [[BaseTextFeild alloc]init];
-    _peopleCountField.frame = CGRectMake(_peopleCountLab.frame.origin.x + _peopleCountLab.frame.size.width, 0, _peopleCountView.frame.size.width * 0.45, _peopleCountView.frame.size.height);
-    _peopleCountField.placeholder = @"请输入";
-    _peopleCountField.textAlignment = UITextAlignmentRight;
-    _peopleCountField.font = [UIFont systemFontOfSize:18.0];
+    _peopleCountField.frame = CGRectMake(_peopleCountView.size.height * 0.85 , 0, _companyCodeView.frame.size.width * 0.45, _companyCodeView.frame.size.height);
+    _peopleCountField.placeholder = @"请输入职工总数";
+    _peopleCountField.textAlignment = NSTextAlignmentLeft;
+    _peopleCountField.font = [UIFont systemFontOfSize:16.0];
     [_peopleCountView addSubview:_peopleCountField];
     _peopleCountField.delegate = self;
     _peopleCountField.keyboardType = UIKeyboardTypeNumberPad;
-    UIView * line4 = [[UIView alloc]init];
-    line4.frame = CGRectMake(_peopleCountView.frame.size.width * 0.05, _peopleCountView.frame.size.height - 1, _peopleCountView.frame.size.width * 0.95, 1);
-    line4.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1];
-    [_peopleCountView addSubview:line4];
 
-
-    _baseView = [[UIView alloc]init];
-    _baseView.frame = CGRectMake(0, _peopleCountView.frame.origin.y + _peopleCountView.frame.size.height, _contentView.frame.size.width, _contentView.frame.size.height * 0.08);
+    _baseView = [self normalView];
+    _baseView.frame = CGRectMake(_contentView.frame.size.width * 0.02 , _peopleCountView.xo_bottomY + _contentView.xo_width * 0.03, _contentView.frame.size.width * 0.96, _contentView.frame.size.height * 0.08);
     _baseView.backgroundColor = [UIColor whiteColor];
     [_contentView addSubview:_baseView];
 
     _baseLab = [[UILabel alloc]init];
-    _baseLab.frame = CGRectMake(_baseView.frame.size.width * 0.05, 0, _baseView.frame.size.width * 0.45, _baseView.frame.size.height);
+    _baseLab.frame = CGRectMake(_peopleCountView.size.height * 0.85, 0, _baseView.frame.size.width * 0.45, _baseView.frame.size.height);
     _baseLab.text = @"是否实习基地";
     _baseLab.textColor = [UIColor blackColor];
-    _baseLab.font = [UIFont systemFontOfSize:18.0];
+    _baseLab.font = [UIFont systemFontOfSize:16.0];
     [_baseView addSubview:_baseLab];
 
 
     _baseField = [[UIView alloc]init];
-    _baseField.frame = CGRectMake(_baseLab.frame.origin.x + _baseLab.frame.size.width, 0, _baseView.frame.size.width * 0.45, _baseView.frame.size.height);
+    _baseField.frame = CGRectMake(_baseLab.frame.origin.x + _baseLab.frame.size.width, 0, _baseView.frame.size.width * 0.40, _baseView.frame.size.height);
     [_baseView addSubview:_baseField];
     
     _baseSwitch = [[UISwitch alloc]init];
@@ -251,7 +184,7 @@
 
 
     _bottomView = [[UIView alloc]init];
-    _bottomView.frame = CGRectMake(0, _baseView.frame.size.height + _baseView.frame.origin.y, _contentView.frame.size.width, _contentView.frame.size.height * 0.05);
+    _bottomView.frame = CGRectMake(0, _baseView.frame.size.height + _baseView.frame.origin.y, _contentView.frame.size.width, _contentView.frame.size.height * 0.08);
     [_contentView addSubview:_bottomView];
 
     _bottomLab = [[UILabel alloc]init];
@@ -261,6 +194,20 @@
     _bottomLab.textColor = [UIColor colorWithRed:113/255.0 green:113/255.0 blue:113/255.0 alpha:1];
     [_bottomView addSubview:_bottomLab];
     
+}
+
+-(UIView *)normalView
+{
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0,_contentView.frame.size.width * 0.96, _contentView.frame.size.height * 0.08)];
+    view.layer.cornerRadius = 5;
+    view.layer.borderWidth = 1.f;
+    view.layer.borderColor = RGB_HEX(0xEBEBEB, 1).CGColor;
+    
+    UIImageView *imagev = [[UIImageView alloc]initWithFrame:CGRectMake(0, view.size.height * 0.10, view.size.height * 0.8, view.size.height * 0.8)];
+    imagev.image = [UIImage imageNamed:@"ic_findpws_warnlog"];
+    [view addSubview:imagev];
+    
+    return view;
 }
 
 - (NSString *)br_jduagehadNilData{
@@ -340,7 +287,7 @@
             _peopleCountField.userInteractionEnabled = YES;
             
         }else{
-            [_activityIndicatorView startAnimating];
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             NSString *enterpriseID = [_getCompanyDic objectForKey:@"ID"];
             NSString *enterpriseName = [_getCompanyDic objectForKey:@"EnterpriseName"];
             _companyField.text = enterpriseName;
@@ -351,13 +298,13 @@
             
             NSString *url = [NSString stringWithFormat:@"%@/ApiEnterpriseInfo/GetEnterpriseInfo?EnterpriseID=%@",kCacheHttpRoot,enterpriseID];
             [AizenHttp asynRequest:url httpMethod:@"GET" params:nil success:^(id result) {
-                [_activityIndicatorView stopAnimating];
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 NSDictionary *jsonDic = result;
                 if([[jsonDic objectForKey:@"ResultType"] intValue] == 0){
                     [self handleOtherData:[[jsonDic objectForKey:@"AppendData"] objectAtIndex:0]];
                 }
             } failue:^(NSError *error) {
-                [_activityIndicatorView stopAnimating];
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 NSLog(@"请求失败--获取企业信息");
             }];
             
@@ -366,7 +313,7 @@
 }
 
 - (void)br_resetAllTextFeild{
-    _companyField.text = @"请输入";
+    _companyField.text = @"请输入企业名称";
     _companyField.textColor = [UIColor colorWithRed:200/255.0 green:200/255.0 blue:205/255.0 alpha:1];
     _uploadID = nil;
     _uploadQYName = nil;

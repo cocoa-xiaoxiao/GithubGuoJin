@@ -51,7 +51,7 @@
     _tableView.tableHeaderView = _searchController.searchBar;
     _searchController.searchBar.placeholder = @"请输入师傅名称";
     _searchController.searchBar.delegate = self;
-    [_searchController br_removeLogoKeyboard];
+//    [_searchController br_removeLogoKeyboard];
     _activityIndicatorView = [[DGActivityIndicatorView alloc] initWithType:(DGActivityIndicatorAnimationType)DGActivityIndicatorAnimationTypeBallClipRotatePulse tintColor:[UIColor grayColor]];
     _activityIndicatorView.frame = CGRectMake((self.view.frame.size.width - 100)/2, (self.view.frame.size.height - 200)/2, 100, 100);
     [_tableView addSubview:_activityIndicatorView];

@@ -232,7 +232,8 @@
                 [AizenStorage removeUserDataWithkey:@"batch"];
                 [AizenStorage removeUserDataWithkey:@"batchID"];
                 _loginCtl = [[LoginViewController alloc]init];
-                _loginCtl.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//                _loginCtl.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                _loginCtl.modalPresentationStyle = UIModalPresentationFullScreen;
                 [self presentViewController:_loginCtl animated:YES completion:nil];
             }
             break;

@@ -83,7 +83,7 @@
     
     
     _contentView = [[UIView alloc]init];
-    _contentView.frame = CGRectMake(0, HEIGHT_STATUSBAR + HEIGHT_NAVBAR, self.view.frame.size.width, self.view.frame.size.height - _navHeight()-_tabbarHeight());
+    _contentView.frame = CGRectMake(0, _navHeight(), self.view.frame.size.width, self.view.frame.size.height - _navHeight()-_tabbarHeight());
     [self.view addSubview:_contentView];
     
     

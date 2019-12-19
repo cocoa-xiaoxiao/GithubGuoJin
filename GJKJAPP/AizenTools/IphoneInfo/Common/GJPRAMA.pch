@@ -42,6 +42,8 @@
 #import "UIView+Size.h"
 #import "NSAttributedString+customMethod.h"
 #import "NSString+Extension.h"
+#import "IBCreatHelper.h"
+#import "MBProgressHUD.h"
 #define GRAY_BACKGROUND    [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1]
 
 #define HEIGHT_NC          [UIScreen mainScreen].bounds.size.height - 20 - 44

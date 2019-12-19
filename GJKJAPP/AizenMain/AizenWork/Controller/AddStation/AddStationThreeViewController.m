@@ -14,7 +14,7 @@
 
 #define MAINHEIGHT [UIScreen mainScreen].bounds.size.height - HEIGHT_STATUSBAR - HEIGHT_NAVBAR
 
-@interface AddStationThreeViewController ()
+@interface AddStationThreeViewController ()<UITextFieldDelegate>
 
 @property(nonatomic,strong) UIView *contentView;
 @property(nonatomic,strong) UIView *scrollView;
@@ -76,7 +76,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"添加入职信息";
+    self.navigationItem.title = @"企业提交";
     _getStationDic = [GJToolsHelp processDictionaryIsNSNull:_getStationDic];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:19.0]}];
     
@@ -93,7 +93,7 @@
 -(void) startLayout{
     _contentView = [[IQPreviousNextView alloc]init];
     _contentView.frame = CGRectMake(0, HEIGHT_STATUSBAR + HEIGHT_NAVBAR, self.view.frame.size.width, self.view.frame.size.height - (HEIGHT_NAVBAR + HEIGHT_STATUSBAR + HEIGHT_TABBAR));
-    _contentView.backgroundColor = [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1];
+    _contentView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_contentView];
     
     
@@ -117,133 +117,75 @@
     CGFloat height = MAINHEIGHT;
     
     _titleView = [[UIView alloc]init];
-    _titleView.frame = CGRectMake(0, 0, _contentView.frame.size.width, height * 0.05);
-    [_scrollView addSubview:_titleView];
+    _titleView.frame = CGRectMake(0, 0, _contentView.frame.size.width, _contentView.frame.size.height * 0.08);
+    [_contentView addSubview:_titleView];
     
     _titleLab = [[UILabel alloc]init];
     _titleLab.frame = CGRectMake(_titleView.frame.size.width * 0.05, 0, _titleView.frame.size.width * 0.45, _titleView.frame.size.height);
-    _titleLab.text = @"指导教师";
-    _titleLab.font = [UIFont systemFontOfSize:13.0];
+    _titleLab.text = @"指导老师";
+    _titleLab.font = [UIFont systemFontOfSize:18.0];
     _titleLab.textColor = [UIColor colorWithRed:113/255.0 green:113/255.0 blue:113/255.0 alpha:1];
-    [_scrollView addSubview:_titleLab];
+    [_titleView addSubview:_titleLab];
     
     
-    _teacherView = [[UIView alloc]init];
-    _teacherView.frame = CGRectMake(0, _titleView.frame.origin.y + _titleView.frame.size.height, _contentView.frame.size.width, height * 0.08);
+    _teacherView = [self normalView];
+    _teacherView.frame = CGRectMake(_contentView.frame.size.width * 0.02 , _titleView.frame.origin.y + _titleView.frame.size.height, _contentView.frame.size.width * 0.96, _contentView.frame.size.height * 0.08);
     _teacherView.backgroundColor = [UIColor whiteColor];
-    [_scrollView addSubview:_teacherView];
-    
-    _teacherLab = [[UILabel alloc]init];
-    _teacherLab.frame = CGRectMake(_teacherView.frame.size.width * 0.05, 0, _teacherView.frame.size.width * 0.45, _teacherView.frame.size.height);
-    _teacherLab.text = @"企业指导师傅";
-    _teacherLab.textColor = [UIColor blackColor];
-    _teacherLab.font = [UIFont systemFontOfSize:18.0];
-    [_teacherView addSubview:_teacherLab];
-    
-    
+    _teacherView.userInteractionEnabled = YES;
+    [_contentView addSubview:_teacherView];
+
     _teacherField = [[UILabel alloc]init];
-    _teacherField.frame = CGRectMake(_teacherLab.frame.origin.x + _teacherLab.frame.size.width, 0, _teacherView.frame.size.width * 0.45, _teacherView.frame.size.height);
-    _teacherField.text = @"请输入";
+    _teacherField.frame = CGRectMake(_teacherView.size.height * 0.85 , 0, _teacherView.frame.size.width * 0.45, _teacherView.frame.size.height);
+    _teacherField.text = @"请输入企业指导老师";
     _teacherField.textColor = [UIColor colorWithRed:200/255.0 green:200/255.0 blue:205/255.0 alpha:1];
-    _teacherField.textAlignment = UITextAlignmentRight;
-    _teacherField.font = [UIFont systemFontOfSize:18.0];
+    _teacherField.textAlignment = NSTextAlignmentLeft;
+    _teacherField.font = [UIFont systemFontOfSize:16.0];
     _teacherField.userInteractionEnabled = YES;
-    UITapGestureRecognizer *teacherTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(teacherAction:)];
-    [_teacherField addGestureRecognizer:teacherTap];
+    UITapGestureRecognizer *companyTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(teacherAction:)];
+    [_teacherField addGestureRecognizer:companyTap];
     [_teacherView addSubview:_teacherField];
-    
-    UIView * line1 = [[UIView alloc]init];
-    line1.frame = CGRectMake(_teacherView.frame.size.width * 0.05, _teacherView.frame.size.height - 1, _teacherView.frame.size.width * 0.95, 1);
-    line1.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1];
-    [_teacherView addSubview:line1];
-    
-    
-    
-    _mobileView = [[UIView alloc]init];
-    _mobileView.frame = CGRectMake(0, _teacherView.frame.origin.y + _teacherView.frame.size.height, _contentView.frame.size.width, height * 0.08);
+//收集
+    _mobileView = [self normalView];
+    _mobileView.frame = CGRectMake(_contentView.frame.size.width * 0.02 , _teacherView.xo_bottomY + _contentView.xo_width * 0.03, _contentView.frame.size.width * 0.96, _contentView.frame.size.height * 0.08);
     _mobileView.backgroundColor = [UIColor whiteColor];
-    [_scrollView addSubview:_mobileView];
-    
-    _mobileLab = [[UILabel alloc]init];
-    _mobileLab.frame = CGRectMake(_mobileView.frame.size.width * 0.05, 0, _mobileView.frame.size.width * 0.45, _mobileView.frame.size.height);
-    _mobileLab.text = @"师傅手机";
-    _mobileLab.textColor = [UIColor blackColor];
-    _mobileLab.font = [UIFont systemFontOfSize:18.0];
-    [_mobileView addSubview:_mobileLab];
-    
-    
+    [_contentView addSubview:_mobileView];
+
     _mobileField = [[BaseTextFeild alloc]init];
-    _mobileField.frame = CGRectMake(_mobileLab.frame.origin.x + _mobileLab.frame.size.width, 0, _mobileView.frame.size.width * 0.45, _mobileView.frame.size.height);
-    _mobileField.placeholder = @"请输入";
-    _mobileField.textAlignment = UITextAlignmentRight;
-    _mobileField.font = [UIFont systemFontOfSize:18.0];
+    _mobileField.frame = CGRectMake(_mobileView.size.height * 0.85 , 0, _mobileView.frame.size.width * 0.45, _mobileView.frame.size.height);
+    _mobileField.placeholder = @"请输入企业老师手机";
+    _mobileField.textAlignment = NSTextAlignmentLeft;
+    _mobileField.font = [UIFont systemFontOfSize:16.0];
     [_mobileView addSubview:_mobileField];
     _mobileField.delegate = self;
-    _mobileField.keyboardType = UIKeyboardTypeNumberPad;
-    
-    UIView * line2 = [[UIView alloc]init];
-    line2.frame = CGRectMake(_mobileView.frame.size.width * 0.05, _mobileView.frame.size.height - 1, _mobileView.frame.size.width * 0.95, 1);
-    line2.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1];
-    [_mobileView addSubview:line2];
-    
-    
-    _phoneView = [[UIView alloc]init];
-    _phoneView.frame = CGRectMake(0, _mobileView.frame.origin.y + _mobileView.frame.size.height, _contentView.frame.size.width, height * 0.08);
+// j固定电话
+    _phoneView = [self normalView];
+    _phoneView.frame = CGRectMake(_contentView.frame.size.width * 0.02 , _mobileView.xo_bottomY + _contentView.xo_width * 0.03, _contentView.frame.size.width * 0.96, _contentView.frame.size.height * 0.08);
     _phoneView.backgroundColor = [UIColor whiteColor];
-    [_scrollView addSubview:_phoneView];
-    
-    _phoneLab = [[UILabel alloc]init];
-    _phoneLab.frame = CGRectMake(_phoneView.frame.size.width * 0.05, 0, _phoneView.frame.size.width * 0.45, _phoneView.frame.size.height);
-    _phoneLab.text = @"师傅固话";
-    _phoneLab.textColor = [UIColor blackColor];
-    _phoneLab.font = [UIFont systemFontOfSize:18.0];
-    [_phoneView addSubview:_phoneLab];
-    
-    
+    [_contentView addSubview:_phoneView];
+
     _phoneField = [[BaseTextFeild alloc]init];
-    _phoneField.frame = CGRectMake(_phoneLab.frame.origin.x + _phoneLab.frame.size.width, 0, _phoneView.frame.size.width * 0.45, _phoneView.frame.size.height);
-    _phoneField.placeholder = @"请输入";
-    _phoneField.textAlignment = UITextAlignmentRight;
-    _phoneField.font = [UIFont systemFontOfSize:18.0];
+    _phoneField.frame = CGRectMake(_mobileView.size.height * 0.85 , 0, _mobileView.frame.size.width * 0.45, _mobileView.frame.size.height);
+    _phoneField.placeholder = @"请输入企业老师座机";
+    _phoneField.textAlignment = NSTextAlignmentLeft;
+    _phoneField.font = [UIFont systemFontOfSize:16.0];
     [_phoneView addSubview:_phoneField];
     _phoneField.delegate = self;
-    UIView * line3 = [[UIView alloc]init];
-    line3.frame = CGRectMake(_phoneView.frame.size.width * 0.05, _phoneView.frame.size.height - 1, _phoneView.frame.size.width * 0.95, 1);
-    line3.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1];
-    [_phoneView addSubview:line3];
-    
-    
-    _emailView = [[UIView alloc]init];
-    _emailView.frame = CGRectMake(0, _phoneView.frame.origin.y + _phoneView.frame.size.height, _contentView.frame.size.width, height * 0.08);
+//邮箱
+    _emailView = [self normalView];
+    _emailView.frame = CGRectMake(_contentView.frame.size.width * 0.02 , _phoneView.xo_bottomY + _contentView.xo_width * 0.03, _contentView.frame.size.width * 0.96, _contentView.frame.size.height * 0.08);
     _emailView.backgroundColor = [UIColor whiteColor];
-    [_scrollView addSubview:_emailView];
-    
-    _emailLab = [[UILabel alloc]init];
-    _emailLab.frame = CGRectMake(_emailView.frame.size.width * 0.05, 0, _emailView.frame.size.width * 0.45, _emailView.frame.size.height);
-    _emailLab.text = @"师傅邮箱";
-    _emailLab.textColor = [UIColor blackColor];
-    _emailLab.font = [UIFont systemFontOfSize:18.0];
-    [_emailView addSubview:_emailLab];
-    
-    
+    [_contentView addSubview:_emailView];
+
     _emailField = [[BaseTextFeild alloc]init];
-    _emailField.frame = CGRectMake(_emailLab.frame.origin.x + _emailLab.frame.size.width, 0, _emailView.frame.size.width * 0.45, _emailView.frame.size.height);
-    _emailField.placeholder = @"请输入";
-    _emailField.textAlignment = UITextAlignmentRight;
-    _emailField.font = [UIFont systemFontOfSize:18.0];
+    _emailField.frame = CGRectMake(_mobileView.size.height * 0.85 , 0, _mobileView.frame.size.width * 0.45, _mobileView.frame.size.height);
+    _emailField.placeholder = @"请输入企业老师邮箱";
+    _emailField.textAlignment = NSTextAlignmentLeft;
+    _emailField.font = [UIFont systemFontOfSize:16.0];
     [_emailView addSubview:_emailField];
     _emailField.delegate = self;
-    _emailField.keyboardType = UIKeyboardTypeEmailAddress;
-    
-    UIView * line4 = [[UIView alloc]init];
-    line4.frame = CGRectMake(_emailView.frame.size.width * 0.05, _emailView.frame.size.height - 1, _emailView.frame.size.width * 0.95, 1);
-    line4.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1];
-    [_emailView addSubview:line4];
-    
-
     
     _bottomView = [[UIView alloc]init];
-    _bottomView.frame = CGRectMake(0, _emailView.frame.size.height + _emailView.frame.origin.y, _contentView.frame.size.width, height * 0.05);
+    _bottomView.frame = CGRectMake(0, _emailView.frame.size.height + _emailView.frame.origin.y, _contentView.frame.size.width, height * 0.08);
     [_scrollView addSubview:_bottomView];
     
     _bottomLab = [[UILabel alloc]init];
@@ -252,13 +194,22 @@
     _bottomLab.font = [UIFont systemFontOfSize:13.0];
     _bottomLab.textColor = [UIColor colorWithRed:113/255.0 green:113/255.0 blue:113/255.0 alpha:1];
     [_bottomView addSubview:_bottomLab];
-    
-    
-    
-//    CGFloat scrollHeight = _titleView.frame.size.height + _teacherView.frame.size.height + _mobileView.frame.size.height + _phoneView.frame.size.height + _emailView.frame.size.height + _offerView.frame.size.height + _dateView.frame.size.height + _liveView.frame.size.height + _eatView.frame.size.height + _instrView.frame.size.height + _bottomView.frame.size.height;
-//    _scrollView.contentSize = CGSizeMake(_contentView.frame.size.width, scrollHeight);
-    
 }
+
+-(UIView *)normalView
+{
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0,_contentView.frame.size.width * 0.96, _contentView.frame.size.height * 0.08)];
+    view.layer.cornerRadius = 5;
+    view.layer.borderWidth = 1.f;
+    view.layer.borderColor = RGB_HEX(0xEBEBEB, 1).CGColor;
+    
+    UIImageView *imagev = [[UIImageView alloc]initWithFrame:CGRectMake(0, view.size.height * 0.10, view.size.height * 0.8, view.size.height * 0.8)];
+    imagev.image = [UIImage imageNamed:@"ic_findpws_warnlog"];
+    [view addSubview:imagev];
+    
+    return view;
+}
+
 
 - (NSString *)br_jduagehadNilData{
     

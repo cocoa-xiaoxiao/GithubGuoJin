@@ -175,7 +175,7 @@
 #pragma mark UIAlertView
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(alertView.tag == 1){
-        LoginViewController *login = [[LoginViewController alloc]init];
+        LoginViewController *login = getControllerFromStoryBoard(@"Mine", @"myloginStoryID");
         [self presentViewController:login animated:YES completion:nil];
     }
 }

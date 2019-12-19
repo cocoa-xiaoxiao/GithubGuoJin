@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000CCB0923A7E2FF001B0742 /* UnitFiveVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 000CCB0823A7E2FF001B0742 /* UnitFiveVC.m */; };
+		001CD80C23A52EEB00D87F33 /* AddStationStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 001CD80B23A52EEB00D87F33 /* AddStationStoryboard.storyboard */; };
 		00AF7A03225E40AB00F35E1D /* TaskBookListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AF7A01225E40AA00F35E1D /* TaskBookListViewController.m */; };
 		00AF7A08225E40C300F35E1D /* NotTaskBookListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AF7A06225E40C300F35E1D /* NotTaskBookListViewController.m */; };
 		00AF7A09225E40C300F35E1D /* HaveTaskBookListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AF7A07225E40C300F35E1D /* HaveTaskBookListViewController.m */; };
@@ -439,6 +441,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		000CCB0723A7E2FF001B0742 /* UnitFiveVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnitFiveVC.h; sourceTree = "<group>"; };
+		000CCB0823A7E2FF001B0742 /* UnitFiveVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnitFiveVC.m; sourceTree = "<group>"; };
+		001CD80B23A52EEB00D87F33 /* AddStationStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddStationStoryboard.storyboard; sourceTree = "<group>"; };
 		00AF7A01225E40AA00F35E1D /* TaskBookListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskBookListViewController.m; sourceTree = "<group>"; };
 		00AF7A02225E40AA00F35E1D /* TaskBookListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskBookListViewController.h; sourceTree = "<group>"; };
 		00AF7A04225E40C100F35E1D /* NotTaskBookListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotTaskBookListViewController.h; sourceTree = "<group>"; };
@@ -2375,10 +2380,10 @@
 			children = (
 				667C25C7213D95C6002E465F /* AizenMsg */,
 				667C25ED213D95C6002E465F /* AizenWork */,
-				667C2712213D95C7002E465F /* MainViewController.m */,
 				667C2713213D95C7002E465F /* AizenService */,
 				667C2716213D95C7002E465F /* AizenMe */,
 				667C271D213D95C7002E465F /* MainViewController.h */,
+				667C2712213D95C7002E465F /* MainViewController.m */,
 			);
 			path = AizenMain;
 			sourceTree = "<group>";
@@ -2624,23 +2629,26 @@
 		667C25FA213D95C6002E465F /* AddStation */ = {
 			isa = PBXGroup;
 			children = (
-				667C25FB213D95C6002E465F /* AddStationFiveViewController.h */,
-				667C25FC213D95C6002E465F /* TestViewController.m */,
+				667C260E213D95C6002E465F /* AddStationViewController.h */,
 				667C25FD213D95C6002E465F /* AddStationViewController.m */,
-				667C25FE213D95C6002E465F /* CompanyDetail */,
-				667C2601213D95C6002E465F /* AddStationThreeViewController.h */,
+				667C260F213D95C6002E465F /* AddStationTwoViewController.h */,
 				667C2602213D95C6002E465F /* AddStationTwoViewController.m */,
+				667C2601213D95C6002E465F /* AddStationThreeViewController.h */,
+				667C260D213D95C6002E465F /* AddStationThreeViewController.m */,
 				667C2603213D95C6002E465F /* AddStationFourViewController.h */,
-				667C2604213D95C6002E465F /* TestSecondViewController.h */,
+				667C2611213D95C6002E465F /* AddStationFourViewController.m */,
+				667C25FB213D95C6002E465F /* AddStationFiveViewController.h */,
+				667C2609213D95C6002E465F /* AddStationFiveViewController.m */,
+				000CCB0723A7E2FF001B0742 /* UnitFiveVC.h */,
+				000CCB0823A7E2FF001B0742 /* UnitFiveVC.m */,
+				001CD80B23A52EEB00D87F33 /* AddStationStoryboard.storyboard */,
+				667C25FE213D95C6002E465F /* CompanyDetail */,
 				667C2605213D95C6002E465F /* StationDetail */,
 				667C2608213D95C6002E465F /* TestViewController.h */,
-				667C2609213D95C6002E465F /* AddStationFiveViewController.m */,
-				667C260A213D95C6002E465F /* TeacherDetail */,
-				667C260D213D95C6002E465F /* AddStationThreeViewController.m */,
-				667C260E213D95C6002E465F /* AddStationViewController.h */,
-				667C260F213D95C6002E465F /* AddStationTwoViewController.h */,
+				667C25FC213D95C6002E465F /* TestViewController.m */,
+				667C2604213D95C6002E465F /* TestSecondViewController.h */,
 				667C2610213D95C6002E465F /* TestSecondViewController.m */,
-				667C2611213D95C6002E465F /* AddStationFourViewController.m */,
+				667C260A213D95C6002E465F /* TeacherDetail */,
 			);
 			path = AddStation;
 			sourceTree = "<group>";
@@ -3165,9 +3173,9 @@
 			children = (
 				667C26EE213D95C7002E465F /* Tools */,
 				667C26F1213D95C7002E465F /* QRCodeScanViewController.h */,
-				667C26F2213D95C7002E465F /* SignViewController.m */,
 				667C26F3213D95C7002E465F /* QRCodeScanViewController.m */,
 				667C26F4213D95C7002E465F /* SignViewController.h */,
+				667C26F2213D95C7002E465F /* SignViewController.m */,
 			);
 			path = Sign;
 			sourceTree = "<group>";
@@ -3473,7 +3481,6 @@
 				9C9CFCD620005E9C00FB82CB /* Frameworks */,
 				9C9CFCD720005E9C00FB82CB /* Resources */,
 				3EC56FE485C86D38C85E3937 /* [CP] Copy Pods Resources */,
-				CE3AD99B4EB90FF877603656 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -3532,7 +3539,7 @@
 				TargetAttributes = {
 					9C9CFCD820005E9C00FB82CB = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -3597,6 +3604,7 @@
 				00AF7A44225E431B00F35E1D /* CheckProposalListTableViewCell.xib in Resources */,
 				667C2732213D95C7002E465F /* btn_navigation_close@2x.png in Resources */,
 				00AF7ADB225E4A6E00F35E1D /* DocumentTableViewCell.xib in Resources */,
+				001CD80C23A52EEB00D87F33 /* AddStationStoryboard.storyboard in Resources */,
 				66FFFDDA216F9CE0004CD01A /* GJSOSRecordListTableViewCell.xib in Resources */,
 				661748E1215BDD5000359D63 /* ChatViewImages.xcassets in Resources */,
 				667C24EC213D849F002E465F /* Main.storyboard in Resources */,
@@ -3644,18 +3652,20 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-GJKJAPP/Pods-GJKJAPP-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-GJKJAPP/Pods-GJKJAPP-resources.sh",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/PGDatePicker/PGDatePicker/PGDatePicker.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PGDatePicker.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GJKJAPP/Pods-GJKJAPP-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GJKJAPP/Pods-GJKJAPP-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		596AB3FEC01FB823AFC3C7BE /* [CP] Check Pods Manifest.lock */ = {
@@ -3674,21 +3684,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CE3AD99B4EB90FF877603656 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GJKJAPP/Pods-GJKJAPP-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -3788,6 +3783,7 @@
 				667C2759213D95C7002E465F /* DGActivityIndicatorLineScalePulseOutRapidAnimation.m in Sources */,
 				00AF7A2A225E421600F35E1D /* MyDefenseArrangeViewController.m in Sources */,
 				667C278B213D95C7002E465F /* AddStationTwoViewController.m in Sources */,
+				000CCB0923A7E2FF001B0742 /* UnitFiveVC.m in Sources */,
 				667C275C213D95C7002E465F /* AppCache.m in Sources */,
 				00AF7A5D225E447C00F35E1D /* MyReviewListViewController.m in Sources */,
 				667C276D213D95C7002E465F /* PersonModel.m in Sources */,
@@ -4227,9 +4223,9 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8M66PS8VC3;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4279,9 +4275,9 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8M66PS8VC3;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

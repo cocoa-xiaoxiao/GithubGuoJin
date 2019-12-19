@@ -48,7 +48,7 @@
 @property (assign) CGFloat autoCompleteTableBorderWidth;
 @property (strong) UIColor *autoCompleteTableBackgroundColor;
 @property (strong) UIColor *autoCompleteTableCellTextColor;
-
+@property UIView *maskView;
 
 - (void)registerAutoCompleteCellNib:(UINib *)nib forCellReuseIdentifier:(NSString *)reuseIdentifier;
 

@@ -117,8 +117,8 @@
 }
 
 -(void) goLogin{
-    _loginCtl = [[LoginViewController alloc]init];
-    _loginCtl.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    _loginCtl = getControllerFromStoryBoard(@"Mine", @"myloginStoryID");
+    _loginCtl.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:_loginCtl animated:YES completion:nil];
 }
 
@@ -145,7 +145,8 @@
     tabbar.tabBar.tintColor = kAppMainColor;
     tabbar.tabBar.translucent = NO;
     
-    tabbar.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//    tabbar.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    tabbar.modalPresentationStyle = UIModalPresentationFullScreen;
     return tabbar;
 }
 -(void) goMain{

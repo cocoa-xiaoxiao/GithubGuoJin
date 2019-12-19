@@ -18,5 +18,6 @@ pod 'Masonry','~>0.6.3'
 pod 'NilSafety', '~> 1.0.2'
  pod 'UMengAnalytics-NO-IDFA' #无IDFA版SDK
  pod 'SDCycleScrollView','~> 1.65'
+pod 'MBProgressHUD'
 end
 

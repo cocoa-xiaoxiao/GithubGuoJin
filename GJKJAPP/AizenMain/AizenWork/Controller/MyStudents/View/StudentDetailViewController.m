@@ -57,7 +57,6 @@
     
     [_contentView addSubview:_topImgView];
     
-    
     _infoView = [[UIView alloc]init];
     _infoView.frame = CGRectMake(0, _contentView.frame.size.height * 0.2, _contentView.frame.size.width, _contentView.frame.size.height * 0.25);
     _infoView.backgroundColor = [UIColor whiteColor];

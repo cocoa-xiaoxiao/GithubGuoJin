@@ -17,7 +17,7 @@
 #import "RAlertView.h"
 
 #import <IQKeyboardManager/IQPreviousNextView.h>
-@interface AddStationTwoViewController ()<UITextFieldDelegate>
+@interface AddStationTwoViewController ()<UITextFieldDelegate,UITextViewDelegate>
 
 @property(nonatomic,strong) UIView *contentView;
 
@@ -34,7 +34,7 @@
 
 @property(nonatomic,strong) UIView *stationInstrView;
 @property(nonatomic,strong) UILabel *stationInstrLab;
-@property(nonatomic,strong) BaseTextFeild *stationInstrField;
+@property(nonatomic,strong) UITextView *stationInstrField;
 
 @property(nonatomic,strong) UIView *stationTypsView;
 @property(nonatomic,strong) UILabel *stationTypeLab;
@@ -49,8 +49,6 @@
 
 @property(nonatomic,strong) UIButton *nextBtn;
 
-@property(nonatomic,strong) DGActivityIndicatorView *activityIndicatorView;
-
 @property(nonatomic,strong) NSString *uploadStationID;
 @property(nonatomic,strong) NSString *uploadStationName;
 @property(nonatomic,strong) NSString *uploadStationTotal;
@@ -63,7 +61,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"添加岗位信息";
+    self.navigationItem.title = @"企业提交";
     
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:19.0]}];
     [self startLayout];
@@ -72,15 +70,8 @@
 -(void) startLayout{
     _contentView = [[IQPreviousNextView alloc]init];
     _contentView.frame = CGRectMake(0, HEIGHT_STATUSBAR + HEIGHT_NAVBAR, self.view.frame.size.width, self.view.frame.size.height - (HEIGHT_STATUSBAR + HEIGHT_NAVBAR));
-    _contentView.backgroundColor = [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1];
+    _contentView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_contentView];
-    
-    
-    
-    _activityIndicatorView = [[DGActivityIndicatorView alloc] initWithType:(DGActivityIndicatorAnimationType)DGActivityIndicatorAnimationTypeBallClipRotatePulse tintColor:[UIColor grayColor]];
-    _activityIndicatorView.frame = CGRectMake((self.view.frame.size.width - 100)/2, (self.view.frame.size.height - 200)/2, 100, 100);
-    [_contentView addSubview:_activityIndicatorView];
-    
     
     _nextBtn = [[UIButton alloc]init];
     _nextBtn.frame = CGRectMake(0, _contentView.frame.size.height - HEIGHT_TABBAR, _contentView.frame.size.width, HEIGHT_TABBAR);
@@ -90,104 +81,70 @@
     [_contentView addSubview:_nextBtn];
     
     _titleView = [[UIView alloc]init];
-    _titleView.frame = CGRectMake(0, 0, _contentView.frame.size.width, _contentView.frame.size.height * 0.05);
+    _titleView.frame = CGRectMake(0, 0, _contentView.frame.size.width, _contentView.frame.size.height * 0.08);
     [_contentView addSubview:_titleView];
     
     _titleLab = [[UILabel alloc]init];
     _titleLab.frame = CGRectMake(_titleView.frame.size.width * 0.05, 0, _titleView.frame.size.width * 0.45, _titleView.frame.size.height);
     _titleLab.text = @"岗位信息";
-    _titleLab.font = [UIFont systemFontOfSize:13.0];
+    _titleLab.font = [UIFont systemFontOfSize:18.0];
     _titleLab.textColor = [UIColor colorWithRed:113/255.0 green:113/255.0 blue:113/255.0 alpha:1];
     [_titleView addSubview:_titleLab];
-    
-    _stationView = [[UIView alloc]init];
-    _stationView.frame = CGRectMake(0, _titleView.frame.origin.y + _titleView.frame.size.height, _contentView.frame.size.width, _contentView.frame.size.height * 0.08);
+       
+    //岗位栏
+    _stationView = [self normalView];
+    _stationView.frame = CGRectMake(_contentView.frame.size.width * 0.02 , _titleView.frame.origin.y + _titleView.frame.size.height, _contentView.frame.size.width * 0.96, _contentView.frame.size.height * 0.08);
     _stationView.backgroundColor = [UIColor whiteColor];
+    _stationView.userInteractionEnabled = YES;
     [_contentView addSubview:_stationView];
     
-    _stationLab = [[UILabel alloc]init];
-    _stationLab.frame = CGRectMake(_stationView.frame.size.width * 0.05, 0, _stationView.frame.size.width * 0.45, _stationView.frame.size.height);
-    _stationLab.text = @"岗位";
-    _stationLab.textColor = [UIColor blackColor];
-    _stationLab.font = [UIFont systemFontOfSize:18.0];
-    [_stationView addSubview:_stationLab];
-    
-    
     _stationField = [[UILabel alloc]init];
-    _stationField.frame = CGRectMake(_stationLab.frame.origin.x + _stationLab.frame.size.width, 0, _stationView.frame.size.width * 0.45, _stationView.frame.size.height);
-    _stationField.text = @"请输入";
+    _stationField.frame = CGRectMake(_stationView.size.height * 0.85 , 0, _stationView.frame.size.width * 0.45, _stationView.frame.size.height);
+    _stationField.text = @"请输入企业名称";
     _stationField.textColor = [UIColor colorWithRed:200/255.0 green:200/255.0 blue:205/255.0 alpha:1];
-    _stationField.textAlignment = UITextAlignmentRight;
-    _stationField.font = [UIFont systemFontOfSize:18.0];
+    _stationField.textAlignment = NSTextAlignmentLeft;
+    _stationField.font = [UIFont systemFontOfSize:16.0];
+    _stationField.userInteractionEnabled = YES;
     UITapGestureRecognizer *stationTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(stationAction:)];
     [_stationField addGestureRecognizer:stationTap];
-    _stationField.userInteractionEnabled = YES;
     [_stationView addSubview:_stationField];
-    
-    UIView * line1 = [[UIView alloc]init];
-    line1.frame = CGRectMake(_stationView.frame.size.width * 0.05, _stationView.frame.size.height - 1, _stationView.frame.size.width * 0.95, 1);
-    line1.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1];
-    [_stationView addSubview:line1];
-    
-    
-    _stationPeopleView = [[UIView alloc]init];
-    _stationPeopleView.frame = CGRectMake(0, _stationView.frame.origin.y + _stationView.frame.size.height, _contentView.frame.size.width, _contentView.frame.size.height * 0.08);
+// next station 员工数栏
+    _stationPeopleView = [self normalView];
+    _stationPeopleView.frame = CGRectMake(_contentView.frame.size.width * 0.02 , _stationView.xo_bottomY + _contentView.xo_width * 0.03, _contentView.frame.size.width * 0.96, _contentView.frame.size.height * 0.08);
     _stationPeopleView.backgroundColor = [UIColor whiteColor];
     [_contentView addSubview:_stationPeopleView];
-    
-    _stationPeopleLab = [[UILabel alloc]init];
-    _stationPeopleLab.frame = CGRectMake(_stationPeopleView.frame.size.width * 0.05, 0, _stationPeopleView.frame.size.width * 0.45, _stationPeopleView.frame.size.height);
-    _stationPeopleLab.text = @"在岗员工数";
-    _stationPeopleLab.textColor = [UIColor blackColor];
-    _stationPeopleLab.font = [UIFont systemFontOfSize:18.0];
-    [_stationPeopleView addSubview:_stationPeopleLab];
-    
-    
-    _stationPeopleField = [[BaseTextFeild alloc]init];
-    _stationPeopleField.frame = CGRectMake(_stationPeopleLab.frame.origin.x + _stationPeopleLab.frame.size.width, 0, _stationPeopleView.frame.size.width * 0.45, _stationPeopleView.frame.size.height);
-    _stationPeopleField.placeholder = @"请输入";
-    _stationPeopleField.textAlignment = UITextAlignmentRight;
-    _stationPeopleField.font = [UIFont systemFontOfSize:18.0];
-    [_stationPeopleView addSubview:_stationPeopleField];
-    _stationPeopleField.delegate  = self;
-    _stationPeopleField.keyboardType = UIKeyboardTypeNumberPad;
 
-    
-    UIView * line2 = [[UIView alloc]init];
-    line2.frame = CGRectMake(_stationPeopleView.frame.size.width * 0.05, _stationPeopleView.frame.size.height - 1, _stationPeopleView.frame.size.width * 0.95, 1);
-    line2.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1];
-    [_stationPeopleView addSubview:line2];
-    
-    
-    _stationInstrView = [[UIView alloc]init];
-    _stationInstrView.frame = CGRectMake(0, _stationPeopleView.frame.origin.y + _stationPeopleView.frame.size.height, _contentView.frame.size.width, _contentView.frame.size.height * 0.08);
+    _stationPeopleField = [[BaseTextFeild alloc]init];
+    _stationPeopleField.frame = CGRectMake(_stationPeopleView.size.height * 0.85 , 0, _stationPeopleView.frame.size.width * 0.45, _stationPeopleView.frame.size.height);
+    _stationPeopleField.placeholder = @"请输入在岗员工数";
+    _stationPeopleField.textAlignment = NSTextAlignmentLeft;
+    _stationPeopleField.font = [UIFont systemFontOfSize:16.0];
+    [_stationPeopleView addSubview:_stationPeopleField];
+    _stationPeopleField.delegate = self;
+//岗位介绍
+    _stationInstrView = [self normalView];
+    _stationInstrView.frame = CGRectMake(_contentView.frame.size.width * 0.02, _stationPeopleView.xo_bottomY + _contentView.xo_width * 0.03, _contentView.frame.size.width * 0.96, _contentView.frame.size.height * 0.24);
     _stationInstrView.backgroundColor = [UIColor whiteColor];
     [_contentView addSubview:_stationInstrView];
     
     _stationInstrLab = [[UILabel alloc]init];
-    _stationInstrLab.frame = CGRectMake(_stationInstrView.frame.size.width * 0.05, 0, _stationInstrView.frame.size.width * 0.45, _stationInstrView.frame.size.height);
+    _stationInstrLab.frame = CGRectMake(_stationPeopleView.size.height * 0.85 , 0, _stationInstrView.frame.size.width * 0.45, _stationPeopleView.size.height);
     _stationInstrLab.text = @"岗位简介";
     _stationInstrLab.textColor = [UIColor blackColor];
-    _stationInstrLab.font = [UIFont systemFontOfSize:18.0];
+    _stationInstrLab.font = [UIFont systemFontOfSize:16.0];
     [_stationInstrView addSubview:_stationInstrLab];
     
-    
-    _stationInstrField = [[BaseTextFeild alloc]init];
-    _stationInstrField.frame = CGRectMake(_stationInstrLab.frame.origin.x + _stationInstrLab.frame.size.width, 0, _stationInstrView.frame.size.width * 0.45, _stationInstrView.frame.size.height);
-    _stationInstrField.placeholder = @"请输入";
-    _stationInstrField.textAlignment = UITextAlignmentRight;
-    _stationInstrField.font = [UIFont systemFontOfSize:18.0];
+    _stationInstrField = [[UITextView alloc]init];
+    _stationInstrField.frame = CGRectMake(_stationInstrLab.frame.origin.x , _stationInstrLab.xo_bottomY, _stationInstrView.frame.size.width -_stationInstrLab.frame.origin.x, _contentView.frame.size.height * 0.16);
+    _stationInstrField.textAlignment = NSTextAlignmentLeft;
+    _stationInstrField.font = [UIFont systemFontOfSize:16.0];
+    _stationInstrField.text = @"请输入岗位介绍";
+    _stationInstrField.textColor = [UIColor grayColor];
     [_stationInstrView addSubview:_stationInstrField];
     _stationInstrField.delegate  = self;
-    
-    UIView * line3 = [[UIView alloc]init];
-    line3.frame = CGRectMake(_stationInstrView.frame.size.width * 0.05, _stationInstrView.frame.size.height - 1, _stationInstrView.frame.size.width * 0.95, 1);
-    line3.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1];
-    [_stationInstrView addSubview:line3];
-    
-    
+
     _bottomView = [[UIView alloc]init];
-    _bottomView.frame = CGRectMake(0, _stationInstrView.frame.size.height + _stationInstrView.frame.origin.y, _contentView.frame.size.width, _contentView.frame.size.height * 0.05);
+    _bottomView.frame = CGRectMake(0, _stationInstrView.frame.size.height + _stationInstrView.frame.origin.y, _contentView.frame.size.width, _contentView.frame.size.height * 0.08);
     [_contentView addSubview:_bottomView];
     
     _bottomLab = [[UILabel alloc]init];
@@ -197,6 +154,21 @@
     _bottomLab.textColor = [UIColor colorWithRed:113/255.0 green:113/255.0 blue:113/255.0 alpha:1];
     [_bottomView addSubview:_bottomLab];
 }
+
+-(UIView *)normalView
+{
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0,_contentView.frame.size.width * 0.96, _contentView.frame.size.height * 0.08)];
+    view.layer.cornerRadius = 5;
+    view.layer.borderWidth = 1.f;
+    view.layer.borderColor = RGB_HEX(0xEBEBEB, 1).CGColor;
+    
+    UIImageView *imagev = [[UIImageView alloc]initWithFrame:CGRectMake(0, view.size.height * 0.10, view.size.height * 0.8, view.size.height * 0.8)];
+    imagev.image = [UIImage imageNamed:@"ic_findpws_warnlog"];
+    [view addSubview:imagev];
+    
+    return view;
+}
+
 
 
 - (NSString *)br_jduagehadNilData{
@@ -262,16 +234,16 @@
             _uploadStationID = [_getStationDic objectForKey:@"ID"];
             _uploadStationName = [_getStationDic objectForKey:@"PositionName"];
             
-            [_activityIndicatorView startAnimating];
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             NSString *url = [NSString stringWithFormat:@"%@/ApiEnterpriseInfo/GetPositionInfo?PositionID=%@",kCacheHttpRoot,[_getStationDic objectForKey:@"ID"]];
             [AizenHttp asynRequest:url httpMethod:@"GET" params:nil success:^(id result) {
-                [_activityIndicatorView stopAnimating];
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 NSDictionary *jsonDic = result;
                 if([[jsonDic objectForKey:@"ResultType"] intValue] == 0){
                     [self handleOtherData:[[jsonDic objectForKey:@"AppendData"] objectAtIndex:0]];
                 }
             } failue:^(NSError *error) {
-                [_activityIndicatorView stopAnimating];
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 NSLog(@"请求失败--获取岗位信息");
             }];
             
@@ -290,6 +262,22 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self.view endEditing:YES];
     return YES;
+}
+
+#pragma mark - UITextViewDelegate
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    if(textView.text.length < 1){
+        textView.text = @"请输入岗位介绍";
+        textView.textColor = [UIColor grayColor];
+    }
+}
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    if([textView.text isEqualToString:@"请输入岗位介绍"]){
+        textView.text=@"";
+        textView.textColor=[UIColor blackColor];
+    }
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{

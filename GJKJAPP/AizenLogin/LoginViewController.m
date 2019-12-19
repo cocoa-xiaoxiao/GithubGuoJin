@@ -17,7 +17,6 @@
 #import "People.h"
 #import "DBController.h"
 #import "OutlookViewController.h"
-#import "DGActivityIndicatorView.h"
 #import "CCCache.h"
 #import "AizenStorage.h"
 #import "AppCache.h"
@@ -31,13 +30,13 @@
 @interface LoginViewController ()<MLPAutoCompleteTextFieldDelegate,MLPAutoCompleteTextFieldDataSource,UIAlertViewDelegate>
 
 @property UIImageView *bgView;
-@property UIView *maskView;
+@property (nonatomic,weak)IBOutlet UIView *maskView;
 @property UIImageView *logoView;
 @property UIImageView *logoView1;
 @property UILabel *logoLab;
-@property MLPAutoCompleteTextField *chooseField;
-@property UITextField *accountField;
-@property UITextField *pwdField;
+@property (nonatomic,weak) IBOutlet MLPAutoCompleteTextField *chooseField;
+@property (nonatomic,weak) IBOutlet UITextField *accountField;
+@property (nonatomic,weak) IBOutlet UITextField *pwdField;
 @property UIButton *loginBtn;
 @property CAAnimationGroup *groups;
 @property UILabel *forgetPwdLab;
@@ -47,7 +46,6 @@
 @property UITapGestureRecognizer *regEvent;
 @property UITapGestureRecognizer *serviceEvent;
 @property NSMutableArray *SchoolArr;
-@property DGActivityIndicatorView *activityIndicatorView;
 
 @property MainViewController *mainPag;
 
@@ -66,151 +64,26 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _SchoolList = [[NSMutableArray alloc]init];
-    
     self.view.backgroundColor = [UIColor whiteColor];
     _totalSubModule = 0;
     _subModuleDic = [[NSMutableArray alloc]init];
-    [self bgLayout];
-
-}
-
-
--(void) bgLayout{
-    
-    NSString *pant = [[NSBundle mainBundle] pathForResource:@"bg102" ofType:@"jpg"];
-    UIImage *image = [[UIImage alloc] initWithContentsOfFile:pant];
-    
-    _bgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    [_bgView setImage:image];
-    [_bgView setContentMode:UIViewContentModeScaleAspectFit];
-    _bgView.userInteractionEnabled = YES;
-    _bgView.contentMode = UIViewContentModeScaleAspectFill;
-    _bgView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    _bgView.clipsToBounds = YES;
-    [self.view addSubview:_bgView];
-    
-    _maskView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, _bgView.frame.size.width, _bgView.frame.size.height)];
-    _maskView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
-    _maskView.userInteractionEnabled = YES;
-    [_bgView addSubview:_maskView];
-    //                [self startLayout];
     [self httpGetSchool];
-    
     [self startLayout];
-    
-//    dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
-//    dispatch_async(concurrentQueue, ^{
-//        __block UIImage *image = nil;
-//        dispatch_sync(concurrentQueue, ^{
-//            NSString *urlAsString = @"http://www.bmwdream.cn/Public/GJTEST/bg102.jpg";
-//            NSURL *url = [NSURL URLWithString:urlAsString];
-//            NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
-//            NSError *downloadError = nil;
-//            NSData *imageData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:&downloadError];
-//
-//            if(downloadError == nil && imageData != nil){
-//                image = [UIImage imageWithData:imageData];
-//            }else if(downloadError != nil){
-//                NSLog(@"Error happend = %@",downloadError);
-//            }else{
-//                NSLog(@"No data could get downloaded from the URL.");
-//            }
-//        });
-//
-//        dispatch_sync(dispatch_get_main_queue(), ^{
-//            if(image != nil){
-//                _bgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-//                [_bgView setImage:image];
-//                [_bgView setContentMode:UIViewContentModeScaleAspectFit];
-//                _bgView.userInteractionEnabled = YES;
-//                _bgView.contentMode = UIViewContentModeScaleAspectFill;
-//                _bgView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-//                _bgView.clipsToBounds = YES;
-//                [self.view addSubview:_bgView];
-//                [_bgView autorelease];
-//
-//                _maskView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, _bgView.frame.size.width, _bgView.frame.size.height)];
-//                _maskView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
-//                _maskView.userInteractionEnabled = YES;
-//                [_bgView addSubview:_maskView];
-////                [self startLayout];
-//                [self httpGetSchool];
-//            }else{
-//                NSLog(@"Image isn't downloaded.Nothing to display.");
-//            }
-//        });
-//    });
-//
 }
-
-
 -(void) httpGetSchool{
     
-    //DO_MAIN
     NSString *urlString = [NSString stringWithFormat:@"http://120.78.148.58:98/jiekou/json/diaoyongxuexiao.ashx?Password=gjrjGJRJ"];
-
-//    NSString *urlString = [NSString stringWithFormat:@"%@/jiekou/json/diaoyongxuexiao.ashx?Password=gjrjGJRJ",DO_MAIN];
-
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
-        //block 参数的解释
-        //response 响应头的信息
-        //data 我们所需要的真是的数据
-        //connectionError 链接服务器的错误信息
-        if (connectionError != nil) {
-            /*
-             {
-             
-             "number":"100000",
-             
-             "WeChat":"",
-             
-             "trial":"否",
-             
-             "term":"",
-             
-             "Schoolname":"顺德职业技术学院",
-             
-             "URL":"http://120.78.148.58",
-             
-             "Sign":"2018年1月1日",
-             
-             "Auditing":"2018年1月10日",
-             
-             "ensure":"2019年12月1日",
-             
-             "Date":"2018年6月8日"
-             
-             }
-             */
-            _SchoolList = [[NSMutableArray alloc] init];
-            NSMutableDictionary *a_default_dict = [NSMutableDictionary dictionaryWithCapacity:0];
-            [a_default_dict setObject:@"100000" forKey:@"number"];
-            [a_default_dict setObject:@"顺德职业技术学院" forKey:@"Schoolname"];
-            [a_default_dict setObject:@"http://120.78.148.58" forKey:@"URL"];
-            [a_default_dict setObject:@"2018年1月10日" forKey:@"Sign"];
-            [a_default_dict setObject:@"2019年12月1日" forKey:@"ensure"];
-            [a_default_dict setObject:@"2018年6月8日" forKey:@"Date"];
-            [_SchoolList addObject:a_default_dict];
+    [HttpService dataTaskWithMethodType:HTTPMethodTypeGET api:urlString parameters:@{} success:^(id  _Nonnull responseObject) {
+        NSArray *data = [responseObject objectForKey:@"data"];
+        if (data.count > 0) {
+            _SchoolList = [data mutableCopy];
+        }else{
             
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"获取学校失败请重试" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"重试", nil];
-            alert.tag = kSuccessCodeTag;
-            [alert show];
-            return ;
         }
-        NSString *jsonStr;
-        jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"%@",jsonStr);
-        NSDictionary *jsonDic = [PhoneInfo jsonDictWithString:jsonStr];
+    } failure:^(NSError * _Nonnull error) {
         
-        _SchoolList = [jsonDic objectForKey:@"data"];
-        _SchoolList = [_SchoolList mutableCopy];
-
     }];
-
 }
-
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     
     if (alertView.tag == kSuccessCodeTag) {
@@ -220,153 +93,25 @@
     }
 }
 
-
-
-
-
-
 -(void) startLayout{
-    _activityIndicatorView = [[DGActivityIndicatorView alloc] initWithType:(DGActivityIndicatorAnimationType)DGActivityIndicatorAnimationTypeBallClipRotatePulse tintColor:[UIColor whiteColor]];
-    _activityIndicatorView.frame = CGRectMake((_bgView.frame.size.width - 100)/2, (_bgView.frame.size.height - 100)/2, 100, 100);
-    [_bgView addSubview:_activityIndicatorView];
-    
-    _SchoolArr = [[NSMutableArray alloc]init];
-    
-    _logoView = [[UIImageView alloc]initWithFrame:CGRectMake(_maskView.frame.size.width * 0.1, _maskView.frame.size.height * 0.1, _maskView.frame.size.width * 0.15, _maskView.frame.size.width * 0.15)];
-    _logoView.image = [UIImage imageNamed:@"gj_loginlogo"];
-    [_maskView addSubview:_logoView];
-    _logoView.hidden = YES;
-    
-    _logoView1 = [[UIImageView alloc]initWithFrame:CGRectMake(_maskView.frame.size.width * 0.1, _maskView.frame.size.height * 0.1, _maskView.frame.size.width * 0.15, _maskView.frame.size.width * 0.15)];
-    _logoView1.image = [UIImage imageNamed:@"gj_loginlogo"];
-    [_maskView addSubview:_logoView1];
-    _logoView1.hidden = YES;
-    _logoLab = [[UILabel alloc]initWithFrame:CGRectMake(_logoView.frame.origin.x + _logoView.frame.size.width * 1.2, _logoView.frame.origin.y, _maskView.frame.size.width * 0.65, _maskView.frame.size.width * 0.15)];
-    _logoLab.text = @"国 晋 云";
-    _logoLab.font = [UIFont fontWithName:@"Arial-BoldItalicMT" size:32];
-    _logoLab.textColor = [UIColor whiteColor];
-    [_maskView addSubview:_logoLab];
-    _logoLab.hidden = YES;
-    [_logoView1.layer addAnimation:[self groups] forKey:nil];
-    
-    
-    _chooseField = [[MLPAutoCompleteTextField alloc]initWithFrame:CGRectMake(_maskView.frame.size.width * 0.1, _logoView.frame.origin.y + _logoView.frame.size.height + _maskView.frame.size.width * 0.05, _maskView.frame.size.width * 0.8, _maskView.frame.size.width * 0.15) getView:_maskView];
-    _chooseField.text = @"";
-    _chooseField.font = [UIFont systemFontOfSize:24];
-    NSString *chooseP = @"学校";
-    NSMutableAttributedString *chooseAttr = [[NSMutableAttributedString alloc] initWithString:chooseP];
-    [chooseAttr addAttribute:NSForegroundColorAttributeName
-                       value:[UIColor colorWithRed:243/255.0 green:242/255.0 blue:240/255.0 alpha:1]
-                       range:NSMakeRange(0, chooseP.length)];
-    _chooseField.attributedPlaceholder = chooseAttr;
-    _chooseField.textColor = [UIColor whiteColor];
-    _chooseField.delegate = self;
     _chooseField.autoCompleteDataSource = self;
-    [_maskView addSubview:_chooseField];
-    
-    _accountField = [[UITextField alloc]initWithFrame:CGRectMake(_maskView.frame.size.width * 0.1, _chooseField.frame.origin.y + _chooseField.frame.size.height ,_maskView.frame.size.width * 0.8, _maskView.frame.size.width * 0.15)];
-    _accountField.text = @"";
-    _accountField.font = [UIFont systemFontOfSize:24];
-    NSString *accountP = @"学号／手机号／邮箱";
-    NSMutableAttributedString *accountAttr = [[NSMutableAttributedString alloc] initWithString:accountP];
-    [accountAttr addAttribute:NSForegroundColorAttributeName
-                        value:[UIColor colorWithRed:243/255.0 green:242/255.0 blue:240/255.0 alpha:1]
-                        range:NSMakeRange(0, accountP.length)];
-    _accountField.attributedPlaceholder = accountAttr;
-    _accountField.textColor = [UIColor whiteColor];
-    _accountField.delegate = self;
-    [_maskView addSubview:_accountField];
-    
-    _pwdField = [[UITextField alloc]initWithFrame:CGRectMake(_maskView.frame.size.width * 0.1, _accountField.frame.origin.y + _accountField.frame.size.height, _maskView.frame.size.width * 0.8, _maskView.frame.size.width * 0.15)];
-    _pwdField.text = @"";
-    _pwdField.font = [UIFont systemFontOfSize:24];
-    NSString *pwdP = @"密码";
-    NSMutableAttributedString *pwdAttr = [[NSMutableAttributedString alloc] initWithString:pwdP];
-    [pwdAttr addAttribute:NSForegroundColorAttributeName
-                    value:[UIColor colorWithRed:243/255.0 green:242/255.0 blue:240/255.0 alpha:1]
-                    range:NSMakeRange(0, pwdP.length)];
-    _pwdField.attributedPlaceholder = pwdAttr;
-    _pwdField.textColor = [UIColor whiteColor];
-    _pwdField.secureTextEntry = YES;
-    _pwdField.delegate = self;
-    [_maskView addSubview:_pwdField];
-    
-    
-    [_chooseField.layer addSublayer:[self setBottom:1 doView:_chooseField]];
-    [_accountField.layer addSublayer:[self setBottom:1 doView:_accountField]];
-    [_pwdField.layer addSublayer:[self setBottom:1 doView:_pwdField]];
-    
-    _loginBtn = [[UIButton alloc]initWithFrame:CGRectMake(_maskView.frame.size.width * 0.1, _pwdField.frame.origin.y + _pwdField.frame.size.height * 1.5, _maskView.frame.size.width * 0.8, _maskView.frame.size.width * 0.12)];
-    _loginBtn.backgroundColor = [UIColor colorWithRed:20/255.0 green:184/255.0 blue:247/255.0 alpha:0.8];
-    _loginBtn.layer.cornerRadius = 5;
-    [_loginBtn setTitle:@"登  录" forState:UIControlStateNormal];
-    [_loginBtn addTarget:self action:@selector(goLogin) forControlEvents:UIControlEventTouchUpInside];
-    [_maskView addSubview:_loginBtn];
-    
-    
-    _forgetPwdLab = [[UILabel alloc]initWithFrame:CGRectMake(_maskView.frame.size.width * 0.1, _loginBtn.frame.size.height*1.2 + _loginBtn.frame.origin.y, _maskView.frame.size.width * 0.4, _maskView.frame.size.width * 0.05)];
-    _forgetPwdLab.text = @"忘记密码？";
-    _forgetPwdLab.textColor = [UIColor colorWithRed:20/255.0 green:184/255.0 blue:247/255.0 alpha:1];
-    _forgetPwdLab.textAlignment = UITextAlignmentLeft;
-    _forgetPwdLab.userInteractionEnabled = YES;
-    [_maskView addSubview:_forgetPwdLab];
-    
-    _regLab = [[UILabel alloc]initWithFrame:CGRectMake(_forgetPwdLab.frame.origin.x + _forgetPwdLab.frame.size.width, _loginBtn.frame.size.height*1.2 + _loginBtn.frame.origin.y, _maskView.frame.size.width * 0.4, _maskView.frame.size.width * 0.05)];
-    _regLab.text = @"新用户注册";
-    _regLab.textColor = [UIColor colorWithRed:20/255.0 green:184/255.0 blue:247/255.0 alpha:1];
-    _regLab.textAlignment = UITextAlignmentRight;
-    _regLab.userInteractionEnabled = YES;
-    [_maskView addSubview:_regLab];
-    _regLab.hidden = YES;
-    _serviceLab = [[UILabel alloc]initWithFrame:CGRectMake(_maskView.frame.size.width * 0.1, _maskView.frame.size.height - _maskView.frame.size.width * 0.2, _maskView.frame.size.width * 0.8, _maskView.frame.size.width * 0.1)];
-    _serviceLab.textColor = [UIColor whiteColor];
-    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"登录即代表阅读并同意服务条款"];
-    [string addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:20/255.0 green:184/255.0 blue:247/255.0 alpha:1] range:NSMakeRange(10, 4)];
-    _serviceLab.attributedText = string;
-    _serviceLab.textAlignment = UITextAlignmentCenter;
-    _serviceLab.userInteractionEnabled = YES;
-    [_maskView addSubview:_serviceLab];
-    _serviceLab.hidden = YES;
-    _forgetEvent = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(forgetAction)];
-    [_forgetPwdLab addGestureRecognizer:_forgetEvent];
-    
-    _regEvent = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(regAction)];
-    [_regLab addGestureRecognizer:_regEvent];
-    
-    _serviceEvent = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(serviceAction)];
-    [_serviceLab addGestureRecognizer:_serviceEvent];
-    
-    
+    _chooseField.maskView = self.maskView;
     if([AizenStorage readUserDataWithKey:@"ChooseObj"])
         _chooseField.text = [NSString stringWithFormat:@"%@",[AizenStorage readUserDataWithKey:@"ChooseObj"]];
     else
         _chooseField.text = @"";
     //顺德职业技术学院
-    
-    
     if([AizenStorage readUserDataWithKey:@"Account"])
         _accountField.text = [NSString stringWithFormat:@"%@",[AizenStorage readUserDataWithKey:@"Account"]];
     else
         _accountField.text = @"";
-        //201203053105
-    
-    
     if([AizenStorage readUserDataWithKey:@"Pwd"])
         _pwdField.text = [AizenStorage readUserDataWithKey:@"Pwd"];
     else
         _pwdField.text = @"";
-        //13533999213
-    
-    
-    
-    
-    /*动画制作开始*/
-    
-    
-    /*动画制作结束*/
 }
 
--(void) goLogin{
+-(IBAction) goLogin{
     
     NSString *chooseVal = _chooseField.text;
     NSString *accountVal = _accountField.text;
@@ -382,7 +127,7 @@
                                               otherButtonTitles:nil,nil];
         [alert show];
     }else{
-        [_activityIndicatorView startAnimating];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
         /*登录前把所选择的学校数据全部记录-------------------start*/
         NSMutableDictionary *getCurrSchoolDic = [[NSMutableDictionary alloc]init];
@@ -411,7 +156,7 @@
             
             
             /*-----------------------登录请求-----------------------*/
-            [_activityIndicatorView startAnimating];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             UInt64 currTime = [[NSDate date] timeIntervalSince1970]*1000;
             NSString *currTimeStr = [NSString stringWithFormat:@"%ld",currTime];
 
@@ -421,7 +166,7 @@
             NSString *url = [NSString stringWithFormat:@"%@/Index?UserName=%@&Password=%@&TimeStamp=%@&Token=%@",[AizenStorage readUserDataWithKey:@"BASIS_URL"],accountVal,pwdVal,currTimeStr,md5Str];
             [AizenHttp asynRequest:url httpMethod:@"GET" params:nil success:^(id result) {
                 
-                [_activityIndicatorView stopAnimating];
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
 
                 NSDictionary *jsonDic = result;
                 NSString *flagStr = [jsonDic objectForKey:@"Message"];
@@ -435,7 +180,7 @@
                 }
             } failue:^(NSError *error) {
                 NSLog(@"%@",error);
-                [_activityIndicatorView stopAnimating];
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 /*登录失败*/
                 [self errorLogin:@"登录失败，请重试"];
             }];
@@ -576,7 +321,7 @@
 -(void)errorLogin:(NSString *)flagStr{
     UIAlertView *ErrorAlert = [[UIAlertView alloc]initWithTitle:@"提示" message:flagStr delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
     [ErrorAlert show];
-    [_activityIndicatorView stopAnimating];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 +(void)errorLogin:(NSString *)flagStr{
@@ -584,7 +329,7 @@
     [ErrorAlert show];
 }
 
--(void) forgetAction{
+-(IBAction)forgetAction{
     NSString *schoolVal = _chooseField.text;
     NSString *accountVal = _accountField.text;
     if([schoolVal isEqualToString:@""] || [accountVal isEqualToString:@""]){
@@ -607,31 +352,6 @@
         }
     }
 }
-
--(void) regAction{
-    RAlertView *alert = [[RAlertView alloc] initWithStyle:ConfirmAlert];
-    alert.headerTitleLabel.text = @"提示";
-    alert.contentTextLabel.attributedText = [TextHelper attributedStringForString:@"尚未开通，敬请期待。" lineSpacing:5];
-    [alert.confirmButton setTitle:@"确定" forState:UIControlStateNormal];
-    [alert.confirmButton setBackgroundColor:[UIColor colorWithRed:20/255.0 green:184/255.0 blue:247/255.0 alpha:1]];
-    alert.confirm = ^(){
-        NSLog(@"Click on the Ok");
-    };
-}
-
-
--(void) serviceAction{
-    RAlertView *alert = [[RAlertView alloc] initWithStyle:ConfirmAlert];
-    alert.headerTitleLabel.text = @"提示";
-    alert.contentTextLabel.attributedText = [TextHelper attributedStringForString:@"尚未开通，敬请期待。" lineSpacing:5];
-    [alert.confirmButton setTitle:@"确定" forState:UIControlStateNormal];
-    [alert.confirmButton setBackgroundColor:[UIColor colorWithRed:20/255.0 green:184/255.0 blue:247/255.0 alpha:1]];
-    alert.confirm = ^(){
-        NSLog(@"Click on the Ok");
-    };
-}
-
-
 
 -(CALayer *) setBottom:(CGFloat)width doView:(UITextField*)fieldView{
     CALayer *layer = [CALayer layer];
@@ -873,8 +593,9 @@
         [AizenStorage writeUserBoolWithKey:YES forKey:@"isLogin"];
         UITabBarController *tabbar = [ViewController getRootTabbar];
         [BaseViewController br_getAppDelegate].mainTabbar = tabbar;
+        tabbar.modalPresentationStyle = UIModalPresentationFullScreen;
         [self presentViewController:tabbar animated:YES completion:nil];
-        [_activityIndicatorView stopAnimating];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }
 }
 
@@ -904,12 +625,6 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 

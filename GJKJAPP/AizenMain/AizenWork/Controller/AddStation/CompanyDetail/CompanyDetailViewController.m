@@ -54,7 +54,7 @@
     _searchController.searchBar.delegate = self;
     
     
-    [_searchController br_removeLogoKeyboard];
+//    [_searchController br_removeLogoKeyboard];
 //    [_searchController.searchBar.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
 //        if (<#condition#>) {
 //            <#statements#>
@@ -123,9 +123,9 @@
             }
         }
     }
-    
+
     NSString *inputStr = searchController.searchBar.text ;
-    
+
     NSString *url = [NSString stringWithFormat:@"%@/ApiEnterpriseInfo/GetEnterpriseList?EnterpriseName=%@",kCacheHttpRoot,inputStr];
     NSString *encodeValue = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [_activityIndicatorView startAnimating];
