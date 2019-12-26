@@ -24,7 +24,6 @@
 #import "GJStudentSOSOpenViewController.h"
 #import "IBCreatHelper.h"
 @interface NewWorkViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,DDCollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource>{
-    int flagSpinner;
     UIBarButtonItem *leftBtn;
     int _Link; //选择的模块类型link
 }
@@ -34,8 +33,6 @@
 @property(nonatomic,strong) DGActivityIndicatorView *animationView;
 @property(nonatomic,strong) NSMutableArray *TopModuleArr;
 @property(nonatomic,strong) NSMutableArray *SubModuleArr;
-
-@property(nonatomic,strong) UIScrollView *spinnerView;
 
 @property(nonatomic,strong) BaseTablewView *dataTableView;
 
@@ -53,7 +50,6 @@
     // Do any additional setup after loading the view.
     
     
-    flagSpinner = 0;
     _TopModuleArr = [[NSMutableArray alloc]init];
     _SubModuleArr = [[NSMutableArray alloc]init];
     
@@ -101,8 +97,16 @@
     _Link = [[_TopModuleArr.firstObject objectForKey:@"LinkUrl"] intValue];
     [self initData:[[[_TopModuleArr objectAtIndex:0]objectForKey:@"ID"] stringValue]];
 
-    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"xiala"] style:UIBarButtonItemStyleDone target:self action:@selector(leftAction:)];
-    self.navigationItem.rightBarButtonItem = right;
+    
+    UIButton *rightCustomButton1 = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, 30, 30)];
+    [rightCustomButton1 addTarget:self action:@selector(leftAction:) forControlEvents:UIControlEventTouchUpInside];
+    [rightCustomButton1.widthAnchor constraintEqualToConstant:33].active = YES;
+    [rightCustomButton1.heightAnchor constraintEqualToConstant:33].active = YES;
+    
+    [rightCustomButton1 setImage:[UIImage imageNamed:@"icon_arrow_bottom"] forState:UIControlStateNormal];
+    [rightCustomButton1 setImage:[UIImage imageNamed:@"icon_arrow_top"] forState:UIControlStateSelected];
+    UIBarButtonItem * rightButtonItem1 =[[UIBarButtonItem alloc] initWithCustomView:rightCustomButton1];
+    self.navigationItem.rightBarButtonItem = rightButtonItem1;
     
 }
 -(void)br_toTextVC{
@@ -124,7 +128,6 @@
         }
         [dataDict setObject:picArray forKey:[NSString stringWithFormat:@"标题%d",i+10]];
     }
-    [self startLayout];
 }
 
 
@@ -137,7 +140,6 @@
         }
         
         if([_TopModuleArr count] > 0){
-            [self startLayout];
         }
     }else{
         dataDict = [[NSMutableDictionary alloc]init];
@@ -176,98 +178,51 @@
         
         if([_TopModuleArr count] > 0){
             [_dataTableView reloadData];
-            [self startLayout];
         }
     }
 }
-
-
--(void) startLayout{
-    _spinnerView = [[UIScrollView alloc]init];
-    _spinnerView.frame = CGRectMake(0, -(HEIGHT_STATUSBAR + HEIGHT_NAVBAR) - (self.view.frame.size.height * 0.15 - (HEIGHT_STATUSBAR + HEIGHT_NAVBAR)), self.view.frame.size.width, self.view.frame.size.height * 0.15);
-    _spinnerView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:_spinnerView];
-    
-    [self SpinnerLayout:_spinnerView];
-    
-    NSLog(@"%@",dataDict);
-}
-
-
--(void) SpinnerLayout:(UIScrollView *)view{
-    CGFloat width = view.frame.size.width;
-    CGFloat height = view.frame.size.height / 2;
-    view.contentSize = CGSizeMake(view.frame.size.width, (view.frame.size.height / 2)*[_TopModuleArr count]);
-    for(int i = 0;i<[_TopModuleArr count];i++){
-        NSMutableDictionary *data = [_TopModuleArr objectAtIndex:i];
-        SpinnerViewController *spinner = [[SpinnerViewController alloc]initData:data viewWidth:&width viewHeight:&height];
-        spinner.view.frame = CGRectMake(0, height * i, width, height);
-        UITapGestureRecognizer *spinnerClick = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(spinnerAction:)];
-        spinnerClick.accessibilityValue = [[data objectForKey:@"ID"] stringValue];
-        spinnerClick.accessibilityElements = _TopModuleArr;
-        [spinner.view addGestureRecognizer:spinnerClick];
-        [view addSubview:spinner.view];
-    }
-}
-
 
 #pragma mark - leftBtn
 - (void) leftAction:(UIBarButtonItem *)sender{
-    /*显示下拉菜单动画，显示view*/
-    if(flagSpinner == 0){
-        /*打开*/
-        [UIView beginAnimations:@"show" context:nil];
-        CGRect getFrame = _spinnerView.frame;
-        getFrame.origin.y = HEIGHT_STATUSBAR + HEIGHT_NAVBAR;
-        _spinnerView.frame = getFrame;
-        [UIView setAnimationDuration:1.0f];
-        [UIView commitAnimations];
-        flagSpinner = 1;
-    }else{
-        /*关闭*/
-        [UIView beginAnimations:@"show" context:nil];
-        CGRect getFrame = _spinnerView.frame;
-        getFrame.origin.y = -(HEIGHT_STATUSBAR + HEIGHT_NAVBAR) - (self.view.frame.size.height * 0.15 - (HEIGHT_STATUSBAR + HEIGHT_NAVBAR));
-        _spinnerView.frame = getFrame;
-        [UIView setAnimationDuration:1.0f];
-        [UIView commitAnimations];
-        flagSpinner = 0;
+    
+    UIButton *btn = (UIButton *)sender;
+    btn.selected = YES;
+    
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"请选择模块" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    for(int i = 0;i<[_TopModuleArr count];i++){
+        NSMutableDictionary *data = [_TopModuleArr objectAtIndex:i];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:[data objectForKey:@"Name"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            btn.selected = NO;
+            NSString *topModuleID = action.accessibilityValue;
+            
+            NSString *Title = @"";
+            int linkR = 0;
+            for(NSDictionary *TopModuleDic in action.accessibilityElements){
+                if([topModuleID isEqualToString:[[TopModuleDic objectForKey:@"ID"]stringValue]]){
+                    Title = [TopModuleDic objectForKey:@"Name"];
+                    linkR = [[TopModuleDic objectForKey:@"LinkUrl"] intValue];
+                }
+            }
+            NSString *Changetitle = [NSString stringWithFormat:@"%@",Title];
+            [leftBtn setTitle:Changetitle];
+            
+            if (linkR != _Link) {
+                _Link = linkR;
+                [AizenStorage removeUserDataWithkey:@"batchID"];
+                [self initData:topModuleID];
+            }
+        }];
+        action.accessibilityValue = [[data objectForKey:@"ID"] stringValue];
+        action.accessibilityElements = _TopModuleArr;
+        [alertVC addAction:action];
     }
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        btn.selected = NO;
+    }];
+    [alertVC addAction:cancelAction];
+    [self presentViewController:alertVC animated:YES completion:nil];
 }
-
-
-#pragma mark - clickBtn
--(void) spinnerAction:(UITapGestureRecognizer *)sender{
-    
-    NSString *topModuleID = sender.accessibilityValue;
-    
-    NSString *Title = @"";
-    int linkR = 0;
-    for(NSDictionary *TopModuleDic in sender.accessibilityElements){
-        if([topModuleID isEqualToString:[[TopModuleDic objectForKey:@"ID"]stringValue]]){
-            Title = [TopModuleDic objectForKey:@"Name"];
-            linkR = [[TopModuleDic objectForKey:@"LinkUrl"] intValue];
-        }
-    }
-    NSString *Changetitle = [NSString stringWithFormat:@"%@",Title];
-    [leftBtn setTitle:Changetitle];
-    /*关闭*/
-    [UIView beginAnimations:@"show" context:nil];
-    CGRect getFrame = _spinnerView.frame;
-    getFrame.origin.y = -(HEIGHT_STATUSBAR + HEIGHT_NAVBAR) - (self.view.frame.size.height * 0.15 - (HEIGHT_STATUSBAR + HEIGHT_NAVBAR));
-    _spinnerView.frame = getFrame;
-    [UIView setAnimationDuration:1.0f];
-    [UIView commitAnimations];
-    flagSpinner = 0;
-    
-    if (linkR != _Link) {
-        _Link = linkR;
-        [AizenStorage removeUserDataWithkey:@"batchID"];
-        [self initData:topModuleID];
-    }
-}
-
-
 
 #pragma mark UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
