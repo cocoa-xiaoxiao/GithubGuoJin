@@ -100,8 +100,8 @@
     
     UIButton *rightCustomButton1 = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, 30, 30)];
     [rightCustomButton1 addTarget:self action:@selector(leftAction:) forControlEvents:UIControlEventTouchUpInside];
-    [rightCustomButton1.widthAnchor constraintEqualToConstant:33].active = YES;
-    [rightCustomButton1.heightAnchor constraintEqualToConstant:33].active = YES;
+    [rightCustomButton1.widthAnchor constraintEqualToConstant:28].active = YES;
+    [rightCustomButton1.heightAnchor constraintEqualToConstant:28].active = YES;
     
     [rightCustomButton1 setImage:[UIImage imageNamed:@"icon_arrow_bottom"] forState:UIControlStateNormal];
     [rightCustomButton1 setImage:[UIImage imageNamed:@"icon_arrow_top"] forState:UIControlStateSelected];
@@ -208,8 +208,24 @@
             [leftBtn setTitle:Changetitle];
             
             if (linkR != _Link) {
+                NSString *key = nil;
                 _Link = linkR;
+                NSArray *batchArr = nil;
                 [AizenStorage removeUserDataWithkey:@"batchID"];
+                if (_Link == 1) {
+                    key = @"xtz";
+                     batchArr = [[AizenStorage readUserDataWithKey:@"batch"] objectForKey:@"xtz"];
+                }else if (_Link == 2) {
+                    key = @"sxgl";
+                    batchArr = [[AizenStorage readUserDataWithKey:@"batch"] objectForKey:@"sxgl"];
+                }else if (_Link == 3){
+                    key = @"lwgl";
+                    batchArr = [[AizenStorage readUserDataWithKey:@"batch"] objectForKey:@"lwgl"];
+                }else{
+                    key = @"hyhd";
+                    batchArr = [[AizenStorage readUserDataWithKey:@"batch"] objectForKey:@"hyhd"];
+                }
+                [AizenStorage writeUserDataWithKey:[batchArr.firstObject objectForKey:@"ActivityID"] forKey:@"batchID"];
                 [self initData:topModuleID];
             }
         }];
