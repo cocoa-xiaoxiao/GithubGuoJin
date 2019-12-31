@@ -150,9 +150,6 @@
     return tabbar;
 }
 -(void) goMain{
-    
-    
-   
     UITabBarController *tabbar = [ViewController getRootTabbar];
 //    _mainPag = [[MainViewController alloc]init];
 //    _mainPag.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -290,7 +287,7 @@
     
     _totalSubModule++;
     if(_totalSubModule == [jsonArr count]){
-        [AizenStorage writeUserDataWithKey:_subModuleDic forKey:@"SubModule"];
+        [AizenStorage writeUserDataWithKey:_subModuleDic forKey:@"SubModule"]; //顶层
         [AizenStorage writeUserBoolWithKey:YES forKey:@"isLogin"];
     }
 }
