@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -719,6 +719,9 @@
                                 <state key="normal" title="提交">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="submit:" destination="Kvz-Qo-Zml" eventType="touchUpInside" id="bZi-OC-gkq"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -736,6 +739,24 @@
                     <size key="freeformSize" width="414" height="2000"/>
                     <connections>
                         <outlet property="scrollview" destination="qDZ-uf-mJn" id="Khq-TK-utv"/>
+                        <outlet property="sw1" destination="eIf-VX-5jN" id="7Q8-4Q-F75"/>
+                        <outlet property="sw10" destination="Lgj-Df-IGR" id="03d-ML-WsC"/>
+                        <outlet property="sw11" destination="EEI-1k-T0W" id="VrN-dh-H9R"/>
+                        <outlet property="sw12" destination="Egz-4r-EaZ" id="Rtb-Sx-DTr"/>
+                        <outlet property="sw13" destination="gge-tT-gpe" id="oNy-nJ-uvN"/>
+                        <outlet property="sw14" destination="zmF-Zk-WsI" id="G8J-XF-Kq6"/>
+                        <outlet property="sw15" destination="U0n-MH-VIS" id="dtk-gw-YcW"/>
+                        <outlet property="sw16" destination="vLn-ij-a2S" id="48Z-Cb-aEH"/>
+                        <outlet property="sw17" destination="9vI-dD-KJX" id="IG4-ST-g0j"/>
+                        <outlet property="sw18" destination="Fbr-NB-U7y" id="QgB-zH-hW5"/>
+                        <outlet property="sw2" destination="Yxd-tA-Uc7" id="QaJ-bU-VI9"/>
+                        <outlet property="sw3" destination="5BJ-lF-8SC" id="l62-MD-OJj"/>
+                        <outlet property="sw4" destination="v25-Vk-bgV" id="8k5-nb-396"/>
+                        <outlet property="sw5" destination="oJ4-aT-AWv" id="3Pi-3J-NSW"/>
+                        <outlet property="sw6" destination="1W3-F7-kOD" id="NiB-JO-kUc"/>
+                        <outlet property="sw7" destination="Z44-2B-g2Y" id="KO9-CV-Rtj"/>
+                        <outlet property="sw8" destination="6dF-JJ-2PK" id="Tty-NK-bTA"/>
+                        <outlet property="sw9" destination="RVx-9N-wfJ" id="EOm-48-Uav"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13b-OR-bL7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

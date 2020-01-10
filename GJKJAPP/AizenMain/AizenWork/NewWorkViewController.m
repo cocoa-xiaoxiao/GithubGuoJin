@@ -181,7 +181,7 @@
         }
     }
 }
-
+ 
 #pragma mark - leftBtn
 - (void) leftAction:(UIBarButtonItem *)sender{
     
@@ -208,24 +208,24 @@
             [leftBtn setTitle:Changetitle];
             
             if (linkR != _Link) {
-                NSString *key = nil;
+//                NSString *key = nil;
                 _Link = linkR;
-                NSArray *batchArr = nil;
+//                NSArray *batchArr = nil;
                 [AizenStorage removeUserDataWithkey:@"batchID"];
-                if (_Link == 1) {
-                    key = @"xtz";
-                     batchArr = [[AizenStorage readUserDataWithKey:@"batch"] objectForKey:@"xtz"];
-                }else if (_Link == 2) {
-                    key = @"sxgl";
-                    batchArr = [[AizenStorage readUserDataWithKey:@"batch"] objectForKey:@"sxgl"];
-                }else if (_Link == 3){
-                    key = @"lwgl";
-                    batchArr = [[AizenStorage readUserDataWithKey:@"batch"] objectForKey:@"lwgl"];
-                }else{
-                    key = @"hyhd";
-                    batchArr = [[AizenStorage readUserDataWithKey:@"batch"] objectForKey:@"hyhd"];
-                }
-                [AizenStorage writeUserDataWithKey:[batchArr.firstObject objectForKey:@"ActivityID"] forKey:@"batchID"];
+//                if (_Link == 1) {
+//                    key = @"xtz";
+//                     batchArr = [[AizenStorage readUserDataWithKey:@"batch"] objectForKey:@"xtz"];
+//                }else if (_Link == 2) {
+//                    key = @"sxgl";
+//                    batchArr = [[AizenStorage readUserDataWithKey:@"batch"] objectForKey:@"sxgl"];
+//                }else if (_Link == 3){
+//                    key = @"lwgl";
+//                    batchArr = [[AizenStorage readUserDataWithKey:@"batch"] objectForKey:@"lwgl"];
+//                }else{
+//                    key = @"hyhd";
+//                    batchArr = [[AizenStorage readUserDataWithKey:@"batch"] objectForKey:@"hyhd"];
+//                }
+//                [AizenStorage writeUserDataWithKey:[batchArr.firstObject objectForKey:@"ActivityID"] forKey:@"batchID"];
                 [self initData:topModuleID];
             }
         }];
