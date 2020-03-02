@@ -28,24 +28,24 @@
 
 @property(nonatomic,strong) UIView *companyView;
 @property(nonatomic,strong) UILabel *companyLab;
-@property(nonatomic,strong) UILabel *companyField;
+@property(nonatomic,strong) UILabel *companyField; //企业名称
 
 @property(nonatomic,strong) UIView *companyCodeView;
 @property(nonatomic,strong) UILabel *companyCodeLab;
-@property(nonatomic,strong) BaseTextFeild *companyCodeField;
+@property(nonatomic,strong) BaseTextFeild *companyCodeField;//企业代码
 
 @property(nonatomic,strong) UIView *peopleCountView;
 @property(nonatomic,strong) UILabel *peopleCountLab;
-@property(nonatomic,strong) BaseTextFeild *peopleCountField;
+@property(nonatomic,strong) BaseTextFeild *peopleCountField; //人数
 
 @property(nonatomic,strong) UIView *addressView;
 @property(nonatomic,strong) UILabel *addressLab;
-@property(nonatomic,strong) BaseTextFeild *addressField;
+@property(nonatomic,strong) BaseTextFeild *addressField; //企业地址
 
 @property(nonatomic,strong) UIView *baseView;
 @property(nonatomic,strong) UILabel *baseLab;
 @property(nonatomic,strong) UIView *baseField;
-@property(nonatomic,strong) UISwitch *baseSwitch;
+@property(nonatomic,strong) UISwitch *baseSwitch; //是否基地实习
 
 @property(nonatomic,strong) UIView *bottomView;
 @property(nonatomic,strong) UILabel *bottomLab;
@@ -53,11 +53,11 @@
 @property(nonatomic,strong) UIButton *nextBtn;
 
 
-@property(nonatomic,strong) NSString *uploadID;
-@property(nonatomic,strong) NSString *uploadQYName;
-@property(nonatomic,strong) NSString *uploadQYCode;
-@property(nonatomic,strong) NSString *uploadQYTotal;
-@property(nonatomic,strong) NSString *uploadQYAddress;
+@property(nonatomic,strong) NSString *uploadID; //企业ID
+@property(nonatomic,strong) NSString *uploadQYName; //企业名字
+@property(nonatomic,strong) NSString *uploadQYCode; //企业代码
+@property(nonatomic,strong) NSString *uploadQYTotal; //企业人数
+@property(nonatomic,strong) NSString *uploadQYAddress; //企业地址
 
 
 @end
@@ -68,7 +68,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"企业提交";
-    
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:19.0]}];
     
     _getCompanyDic = [[NSDictionary alloc]init];
@@ -178,8 +177,9 @@
     [_baseView addSubview:_baseField];
     
     _baseSwitch = [[UISwitch alloc]init];
-    _baseSwitch.frame = CGRectMake(_baseField.frame.size.width * 0.7, _baseField.frame.size.height * 0.15, _baseField.frame.size.width * 0.3, _baseField.frame.size.height * 0.7);
+    _baseSwitch.frame = CGRectMake(_baseField.frame.size.width * 0.7,0, _baseField.frame.size.width * 0.3, _baseView.frame.size.height);
     _baseSwitch.on = NO;
+    _baseSwitch.xo_centerY = _baseField.center.y;
     [_baseField addSubview:_baseSwitch];
 
 
@@ -200,7 +200,7 @@
 {
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0,_contentView.frame.size.width * 0.96, _contentView.frame.size.height * 0.08)];
     view.layer.cornerRadius = 5;
-    view.layer.borderWidth = 1.f;
+    view.layer.borderWidth = 2.f;
     view.layer.borderColor = RGB_HEX(0xEBEBEB, 1).CGColor;
     
     UIImageView *imagev = [[UIImageView alloc]initWithFrame:CGRectMake(0, view.size.height * 0.10, view.size.height * 0.8, view.size.height * 0.8)];
@@ -217,21 +217,21 @@
         msg = @"请输入企业名称";
         return msg;
     }
-//    if (_companyCodeField.text.length == 0) {
-//        msg = @"请输入企业代码";
-//        return msg;
-//    }
+    if (_companyCodeField.text.length == 0) {
+        msg = @"请输入企业代码";
+        return msg;
+    }
     
     if (_addressField.text.length == 0) {
         
         msg = @"请输入企业地址";
         return msg;
     }
-//    if (_peopleCountField.text.integerValue <= 0) {
-//        msg = @"请输入员工总数";
-//        return msg;
-//
-//    }
+    if (_peopleCountField.text.integerValue <= 0) {
+        msg = @"请输入员工总数";
+        return msg;
+
+    }
     return msg;
     
 }

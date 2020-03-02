@@ -100,7 +100,7 @@
     
     _stationField = [[UILabel alloc]init];
     _stationField.frame = CGRectMake(_stationView.size.height * 0.85 , 0, _stationView.frame.size.width * 0.45, _stationView.frame.size.height);
-    _stationField.text = @"请输入企业名称";
+    _stationField.text = @"请输入岗位名称";
     _stationField.textColor = [UIColor colorWithRed:200/255.0 green:200/255.0 blue:205/255.0 alpha:1];
     _stationField.textAlignment = NSTextAlignmentLeft;
     _stationField.font = [UIFont systemFontOfSize:16.0];
@@ -139,6 +139,7 @@
     _stationInstrField.textAlignment = NSTextAlignmentLeft;
     _stationInstrField.font = [UIFont systemFontOfSize:16.0];
     _stationInstrField.text = @"请输入岗位介绍";
+    _stationInstrField.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0);
     _stationInstrField.textColor = [UIColor grayColor];
     [_stationInstrView addSubview:_stationInstrField];
     _stationInstrField.delegate  = self;
@@ -159,7 +160,7 @@
 {
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0,_contentView.frame.size.width * 0.96, _contentView.frame.size.height * 0.08)];
     view.layer.cornerRadius = 5;
-    view.layer.borderWidth = 1.f;
+    view.layer.borderWidth = 2.f;
     view.layer.borderColor = RGB_HEX(0xEBEBEB, 1).CGColor;
     
     UIImageView *imagev = [[UIImageView alloc]initWithFrame:CGRectMake(0, view.size.height * 0.10, view.size.height * 0.8, view.size.height * 0.8)];
@@ -182,7 +183,10 @@
         msg = @"请输入岗员工数";
         return msg;
     }
-    
+    if (_stationInstrField.text.length == 0|| [_stationInstrField.text isEqualToString:@"请输入岗位介绍"]) {
+        msg = @"请输入岗位介绍";
+        return msg;
+    }
   
     return msg;
 }

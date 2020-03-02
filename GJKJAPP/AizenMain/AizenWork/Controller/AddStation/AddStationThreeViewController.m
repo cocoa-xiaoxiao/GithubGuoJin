@@ -200,7 +200,7 @@
 {
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0,_contentView.frame.size.width * 0.96, _contentView.frame.size.height * 0.08)];
     view.layer.cornerRadius = 5;
-    view.layer.borderWidth = 1.f;
+    view.layer.borderWidth = 2.f;
     view.layer.borderColor = RGB_HEX(0xEBEBEB, 1).CGColor;
     
     UIImageView *imagev = [[UIImageView alloc]initWithFrame:CGRectMake(0, view.size.height * 0.10, view.size.height * 0.8, view.size.height * 0.8)];

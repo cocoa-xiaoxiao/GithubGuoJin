@@ -91,7 +91,7 @@ static inline UIColor* kTablewBgColorLight() {
 
 #define HEIGHT_STATUSBAR    20
 #define HEIGHT_TABBAR       49
-#define HEIGHT_NAVBAR       (kIsIphoneX() ? (88.0 - 20) : 44.0)
+#define HEIGHT_NAVBAR       (iPhoneXSeries ? (88.0 - 20) : 44.0)
 #define HEIGHT_CHATBOXVIEW  215
 #define HEIGHT_ROW          64
 

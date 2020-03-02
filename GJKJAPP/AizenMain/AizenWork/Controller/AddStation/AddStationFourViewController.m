@@ -115,6 +115,10 @@
         msg = @"请选择上岗日期";
         return msg;
     }
+    if (_descrField.text.length == 0 || [_descrField.text isEqualToString:@"请输入说明"]) {
+        msg = @"请输入说明";
+        return msg;
+    }
     
     return msg;
     
@@ -128,57 +132,55 @@
         alert.contentTextLabel.text = @"请输入相关信息";
         alert.isClickBackgroundCloseWindow = YES;
     }else{
-        UnitFiveVC *vc = getControllerFromStoryBoard(@"AddStationStoryboard", @"UnitFiveVCID");
-        [self.navigationController pushViewController:vc animated:YES];
-//        AddStationFiveViewController *five = [[AddStationFiveViewController alloc]init];
-//        five.uploadID = _uploadID;
-//        five.uploadQYName = _uploadQYName;
-//        five.uploadQYCode = _uploadQYCode;
-//        five.uploadQYAddress = _uploadQYAddress;
-//        five.uploadQYTotal = _uploadQYTotal;
-//        five.uploadQYFlag = _uploadQYFlag;
-//
-//        five.uploadStationID = _uploadStationID;
-//        five.uploadStationName = _uploadStationName;
-//        five.uploadStationTotal = _uploadStationTotal;
-//        five.uploadStationIntro = _uploadStationIntro;
-//
-//        five.uploadJSID = _uploadJSID;
-//        five.uploadJSName = _uploadJSName;
-//        five.uploadJSPhone = _uploadJSPhone;
-//        five.uploadJSTel = _uploadJSTel;
-//        five.uploadJSEmail = _uploadJSEmail;
-//
-//        five.uploadSaraly = _salaryField.text;
-//        five.uploadDate = _postDateField.text;
-//        _uploadStay = @"0";
-//        if([_stayField.text isEqualToString:@"不提供"]){
-//            _uploadStay = @"0";
-//        }else if([_stayField.text isEqualToString:@"提供但自费"]){
-//            _uploadStay = @"1";
-//        }else if([_stayField.text isEqualToString:@"免费住宿"]){
-//            _uploadStay = @"2";
-//        }else if([_stayField.text isEqualToString:@"其他"]){
-//            _uploadStay = @"3";
-//        }
-//        five.uploadStay = _uploadStay;
-//
-//        _uploadFood = @"0";
-//        if([_foodField.text isEqualToString:@"不提供"]){
-//            _uploadFood = @"0";
-//        }else if([_foodField.text isEqualToString:@"提供但自费"]){
-//            _uploadFood = @"1";
-//        }else if([_foodField.text isEqualToString:@"免费提供"]){
-//            _uploadFood = @"2";
-//        }else if([_foodField.text isEqualToString:@"其他"]){
-//            _uploadFood = @"3";
-//        }
-//        five.uploadFood = _uploadFood;
-//
-//        five.uploadAgreement = _uploadAgreement;
-//        five.uploadDescr = _descrField.text;
-//
-//        [self.navigationController pushViewController:five animated:YES];
+        UnitFiveVC *five = getControllerFromStoryBoard(@"AddStationStoryboard", @"UnitFiveVCID");
+        five.uploadID = _uploadID;
+        five.uploadQYName = _uploadQYName;
+        five.uploadQYCode = _uploadQYCode;
+        five.uploadQYAddress = _uploadQYAddress;
+        five.uploadQYTotal = _uploadQYTotal;
+        five.uploadQYFlag = _uploadQYFlag;
+
+        five.uploadStationID = _uploadStationID;
+        five.uploadStationName = _uploadStationName;
+        five.uploadStationTotal = _uploadStationTotal;
+        five.uploadStationIntro = _uploadStationIntro;
+
+        five.uploadJSID = _uploadJSID;
+        five.uploadJSName = _uploadJSName;
+        five.uploadJSPhone = _uploadJSPhone;
+        five.uploadJSTel = _uploadJSTel;
+        five.uploadJSEmail = _uploadJSEmail;
+
+        five.uploadSaraly = _salaryField.text;
+        five.uploadDate = _postDateField.text;
+        _uploadStay = @"0";
+        if([_stayField.text isEqualToString:@"不提供"]){
+            _uploadStay = @"0";
+        }else if([_stayField.text isEqualToString:@"提供但自费"]){
+            _uploadStay = @"1";
+        }else if([_stayField.text isEqualToString:@"免费住宿"]){
+            _uploadStay = @"2";
+        }else if([_stayField.text isEqualToString:@"其他"]){
+            _uploadStay = @"3";
+        }
+        five.uploadStay = _uploadStay;
+
+        _uploadFood = @"0";
+        if([_foodField.text isEqualToString:@"不提供"]){
+            _uploadFood = @"0";
+        }else if([_foodField.text isEqualToString:@"提供但自费"]){
+            _uploadFood = @"1";
+        }else if([_foodField.text isEqualToString:@"免费提供"]){
+            _uploadFood = @"2";
+        }else if([_foodField.text isEqualToString:@"其他"]){
+            _uploadFood = @"3";
+        }
+        five.uploadFood = _uploadFood;
+
+        five.uploadAgreement = _uploadAgreement;
+        five.uploadDescr = _descrField.text;
+
+        [self.navigationController pushViewController:five animated:YES];
     }
 }
 
@@ -324,6 +326,7 @@
     _descrField.frame = CGRectMake(_descrLab.frame.origin.x , _descrLab.xo_bottomY, _descrView.frame.size.width -_descrLab.frame.origin.x, _contentView.frame.size.height * 0.16);
     _descrField.textAlignment = NSTextAlignmentLeft;
     _descrField.font = [UIFont systemFontOfSize:16.0];
+    _descrField.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0);
     _descrField.text = @"请输入说明";
     _descrField.textColor = [UIColor grayColor];
     [_descrView addSubview:_descrField];
@@ -348,7 +351,7 @@
 {
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0,_contentView.frame.size.width * 0.96, _contentView.frame.size.height * 0.08)];
     view.layer.cornerRadius = 5;
-    view.layer.borderWidth = 1.f;
+    view.layer.borderWidth = 2.f;
     view.layer.borderColor = RGB_HEX(0xEBEBEB, 1).CGColor;
     
     if (necessary) {

@@ -17,5 +17,5 @@
 @property(nonatomic, assign)CGSize  xo_size;
 @property(nonatomic, assign)CGPoint xo_origin;
 @property(nonatomic, assign)CGFloat xo_bottomY;
-
+@property(nonatomic, assign)CGFloat xo_centerY;
 @end

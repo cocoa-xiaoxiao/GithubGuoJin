@@ -26,6 +26,19 @@
     frame.origin.y = xo_y;
     self.frame = frame;
 }
+
+-(CGFloat)xo_centerY
+{
+    return self.center.y;
+}
+-(void)setXo_centerY:(CGFloat)xo_centerY
+{
+    CGPoint point = self.center;
+    point.y = xo_centerY;
+    self.center = point;
+}
+
+
 -(CGFloat)xo_y
 {
     return self.frame.origin.y;
