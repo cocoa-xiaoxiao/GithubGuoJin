@@ -10,6 +10,6 @@
 
 @interface SignAuditModelViewController : UIViewController
 
--(id) init_Value:(int)init_number width:(CGFloat *)init_width height:(CGFloat *)init_height dataDic:(NSMutableDictionary *)init_dic;
+-(id) init_Value:(int)init_number width:(CGFloat *)init_width height:(CGFloat *)init_height dataDic:(NSMutableDictionary *)init_dic ischeckIn:(BOOL)checkIn;
 
 @end

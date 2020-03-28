@@ -46,7 +46,7 @@
     People *getObj = existArr[0];
     NSString *CurrAdminID = [getObj.USERID stringValue];
     NSString *batchID = [AizenStorage readUserDataWithKey:@"batchID"];
-    NSString *url = [NSString stringWithFormat:@"%@/ApiActivity/GetMyTeacher?AdminID=%@&ActivityID=%@",kCacheHttpRoot,@"281",@"1"];
+    NSString *url = [NSString stringWithFormat:@"%@/ApiActivity/GetMyTeacher?AdminID=%@&ActivityID=%@",kCacheHttpRoot,CurrAdminID,batchID];
     NSLog(@"%@",url);
     [AizenHttp asynRequest:url httpMethod:@"GET" params:nil success:^(id result) {
         NSDictionary *jsonDic = result;

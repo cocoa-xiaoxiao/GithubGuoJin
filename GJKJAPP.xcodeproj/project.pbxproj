@@ -8,7 +8,36 @@
 
 /* Begin PBXBuildFile section */
 		000CCB0923A7E2FF001B0742 /* UnitFiveVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 000CCB0823A7E2FF001B0742 /* UnitFiveVC.m */; };
+		00176125242F555500A07011 /* NewModifyStationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00176124242F555500A07011 /* NewModifyStationViewController.m */; };
 		001CD80C23A52EEB00D87F33 /* AddStationStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 001CD80B23A52EEB00D87F33 /* AddStationStoryboard.storyboard */; };
+		001FADAA242DF62B00E3CF10 /* NewYSAuditingWeeklyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001FADA9242DF62B00E3CF10 /* NewYSAuditingWeeklyViewController.m */; };
+		001FADAD242DF63E00E3CF10 /* NewWSAuditingWeeklyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001FADAC242DF63E00E3CF10 /* NewWSAuditingWeeklyViewController.m */; };
+		001FADB1242DFCD200E3CF10 /* NewAuditingWeeklyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 001FADAF242DFCD200E3CF10 /* NewAuditingWeeklyTableViewCell.m */; };
+		001FADB2242DFCD200E3CF10 /* NewAuditingWeeklyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 001FADB0242DFCD200E3CF10 /* NewAuditingWeeklyTableViewCell.xib */; };
+		001FADB5242E015900E3CF10 /* NewDetailWeeklyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001FADB4242E015900E3CF10 /* NewDetailWeeklyViewController.m */; };
+		001FADB7242E018A00E3CF10 /* Weekly.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 001FADB6242E018A00E3CF10 /* Weekly.storyboard */; };
+		004677D1242CF09300FAD2EA /* NewYSTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004677D0242CF09300FAD2EA /* NewYSTaskViewController.m */; };
+		004677D4242CF0A300FAD2EA /* NewWSTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004677D3242CF0A300FAD2EA /* NewWSTaskViewController.m */; };
+		004677D8242CF26E00FAD2EA /* NewAuditingTaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 004677D6242CF26E00FAD2EA /* NewAuditingTaskCell.m */; };
+		004677D9242CF26E00FAD2EA /* NewAuditingTaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004677D7242CF26E00FAD2EA /* NewAuditingTaskCell.xib */; };
+		005A496024236D8F00A19D68 /* QQtableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005A492724236D8D00A19D68 /* QQtableView.m */; };
+		005A496124236D8F00A19D68 /* MCPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005A492B24236D8D00A19D68 /* MCPageView.m */; };
+		005A496224236D8F00A19D68 /* MCHoveringView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005A492E24236D8D00A19D68 /* MCHoveringView.m */; };
+		005A496324236D8F00A19D68 /* UIView+QQFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 005A492F24236D8E00A19D68 /* UIView+QQFrame.m */; };
+		005A497A24236F9600A19D68 /* SXTaskDynamicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 005A497924236F9600A19D68 /* SXTaskDynamicVC.m */; };
+		005A497D24236FA600A19D68 /* SXTaskRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 005A497C24236FA600A19D68 /* SXTaskRecordVC.m */; };
+		005A49802423AF0900A19D68 /* SXTaskHeadVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 005A497F2423AF0900A19D68 /* SXTaskHeadVC.m */; };
+		006667DA24284DEE00F74908 /* SXTaskDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 006667D824284DEE00F74908 /* SXTaskDynamicCell.m */; };
+		006667DB24284DEE00F74908 /* SXTaskDynamicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006667D924284DEE00F74908 /* SXTaskDynamicCell.xib */; };
+		006667DF24284E0C00F74908 /* SXTaskRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 006667DD24284E0C00F74908 /* SXTaskRecordCell.m */; };
+		006667E024284E0C00F74908 /* SXTaskRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006667DE24284E0C00F74908 /* SXTaskRecordCell.xib */; };
+		006667E32428B04C00F74908 /* SXTaskDyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 006667E22428B04C00F74908 /* SXTaskDyModel.m */; };
+		006667E62428B98200F74908 /* SXTaskReModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 006667E52428B98200F74908 /* SXTaskReModel.m */; };
+		006667EE2429147B00F74908 /* APPAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 006667ED2429147B00F74908 /* APPAlertView.m */; };
+		006667F3242B58D500F74908 /* Station.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 006667F2242B58D500F74908 /* Station.storyboard */; };
+		006667F6242B743900F74908 /* NewStationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 006667F5242B743900F74908 /* NewStationDetailViewController.m */; };
+		0087018D241F3C8F00758D53 /* XXDetailTaskVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087018C241F3C8F00758D53 /* XXDetailTaskVC.m */; };
+		0087018F241F3D9300758D53 /* sxTask.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0087018E241F3D9300758D53 /* sxTask.storyboard */; };
 		00AF7A03225E40AB00F35E1D /* TaskBookListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AF7A01225E40AA00F35E1D /* TaskBookListViewController.m */; };
 		00AF7A08225E40C300F35E1D /* NotTaskBookListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AF7A06225E40C300F35E1D /* NotTaskBookListViewController.m */; };
 		00AF7A09225E40C300F35E1D /* HaveTaskBookListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AF7A07225E40C300F35E1D /* HaveTaskBookListViewController.m */; };
@@ -443,7 +472,58 @@
 /* Begin PBXFileReference section */
 		000CCB0723A7E2FF001B0742 /* UnitFiveVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnitFiveVC.h; sourceTree = "<group>"; };
 		000CCB0823A7E2FF001B0742 /* UnitFiveVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnitFiveVC.m; sourceTree = "<group>"; };
+		00176123242F555500A07011 /* NewModifyStationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewModifyStationViewController.h; sourceTree = "<group>"; };
+		00176124242F555500A07011 /* NewModifyStationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewModifyStationViewController.m; sourceTree = "<group>"; };
 		001CD80B23A52EEB00D87F33 /* AddStationStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddStationStoryboard.storyboard; sourceTree = "<group>"; };
+		001FADA8242DF62B00E3CF10 /* NewYSAuditingWeeklyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewYSAuditingWeeklyViewController.h; sourceTree = "<group>"; };
+		001FADA9242DF62B00E3CF10 /* NewYSAuditingWeeklyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewYSAuditingWeeklyViewController.m; sourceTree = "<group>"; };
+		001FADAB242DF63E00E3CF10 /* NewWSAuditingWeeklyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewWSAuditingWeeklyViewController.h; sourceTree = "<group>"; };
+		001FADAC242DF63E00E3CF10 /* NewWSAuditingWeeklyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewWSAuditingWeeklyViewController.m; sourceTree = "<group>"; };
+		001FADAE242DFCD200E3CF10 /* NewAuditingWeeklyTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewAuditingWeeklyTableViewCell.h; sourceTree = "<group>"; };
+		001FADAF242DFCD200E3CF10 /* NewAuditingWeeklyTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewAuditingWeeklyTableViewCell.m; sourceTree = "<group>"; };
+		001FADB0242DFCD200E3CF10 /* NewAuditingWeeklyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewAuditingWeeklyTableViewCell.xib; sourceTree = "<group>"; };
+		001FADB3242E015900E3CF10 /* NewDetailWeeklyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewDetailWeeklyViewController.h; sourceTree = "<group>"; };
+		001FADB4242E015900E3CF10 /* NewDetailWeeklyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewDetailWeeklyViewController.m; sourceTree = "<group>"; };
+		001FADB6242E018A00E3CF10 /* Weekly.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Weekly.storyboard; sourceTree = "<group>"; };
+		004677CF242CF09300FAD2EA /* NewYSTaskViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewYSTaskViewController.h; sourceTree = "<group>"; };
+		004677D0242CF09300FAD2EA /* NewYSTaskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewYSTaskViewController.m; sourceTree = "<group>"; };
+		004677D2242CF0A300FAD2EA /* NewWSTaskViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewWSTaskViewController.h; sourceTree = "<group>"; };
+		004677D3242CF0A300FAD2EA /* NewWSTaskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewWSTaskViewController.m; sourceTree = "<group>"; };
+		004677D5242CF26E00FAD2EA /* NewAuditingTaskCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewAuditingTaskCell.h; sourceTree = "<group>"; };
+		004677D6242CF26E00FAD2EA /* NewAuditingTaskCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewAuditingTaskCell.m; sourceTree = "<group>"; };
+		004677D7242CF26E00FAD2EA /* NewAuditingTaskCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewAuditingTaskCell.xib; sourceTree = "<group>"; };
+		005A492724236D8D00A19D68 /* QQtableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QQtableView.m; sourceTree = "<group>"; };
+		005A492824236D8D00A19D68 /* QQtableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QQtableView.h; sourceTree = "<group>"; };
+		005A492A24236D8D00A19D68 /* MCPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPageView.h; sourceTree = "<group>"; };
+		005A492B24236D8D00A19D68 /* MCPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPageView.m; sourceTree = "<group>"; };
+		005A492D24236D8D00A19D68 /* MCHoveringView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCHoveringView.h; sourceTree = "<group>"; };
+		005A492E24236D8D00A19D68 /* MCHoveringView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCHoveringView.m; sourceTree = "<group>"; };
+		005A492F24236D8E00A19D68 /* UIView+QQFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+QQFrame.m"; sourceTree = "<group>"; };
+		005A493024236D8E00A19D68 /* UIView+QQFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+QQFrame.h"; sourceTree = "<group>"; };
+		005A497824236F9600A19D68 /* SXTaskDynamicVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXTaskDynamicVC.h; sourceTree = "<group>"; };
+		005A497924236F9600A19D68 /* SXTaskDynamicVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXTaskDynamicVC.m; sourceTree = "<group>"; };
+		005A497B24236FA600A19D68 /* SXTaskRecordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXTaskRecordVC.h; sourceTree = "<group>"; };
+		005A497C24236FA600A19D68 /* SXTaskRecordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXTaskRecordVC.m; sourceTree = "<group>"; };
+		005A497E2423AF0900A19D68 /* SXTaskHeadVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXTaskHeadVC.h; sourceTree = "<group>"; };
+		005A497F2423AF0900A19D68 /* SXTaskHeadVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXTaskHeadVC.m; sourceTree = "<group>"; };
+		006667D724284DEE00F74908 /* SXTaskDynamicCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXTaskDynamicCell.h; sourceTree = "<group>"; };
+		006667D824284DEE00F74908 /* SXTaskDynamicCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXTaskDynamicCell.m; sourceTree = "<group>"; };
+		006667D924284DEE00F74908 /* SXTaskDynamicCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SXTaskDynamicCell.xib; sourceTree = "<group>"; };
+		006667DC24284E0C00F74908 /* SXTaskRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXTaskRecordCell.h; sourceTree = "<group>"; };
+		006667DD24284E0C00F74908 /* SXTaskRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXTaskRecordCell.m; sourceTree = "<group>"; };
+		006667DE24284E0C00F74908 /* SXTaskRecordCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SXTaskRecordCell.xib; sourceTree = "<group>"; };
+		006667E12428B04C00F74908 /* SXTaskDyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXTaskDyModel.h; sourceTree = "<group>"; };
+		006667E22428B04C00F74908 /* SXTaskDyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXTaskDyModel.m; sourceTree = "<group>"; };
+		006667E42428B98200F74908 /* SXTaskReModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXTaskReModel.h; sourceTree = "<group>"; };
+		006667E52428B98200F74908 /* SXTaskReModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXTaskReModel.m; sourceTree = "<group>"; };
+		006667EC2429147B00F74908 /* APPAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APPAlertView.h; sourceTree = "<group>"; };
+		006667ED2429147B00F74908 /* APPAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APPAlertView.m; sourceTree = "<group>"; };
+		006667F2242B58D500F74908 /* Station.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Station.storyboard; sourceTree = "<group>"; };
+		006667F4242B743900F74908 /* NewStationDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewStationDetailViewController.h; sourceTree = "<group>"; };
+		006667F5242B743900F74908 /* NewStationDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewStationDetailViewController.m; sourceTree = "<group>"; };
+		0087018B241F3C8F00758D53 /* XXDetailTaskVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXDetailTaskVC.h; sourceTree = "<group>"; };
+		0087018C241F3C8F00758D53 /* XXDetailTaskVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXDetailTaskVC.m; sourceTree = "<group>"; };
+		0087018E241F3D9300758D53 /* sxTask.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = sxTask.storyboard; sourceTree = "<group>"; };
 		00AF7A01225E40AA00F35E1D /* TaskBookListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskBookListViewController.m; sourceTree = "<group>"; };
 		00AF7A02225E40AA00F35E1D /* TaskBookListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskBookListViewController.h; sourceTree = "<group>"; };
 		00AF7A04225E40C100F35E1D /* NotTaskBookListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotTaskBookListViewController.h; sourceTree = "<group>"; };
@@ -1268,6 +1348,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		005A492624236D8D00A19D68 /* QQTableView */ = {
+			isa = PBXGroup;
+			children = (
+				005A492724236D8D00A19D68 /* QQtableView.m */,
+				005A492824236D8D00A19D68 /* QQtableView.h */,
+			);
+			path = QQTableView;
+			sourceTree = "<group>";
+		};
+		005A492924236D8D00A19D68 /* MCPageView */ = {
+			isa = PBXGroup;
+			children = (
+				005A492A24236D8D00A19D68 /* MCPageView.h */,
+				005A492B24236D8D00A19D68 /* MCPageView.m */,
+			);
+			path = MCPageView;
+			sourceTree = "<group>";
+		};
+		005A492C24236D8D00A19D68 /* MCHovering */ = {
+			isa = PBXGroup;
+			children = (
+				005A492D24236D8D00A19D68 /* MCHoveringView.h */,
+				005A492E24236D8D00A19D68 /* MCHoveringView.m */,
+			);
+			path = MCHovering;
+			sourceTree = "<group>";
+		};
 		00AF7A00225E409B00F35E1D /* teacher */ = {
 			isa = PBXGroup;
 			children = (
@@ -1815,6 +1922,10 @@
 			children = (
 				663A5EDF214C16DA0041C6E7 /* BRTaskDetailModel.h */,
 				663A5EE0214C16DA0041C6E7 /* BRTaskDetailModel.m */,
+				006667E12428B04C00F74908 /* SXTaskDyModel.h */,
+				006667E22428B04C00F74908 /* SXTaskDyModel.m */,
+				006667E42428B98200F74908 /* SXTaskReModel.h */,
+				006667E52428B98200F74908 /* SXTaskReModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1896,6 +2007,11 @@
 		667C24F5213D95C6002E465F /* AizenTools */ = {
 			isa = PBXGroup;
 			children = (
+				005A492C24236D8D00A19D68 /* MCHovering */,
+				005A492924236D8D00A19D68 /* MCPageView */,
+				005A492624236D8D00A19D68 /* QQTableView */,
+				005A493024236D8E00A19D68 /* UIView+QQFrame.h */,
+				005A492F24236D8E00A19D68 /* UIView+QQFrame.m */,
 				3376CC1B22603F4600602D23 /* Bugly.framework */,
 				00AF7AFB225E4C8500F35E1D /* flButton */,
 				00AF7AEC225E4C8300F35E1D /* UBSignature */,
@@ -2714,10 +2830,27 @@
 			isa = PBXGroup;
 			children = (
 				663A5EDE214C16B60041C6E7 /* Model */,
+				0087018B241F3C8F00758D53 /* XXDetailTaskVC.h */,
+				0087018C241F3C8F00758D53 /* XXDetailTaskVC.m */,
 				667C264A213D95C6002E465F /* DetailTaskViewController.h */,
-				667C264B213D95C6002E465F /* TeacherDetailTaskViewController.m */,
 				667C264C213D95C6002E465F /* DetailTaskViewController.m */,
 				667C264D213D95C6002E465F /* TeacherDetailTaskViewController.h */,
+				667C264B213D95C6002E465F /* TeacherDetailTaskViewController.m */,
+				0087018E241F3D9300758D53 /* sxTask.storyboard */,
+				005A497824236F9600A19D68 /* SXTaskDynamicVC.h */,
+				005A497924236F9600A19D68 /* SXTaskDynamicVC.m */,
+				005A497B24236FA600A19D68 /* SXTaskRecordVC.h */,
+				005A497C24236FA600A19D68 /* SXTaskRecordVC.m */,
+				005A497E2423AF0900A19D68 /* SXTaskHeadVC.h */,
+				005A497F2423AF0900A19D68 /* SXTaskHeadVC.m */,
+				006667D724284DEE00F74908 /* SXTaskDynamicCell.h */,
+				006667D824284DEE00F74908 /* SXTaskDynamicCell.m */,
+				006667D924284DEE00F74908 /* SXTaskDynamicCell.xib */,
+				006667DC24284E0C00F74908 /* SXTaskRecordCell.h */,
+				006667DD24284E0C00F74908 /* SXTaskRecordCell.m */,
+				006667DE24284E0C00F74908 /* SXTaskRecordCell.xib */,
+				006667EC2429147B00F74908 /* APPAlertView.h */,
+				006667ED2429147B00F74908 /* APPAlertView.m */,
 			);
 			path = DetailTask;
 			sourceTree = "<group>";
@@ -2730,6 +2863,16 @@
 				667C2651213D95C6002E465F /* Model */,
 				667C2650213D95C6002E465F /* AuditingWeeklyViewController.h */,
 				667C2655213D95C6002E465F /* AuditingWeeklyViewController.m */,
+				001FADA8242DF62B00E3CF10 /* NewYSAuditingWeeklyViewController.h */,
+				001FADA9242DF62B00E3CF10 /* NewYSAuditingWeeklyViewController.m */,
+				001FADAB242DF63E00E3CF10 /* NewWSAuditingWeeklyViewController.h */,
+				001FADAC242DF63E00E3CF10 /* NewWSAuditingWeeklyViewController.m */,
+				001FADAE242DFCD200E3CF10 /* NewAuditingWeeklyTableViewCell.h */,
+				001FADAF242DFCD200E3CF10 /* NewAuditingWeeklyTableViewCell.m */,
+				001FADB0242DFCD200E3CF10 /* NewAuditingWeeklyTableViewCell.xib */,
+				001FADB3242E015900E3CF10 /* NewDetailWeeklyViewController.h */,
+				001FADB4242E015900E3CF10 /* NewDetailWeeklyViewController.m */,
+				001FADB6242E018A00E3CF10 /* Weekly.storyboard */,
 			);
 			path = AuditingWeekly;
 			sourceTree = "<group>";
@@ -2931,6 +3074,13 @@
 				667C2694213D95C6002E465F /* AuditingTaskViewController.h */,
 				667C2695213D95C6002E465F /* AuditingTaskViewController.m */,
 				667C2697213D95C6002E465F /* Model */,
+				004677CF242CF09300FAD2EA /* NewYSTaskViewController.h */,
+				004677D0242CF09300FAD2EA /* NewYSTaskViewController.m */,
+				004677D2242CF0A300FAD2EA /* NewWSTaskViewController.h */,
+				004677D3242CF0A300FAD2EA /* NewWSTaskViewController.m */,
+				004677D5242CF26E00FAD2EA /* NewAuditingTaskCell.h */,
+				004677D6242CF26E00FAD2EA /* NewAuditingTaskCell.m */,
+				004677D7242CF26E00FAD2EA /* NewAuditingTaskCell.xib */,
 			);
 			path = AuditingTask;
 			sourceTree = "<group>";
@@ -3078,9 +3228,9 @@
 		667C26CC213D95C7002E465F /* StudentCheckList */ = {
 			isa = PBXGroup;
 			children = (
-				667C26CD213D95C7002E465F /* StudentCheckListViewController.m */,
 				667C26CE213D95C7002E465F /* Model */,
 				667C26D1213D95C7002E465F /* StudentCheckListViewController.h */,
+				667C26CD213D95C7002E465F /* StudentCheckListViewController.m */,
 			);
 			path = StudentCheckList;
 			sourceTree = "<group>";
@@ -3099,12 +3249,17 @@
 			children = (
 				669C981D214564A600FD8102 /* Model */,
 				667C26D3213D95C7002E465F /* CompanyDetail */,
-				667C26D6213D95C7002E465F /* DetailStationViewController.h */,
-				667C26D7213D95C7002E465F /* ModifyStationViewController.m */,
 				667C26D8213D95C7002E465F /* StationDetail */,
 				667C26DB213D95C7002E465F /* TeacherDetail */,
+				667C26D6213D95C7002E465F /* DetailStationViewController.h */,
 				667C26DE213D95C7002E465F /* DetailStationViewController.m */,
 				667C26DF213D95C7002E465F /* ModifyStationViewController.h */,
+				667C26D7213D95C7002E465F /* ModifyStationViewController.m */,
+				006667F2242B58D500F74908 /* Station.storyboard */,
+				006667F4242B743900F74908 /* NewStationDetailViewController.h */,
+				006667F5242B743900F74908 /* NewStationDetailViewController.m */,
+				00176123242F555500A07011 /* NewModifyStationViewController.h */,
+				00176124242F555500A07011 /* NewModifyStationViewController.m */,
 			);
 			path = DetailStation;
 			sourceTree = "<group>";
@@ -3585,17 +3740,22 @@
 			files = (
 				66125475214FF76F006AD2B8 /* BRCompanyStudentListTableViewCell.xib in Resources */,
 				00AF7A33225E424300F35E1D /* MyFinalizationTableViewCell.xib in Resources */,
+				0087018F241F3D9300758D53 /* sxTask.storyboard in Resources */,
 				66423CEE21497344009D9BE7 /* addPicture@3x.png in Resources */,
+				001FADB2242DFCD200E3CF10 /* NewAuditingWeeklyTableViewCell.xib in Resources */,
 				667C2733213D95C7002E465F /* btn_navigation_back@2x.png in Resources */,
+				006667F3242B58D500F74908 /* Station.storyboard in Resources */,
 				00AF7A0E225E40EC00F35E1D /* TaskBookListTableViewCell.xib in Resources */,
 				00AF7A56225E43E600F35E1D /* FinalizationListTableViewCell.xib in Resources */,
 				3384C01B22A6606B0078E48B /* XOMyStdTableViewCell.xib in Resources */,
 				667C2768213D95C7002E465F /* SCNavTabBar.bundle in Resources */,
+				004677D9242CF26E00FAD2EA /* NewAuditingTaskCell.xib in Resources */,
 				66FFFDD5216F99DE004CD01A /* GJSOSNewsTableViewCell.xib in Resources */,
 				665CD5462154005A00EAB428 /* bg102.jpg in Resources */,
 				667C24EB213D849F002E465F /* LaunchScreen.storyboard in Resources */,
 				00D2338B225E33AF003A083E /* MyProjectTableViewCell.xib in Resources */,
 				661748E2215BDD5000359D63 /* normal_face.plist in Resources */,
+				001FADB7242E018A00E3CF10 /* Weekly.storyboard in Resources */,
 				667C2734213D95C7002E465F /* shadow.png in Resources */,
 				66423CE421496642009D9BE7 /* BRUserInfoModifyView.xib in Resources */,
 				00D23330225E2D2C003A083E /* Worker.storyboard in Resources */,
@@ -3608,6 +3768,7 @@
 				66FFFDDA216F9CE0004CD01A /* GJSOSRecordListTableViewCell.xib in Resources */,
 				661748E1215BDD5000359D63 /* ChatViewImages.xcassets in Resources */,
 				667C24EC213D849F002E465F /* Main.storyboard in Resources */,
+				006667E024284E0C00F74908 /* SXTaskRecordCell.xib in Resources */,
 				667C2772213D95C7002E465F /* checked.png in Resources */,
 				00D23390225E34F8003A083E /* CheckProListTableViewCell.xib in Resources */,
 				661748B8215BC6A500359D63 /* BRAllPeopleViewTableViewCell.xib in Resources */,
@@ -3624,6 +3785,7 @@
 				00AF7AD1225E4A1C00F35E1D /* CheckReportTableViewCell.xib in Resources */,
 				00AF7A8A225E46B600F35E1D /* ProReviewTableViewCell.xib in Resources */,
 				667C24E6213D7EA5002E465F /* Info.plist in Resources */,
+				006667DB24284DEE00F74908 /* SXTaskDynamicCell.xib in Resources */,
 				66423CED21497344009D9BE7 /* addPicture@2x.png in Resources */,
 				00AF7AE4225E4AA100F35E1D /* UnitTableViewCell.xib in Resources */,
 			);
@@ -3699,7 +3861,9 @@
 				667C273C213D95C7002E465F /* DGActivityIndicatorBallClipRotatePulseAnimation.m in Sources */,
 				6617491F215BE1A200359D63 /* NSString+TL.m in Sources */,
 				00D2333F225E30AE003A083E /* MineFeedbackViewController.m in Sources */,
+				005A496224236D8F00A19D68 /* MCHoveringView.m in Sources */,
 				667C273D213D95C7002E465F /* DGActivityIndicatorTriplePulseAnimation.m in Sources */,
+				006667E62428B98200F74908 /* SXTaskReModel.m in Sources */,
 				667C27C9213D95C7002E465F /* AuditingResultViewController.m in Sources */,
 				3306238B22A762590072FF66 /* XOStuYSViewController.m in Sources */,
 				667C2765213D95C7002E465F /* ZZCircleProgress.m in Sources */,
@@ -3732,8 +3896,10 @@
 				667C27CC213D95C7002E465F /* LeavePassDetailViewController.m in Sources */,
 				667C2720213D95C7002E465F /* ForgetViewController.m in Sources */,
 				667C27A7213D95C7002E465F /* DetailTaskViewController.m in Sources */,
+				004677D8242CF26E00FAD2EA /* NewAuditingTaskCell.m in Sources */,
 				00AF7A62225E449000F35E1D /* HaveMyReviewListViewController.m in Sources */,
 				667C27D8213D95C7002E465F /* StudentCheckListDetailViewController.m in Sources */,
+				005A496324236D8F00A19D68 /* UIView+QQFrame.m in Sources */,
 				667C2784213D95C7002E465F /* WorkViewController.m in Sources */,
 				669C9820214564D600FD8102 /* BRDetailStationModel.m in Sources */,
 				6620446D2171A35E0051E1F1 /* UITableView+BRFitSize.m in Sources */,
@@ -3761,6 +3927,7 @@
 				667C2788213D95C7002E465F /* TestViewController.m in Sources */,
 				66FE1213216CE5BF00739EC4 /* GJStudentSOSOpenViewController.m in Sources */,
 				00D2338A225E33AF003A083E /* MyProjectTableViewCell.m in Sources */,
+				00176125242F555500A07011 /* NewModifyStationViewController.m in Sources */,
 				661748E7215BDD5000359D63 /* ZXChatHelper.m in Sources */,
 				00AF7A1E225E415500F35E1D /* NSString+Extension.m in Sources */,
 				00AF7A90225E47A400F35E1D /* SOSListViewController.m in Sources */,
@@ -3770,14 +3937,17 @@
 				66F7C9DF214D2CDE002B3905 /* UIViewController+CBPopup.m in Sources */,
 				66423CEF21497344009D9BE7 /* ChooseSingImage.m in Sources */,
 				667C27D2213D95C7002E465F /* SignAuditModelViewController.m in Sources */,
+				005A497A24236F9600A19D68 /* SXTaskDynamicVC.m in Sources */,
 				667C24E2213D7EA5002E465F /* AppDelegate.m in Sources */,
 				66FFFDD9216F9CE0004CD01A /* GJSOSRecordListTableViewCell.m in Sources */,
 				669C980F2143889C00FD8102 /* BaseViewController.m in Sources */,
 				661748E5215BDD5000359D63 /* TLUserHelper.m in Sources */,
+				006667DF24284E0C00F74908 /* SXTaskRecordCell.m in Sources */,
 				667C278C213D95C7002E465F /* StationDetailViewController.m in Sources */,
 				667C27B9213D95C7002E465F /* StationListViewController.m in Sources */,
 				667C27BC213D95C7002E465F /* NotAuditingViewController.m in Sources */,
 				00AF7AA0225E482800F35E1D /* AttendanceStatisticsListViewController.m in Sources */,
+				006667EE2429147B00F74908 /* APPAlertView.m in Sources */,
 				00D2333D225E30AE003A083E /* GJUserInfoViewController.m in Sources */,
 				667C2783213D95C7002E465F /* MsgTableViewCell.m in Sources */,
 				667C2759213D95C7002E465F /* DGActivityIndicatorLineScalePulseOutRapidAnimation.m in Sources */,
@@ -3794,6 +3964,7 @@
 				00AF7A6E225E457800F35E1D /* LWReadViewController.m in Sources */,
 				667C27B6213D95C7002E465F /* PatrolTaskLookViewController.m in Sources */,
 				667C2754213D95C7002E465F /* DGActivityIndicatorBallSpinFadeLoader.m in Sources */,
+				004677D1242CF09300FAD2EA /* NewYSTaskViewController.m in Sources */,
 				667C27E7213D95C7002E465F /* MyLeaveRecordViewController.m in Sources */,
 				661748F0215BDD9800359D63 /* ZXUserModel.m in Sources */,
 				669C98162143F64A00FD8102 /* UISearchController+BRUIDoneSearchController.m in Sources */,
@@ -3805,6 +3976,7 @@
 				00D2334D225E31A0003A083E /* MyProjectViewController.m in Sources */,
 				00AF7B00225E4C8700F35E1D /* UBSignatureDrawingViewController.m in Sources */,
 				667C27D4213D95C7002E465F /* SignsuccessDetailViewController.m in Sources */,
+				006667F6242B743900F74908 /* NewStationDetailViewController.m in Sources */,
 				00AF7A43225E431B00F35E1D /* CheckProposalListTableViewCell.m in Sources */,
 				667C2749213D95C7002E465F /* DGActivityIndicatorBallGridBeatAnimation.m in Sources */,
 				661748ED215BDD5000359D63 /* ZXUser.m in Sources */,
@@ -3849,6 +4021,7 @@
 				6620446A2171A2AE0051E1F1 /* UIViewController+addTablew.m in Sources */,
 				667C2750213D95C7002E465F /* DGActivityIndicatorFiveDotsAnimation.m in Sources */,
 				667C27C5213D95C7002E465F /* BatchViewController.m in Sources */,
+				005A496024236D8F00A19D68 /* QQtableView.m in Sources */,
 				66423CE221496637009D9BE7 /* BRUserInfoModifyView.m in Sources */,
 				667C27BD213D95C7002E465F /* HaveAuditingViewController.m in Sources */,
 				00AF7A57225E43E600F35E1D /* FinalizationListTableViewCell.m in Sources */,
@@ -3878,6 +4051,7 @@
 				661748B3215BC62100359D63 /* BRContantPeopleModel.m in Sources */,
 				667C27B3213D95C7002E465F /* PatrolModelViewController.m in Sources */,
 				667C27C0213D95C7002E465F /* MyApplyEnterpriseListViewController.m in Sources */,
+				001FADAA242DF62B00E3CF10 /* NewYSAuditingWeeklyViewController.m in Sources */,
 				667C27B4213D95C7002E465F /* PatrolObjViewController.m in Sources */,
 				667C27BB213D95C7002E465F /* HaveStationListViewController.m in Sources */,
 				667C2791213D95C7002E465F /* AddStationFourViewController.m in Sources */,
@@ -3887,6 +4061,7 @@
 				667C27F3213D95C7002E465F /* MeViewController.m in Sources */,
 				667C2753213D95C7002E465F /* DGActivityIndicatorTwoDotsAnimation.m in Sources */,
 				6620447B2171B6C00051E1F1 /* GJSOSDetailRemark1TableViewCell.m in Sources */,
+				006667DA24284DEE00F74908 /* SXTaskDynamicCell.m in Sources */,
 				00AF7ACD225E49BF00F35E1D /* HCCheckReportViewController.m in Sources */,
 				661748DF215BDD5000359D63 /* ZXChatBoxController.m in Sources */,
 				669C980C2143824400FD8102 /* BaseTablewView.m in Sources */,
@@ -3897,10 +4072,12 @@
 				667C277B213D95C7002E465F /* MsgCacheTableViewCell.m in Sources */,
 				00D2334C225E31A0003A083E /* MyProjectDetailViewController.m in Sources */,
 				669C98122143B2B300FD8102 /* DetailWeekCommentViewController.m in Sources */,
+				004677D4242CF0A300FAD2EA /* NewWSTaskViewController.m in Sources */,
 				667C27C1213D95C7002E465F /* AuditingTaskViewController.m in Sources */,
 				00AF7ADF225E4A8400F35E1D /* MyteacherTableViewCell.m in Sources */,
 				667C27AF213D95C7002E465F /* PatrolStudentListViewController.m in Sources */,
 				667C274A213D95C7002E465F /* DGActivityIndicatorBallClipRotateMultipleAnimation.m in Sources */,
+				005A497D24236FA600A19D68 /* SXTaskRecordVC.m in Sources */,
 				667C278A213D95C7002E465F /* CompanyDetailViewController.m in Sources */,
 				00AF7A51225E438E00F35E1D /* NotFinalizationListViewController.m in Sources */,
 				667C27D9213D95C7002E465F /* ModifyCompanyDetailViewController.m in Sources */,
@@ -3950,6 +4127,7 @@
 				667C27BE213D95C7002E465F /* AuditingStationViewController.m in Sources */,
 				00D2333E225E30AE003A083E /* MeSignViewController.m in Sources */,
 				667C27F1213D95C7002E465F /* MainViewController.m in Sources */,
+				006667E32428B04C00F74908 /* SXTaskDyModel.m in Sources */,
 				00D23357225E31E3003A083E /* NotProListViewController.m in Sources */,
 				667C27E1213D95C7002E465F /* MyWeeklyListViewController.m in Sources */,
 				00AF7ABE225E48DD00F35E1D /* MYTeacherHaveCheckViewController.m in Sources */,
@@ -3962,6 +4140,7 @@
 				00AF7B01225E4C8700F35E1D /* UBSignatureBezierProvider.m in Sources */,
 				00AF7A27225E420D00F35E1D /* MyFinalizationViewController.m in Sources */,
 				667C274B213D95C7002E465F /* DGActivityIndicatorBallTrianglePathAnimation.m in Sources */,
+				001FADB1242DFCD200E3CF10 /* NewAuditingWeeklyTableViewCell.m in Sources */,
 				669C981C2145646300FD8102 /* BRBaseModel.m in Sources */,
 				667C277F213D95C7002E465F /* StudentPeopleViewController.m in Sources */,
 				66FE1216216CE6C600739EC4 /* GJBaseIphoneXViewController.m in Sources */,
@@ -3978,6 +4157,7 @@
 				00AF7A0D225E40EC00F35E1D /* TaskBookListTableViewCell.m in Sources */,
 				667C2721213D95C7002E465F /* DevicepwdViewController.m in Sources */,
 				667C27E6213D95C7002E465F /* LeaveViewController.m in Sources */,
+				005A496124236D8F00A19D68 /* MCPageView.m in Sources */,
 				00AF7A39225E42F200F35E1D /* CheckProposalListViewController.m in Sources */,
 				6620447F2171C9B20051E1F1 /* GJPublicCellModel.m in Sources */,
 				667C2730213D95C7002E465F /* ZLPopView.m in Sources */,
@@ -3996,6 +4176,7 @@
 				667C248D213D7EA5002E465F /* ViewController.m in Sources */,
 				00AF7A83225E469300F35E1D /* ScoreSCLView.m in Sources */,
 				00AF7AD2225E4A1C00F35E1D /* CheckReportTableViewCell.m in Sources */,
+				001FADAD242DF63E00E3CF10 /* NewWSAuditingWeeklyViewController.m in Sources */,
 				00AF7A3F225E430000F35E1D /* NotCheckProposalListViewController.m in Sources */,
 				667C27A5213D95C7002E465F /* MyTaskDetailViewController.m in Sources */,
 				6666AB44214A27400051151A /* NSString+ImgUrl.m in Sources */,
@@ -4006,6 +4187,7 @@
 				00AF7AAB225E487300F35E1D /* ChooseTeacherViewController.m in Sources */,
 				00D23394225E3522003A083E /* GJShenheViewController.m in Sources */,
 				00AF7A71225E45F400F35E1D /* ProReviewViewController.m in Sources */,
+				005A49802423AF0900A19D68 /* SXTaskHeadVC.m in Sources */,
 				00AF7A96225E47F900F35E1D /* UnitStatisticsListViewController.m in Sources */,
 				667C27B0213D95C7002E465F /* PatrolTableViewCell.m in Sources */,
 				00AF7A2E225E422E00F35E1D /* MyDefenseArrangeTableViewCell.m in Sources */,
@@ -4015,6 +4197,7 @@
 				667C27CF213D95C7002E465F /* LeaveAuditViewController.m in Sources */,
 				667C273A213D95C7002E465F /* DGActivityIndicatorTripleRingsAnimation.m in Sources */,
 				667C2722213D95C7002E465F /* ZFView.m in Sources */,
+				0087018D241F3C8F00758D53 /* XXDetailTaskVC.m in Sources */,
 				00AF7AA8225E486400F35E1D /* MyTeacherViewController.m in Sources */,
 				667C2779213D95C7002E465F /* MsgServiceViewController.m in Sources */,
 				667C2752213D95C7002E465F /* DGActivityIndicatorNineDotsAnimation.m in Sources */,
@@ -4041,6 +4224,7 @@
 				00D23379225E32F8003A083E /* Toast+UIView.m in Sources */,
 				667C2746213D95C7002E465F /* DGActivityIndicatorCookieTerminatorAnimation.m in Sources */,
 				667C278E213D95C7002E465F /* TeacherDetailViewController.m in Sources */,
+				001FADB5242E015900E3CF10 /* NewDetailWeeklyViewController.m in Sources */,
 				66174900215BE0C100359D63 /* ZXChatFaceItemView.m in Sources */,
 				661748B7215BC6A500359D63 /* BRAllPeopleViewTableViewCell.m in Sources */,
 				667C2756213D95C7002E465F /* DGActivityIndicatorBallBeatAnimation.m in Sources */,
@@ -4225,7 +4409,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = 8M66PS8VC3;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4237,7 +4421,7 @@
 				INFOPLIST_FILE = GJKJAPP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.3.5;
+				MARKETING_VERSION = 1.3.6;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -4279,7 +4463,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = 8M66PS8VC3;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4291,7 +4475,7 @@
 				INFOPLIST_FILE = GJKJAPP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.3.5;
+				MARKETING_VERSION = 1.3.6;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

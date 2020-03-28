@@ -84,15 +84,15 @@
     int x = 0;
     for(int i = 0;i<[dataArr count];i++){
         NSMutableDictionary *dataDic = dataArr[i];
-        if([[dataDic objectForKey:@"CheckInConfirm"] boolValue] == false && [dataDic objectForKey:@"CheckInDate"] != [NSNull null]){
-            SignAuditModelViewController *modelView = [[SignAuditModelViewController alloc]init_Value:i width:&view_width height:&view_height dataDic:dataArr[i]];
+//        if([[dataDic objectForKey:@"CheckInConfirm"] boolValue] == false && [dataDic objectForKey:@"CheckInDate"] != [NSNull null]){
+            SignAuditModelViewController *modelView = [[SignAuditModelViewController alloc]init_Value:i width:&view_width height:&view_height dataDic:dataArr[i] ischeckIn:YES];
             modelView.view.frame = CGRectMake(0, x * view_height, view_width, view_height);
             UITapGestureRecognizer *TapClick = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(detailAction:)];
             TapClick.accessibilityElements = dataArr[i];
             [modelView.view addGestureRecognizer:TapClick];
             [_scrollView addSubview:modelView.view];
             x++;
-        }
+//        }
     }
     
     _scrollView.contentSize = CGSizeMake(self.view.frame.size.width, view_height * dataArr.count);
@@ -102,12 +102,20 @@
 
 -(void) detailAction:(UITapGestureRecognizer *)sender{
     NSDictionary *getArr = sender.accessibilityElements;
-    SignsuccessDetailViewController *successDetail = [[SignsuccessDetailViewController alloc]init];
-    successDetail.getArr = getArr;
-    successDetail.updateBlock = ^(id info) {
-        [self startLayout];
-    };
-    [self.navigationController pushViewController:successDetail animated:YES];
+    NSRange rang = {0,10};
+    NSString *CheckInData = [getArr objectForKey:@"CheckInDate"];
+    NSString *timeStartStr = [[[CheckInData stringByReplacingOccurrencesOfString:@"/Date(" withString:@""] stringByReplacingOccurrencesOfString:@")/" withString:@""]substringWithRange:rang];
+    if ([timeStartStr integerValue] > 0) {
+        SignsuccessDetailViewController *successDetail = [[SignsuccessDetailViewController alloc]init];
+        successDetail.getArr = getArr;
+        successDetail.updateBlock = ^(id info) {
+            [self startLayout];
+        };
+        [self.navigationController pushViewController:successDetail animated:YES];
+    }else{
+        [BaseViewController br_showAlterMsg:@"尚未打卡!"];
+    }
+    
 }
 
 

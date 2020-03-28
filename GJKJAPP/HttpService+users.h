@@ -680,6 +680,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 +(NSURLSessionDataTask *)GetOverCheckTeamRecordList:(NSString *)DeptID ActivityID:(NSString *)ActivityID Rows:(int)rows and:(int)page success:(SuccessResponseBlock)success failure:(FailureResponseBlock)failure;
 
+//获取任务信息
++(NSURLSessionDataTask *)sxtaskDetail:(NSString *)TaskID success:(SuccessResponseBlock)success failure:(FailureResponseBlock)failure;
+//获取任务指导记录
++(NSURLSessionDataTask *)sxtaskDetailRecord:(NSString *)ActivityTaskDetailID success:(SuccessResponseBlock)success failure:(FailureResponseBlock)failure;
+
+
+
+
 @end
 
 NS_ASSUME_NONNULL_END

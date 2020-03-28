@@ -81,66 +81,66 @@
     [params1 setObject:CurrTime forKey:@"TimeStamp"];
     [params1 setObject:@"A" forKey:@"ApplyType"];//A-新增申请、U-转岗、D-辞职
     //"中介代理限制：通过中介机构或有偿代理组织、安排和管理学生实习工作"
-    [params1 setObject:@(_sw18.on) forKey:@"IsIntermediary"];
+    [params1 setObject:_sw18.on?@"true":@"false" forKey:@"IsIntermediary"];
 
     //me = "娱乐场所限制：到酒吧、夜总会、歌厅、洗浴中心等营业性娱乐场所实习")
-    [params1 setObject:@(_sw17.on) forKey:@"IsBar"];
+    [params1 setObject:_sw17.on?@"true":@"false" forKey:@"IsBar"];
 
     //= "女职工保障：女学生从事《女职工劳动保护特别规定》中禁忌从事的劳动"
-    [params1 setObject:@(_sw16.on) forKey:@"IsWomenTaboo"];
+    [params1 setObject:_sw16.on?@"true":@"false" forKey:@"IsWomenTaboo"];
 
     //= "未成年工保障：未成年学生从事《未成年工特殊保护规定》中禁忌从事的劳动
-    [params1 setObject:@(_sw15.on) forKey:@"IsTaboo"];
+    [params1 setObject:_sw15.on?@"true":@"false" forKey:@"IsTaboo"];
 
     //"学生年龄保障：未满16周岁的学生参加跟岗实习、顶岗实习")
-    [params1 setObject:@(_sw14.on) forKey:@"IsAdult"];
+    [params1 setObject:_sw14.on?@"true":@"false" forKey:@"IsAdult"];
 
     //"在校年级保障：一年级在校学生参加顶岗实习")
-    [params1 setObject:@(_sw13.on) forKey:@"IsGradeOne"];
+    [params1 setObject:_sw13.on?@"true":@"false" forKey:@"IsGradeOne"];
     
     //"外部强制情况：存在强制职业学校安排学生到指定单位实习的情况
-    [params1 setObject:@(_sw12.on) forKey:@"IsExForce"];
+    [params1 setObject:_sw12.on?@"true":@"false" forKey:@"IsExForce"];
 
     //"外部干预情况：存在学校以外的单位干预实习安排的情况")
-    [params1 setObject:@(_sw11.on) forKey:@"IsExIntervention"];
+    [params1 setObject:_sw11.on?@"true":@"false" forKey:@"IsExIntervention"];
 
     //= "岗位员工数：具体岗位的实习生人数高于该岗位职工总人数的20%"
-    [params1 setObject:@(_sw10.on) forKey:@"IsPNumber"];
+    [params1 setObject:_sw10.on?@"true":@"false" forKey:@"IsPNumber"];
 
     //"单位员工数：实习生人数超过实习单位在岗职工总数的10%")
-    [params1 setObject:@(_sw9.on) forKey:@"IsENumber"];
+    [params1 setObject:_sw9.on?@"true":@"false" forKey:@"IsENumber"];
     //"实习岗位来源"
-    [params1 setObject:@(_sw8.on) forKey:@"EnterpriseSource"];
+    [params1 setObject:_sw8.on?@"true":@"false" forKey:@"EnterpriseSource"];
     
     //"预警机制")
     [params1 setObject:@(0) forKey:@"IsWarning"];
 
     //"制度保障")
-    [params1 setObject:@(_sw7.on) forKey:@"IsGuarantee"];
+    [params1 setObject:_sw7.on?@"true":@"false" forKey:@"IsGuarantee"];
 
     //"实习教育"
-    [params1 setObject:@(_sw6.on) forKey:@"IsEducation"];
+    [params1 setObject:_sw6.on?@"true":@"false" forKey:@"IsEducation"];
 
     //"实习计划"
-    [params1 setObject:@(_sw5.on) forKey:@"IsPlan"];
+    [params1 setObject:_sw5.on?@"true":@"false" forKey:@"IsPlan"];
     //"加班夜班：存在安排学生加班和上夜班的情况")
-    [params1 setObject:@(_sw4.on) forKey:@"IsOvertime"];
+    [params1 setObject:_sw4.on?@"true":@"false" forKey:@"IsOvertime"];
     //"休息休假：存在安排学生在法定节假日实习的情况"
-    [params1 setObject:@(_sw3.on) forKey:@"IsRest"];
+    [params1 setObject:_sw3.on?@"true":@"false" forKey:@"IsRest"];
     //e = "工作场所：从事高空、井下、放射性、有毒、易燃易爆，以及其他具有较高安全风险的实习"
-    [params1 setObject:@(_sw2.on) forKey:@"IsWorkplace"];
+    [params1 setObject:_sw2.on?@"true":@"false" forKey:@"IsWorkplace"];
     //"专业相关程度
-    [params1 setObject:@(_sw1.on) forKey:@"RelevantType"];
+    [params1 setObject:_sw1.on?@"true":@"false" forKey:@"RelevantType"];
     
     if (_uploadAgreement == nil) {//"实习协议"
         _uploadAgreement = @"";
     }
     [params1 setObject:_uploadAgreement forKey:@"AgreementUrl"];
 
-    if (_uploadJSID == nil) {//"企业指导老师ID（可为空）")
+    if (_uploadJSID == nil || [_uploadJSID isEqualToString:@"0"]) {//"企业指导老师ID（可为空）"
         _uploadJSID = @"";
     }
-    [params1 setObject:_uploadJSID forKey:@"LinkManID"];
+    [params1 setObject:_uploadJSID forKey:@"LinkManID"]; //这里判断一下是否为0
 
     
     if (_uploadDescr == nil) {//"说明"
@@ -169,15 +169,15 @@
     [params1 setObject:_uploadSaraly forKey:@"MonthlySalary"];
 
     
-    if (_uploadID == nil) { //"所属企业ID（可为空）
+    if (_uploadID == nil || [_uploadID isEqualToString:@"0"]) { //"所属企业ID（可为空）
         _uploadID = @"";
     }
-    [params1 setObject:_uploadID forKey:@"EnterpriseID"];
+    [params1 setObject:_uploadID forKey:@"EnterpriseID"]; //这里判断一下是否为0
 
-    if (_uploadStationID == nil) {//所属岗位ID（可为空
+    if (_uploadStationID == nil|| [_uploadStationID isEqualToString:@"0"]) {//所属岗位ID（可为空
         _uploadStationID = @"";
     }
-    [params1 setObject:_uploadStationID forKey:@"PositionID"];
+    [params1 setObject:_uploadStationID forKey:@"PositionID"]; //这里判断一下是否为0
 
     if (_uploadQYName == nil) {
         //"企业名称
@@ -250,7 +250,7 @@
     
     NSString* encodeUrl = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
-    [AizenHttp asynRequest:url httpMethod:@"POST" params:params1 success:^(id result) {
+    [AizenHttp asynRequest:url httpMethod:@"GET" params:params1 success:^(id result) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSDictionary *jsonDic = result;
         if([[jsonDic objectForKey:@"ResultType"] intValue] == 0){

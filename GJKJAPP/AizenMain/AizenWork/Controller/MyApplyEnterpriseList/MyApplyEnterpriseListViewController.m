@@ -17,6 +17,8 @@
 #import "MyApplyDetailViewController.h"
 #import "DetailStationViewController.h"
 #import "ModifyStationViewController.h"
+#import "NewStationDetailViewController.h"
+#import "NewModifyStationViewController.h"
 
 @interface MyApplyEnterpriseListViewController ()
 
@@ -107,15 +109,15 @@
 -(void) applyAction:(UITapGestureRecognizer *)sender{
     NSDictionary *getDic = sender.accessibilityElements;
     if([[[getDic objectForKey:@"CheckState"] stringValue] isEqualToString:@"0"]){
-        /*可修改*/
-        ModifyStationViewController *modify = [[ModifyStationViewController alloc]init];
-        modify.ID = [[getDic objectForKey:@"ID"] stringValue];
-        [self.navigationController pushViewController:modify animated:YES];
+        NewModifyStationViewController *vc = getControllerFromStoryBoard(@"Station", @"ModifystationDetailID");
+        vc.ID = getDic[@"ID"];
+        [self.navigationController pushViewController:vc animated:YES];
     }else{
-        /*非修改*/
-        DetailStationViewController *weekly = [[DetailStationViewController alloc]init];
-        weekly.ID = [[getDic objectForKey:@"ID"] stringValue];
-        [self.navigationController pushViewController:weekly animated:YES];
+        NewStationDetailViewController *vc = getControllerFromStoryBoard(@"Station", @"stationDetailID");
+        vc.ischenck = NO;
+        vc.role = @"student";
+        vc.ID = getDic[@"ID"];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

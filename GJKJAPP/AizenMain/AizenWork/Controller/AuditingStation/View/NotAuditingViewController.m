@@ -17,6 +17,8 @@
 #import "DetailStationViewController.h"
 #import "PhoneInfo.h"
 #import "MJRefresh.h"
+#import "NewStationDetailViewController.h"
+
 @interface NotAuditingViewController ()
 {
     int _page;
@@ -46,10 +48,6 @@
     _scrollView.frame = CGRectMake(0, 0, _contentView.frame.size.width, _contentView.frame.size.height);
     _scrollView.contentSize = CGSizeMake(_contentView.frame.size.width, _contentView.frame.size.height * 2);
     [_contentView addSubview:_scrollView];
-//    WS(ws);
-//    self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-//        [ws getDataSourceFromHttpIsFooterRefresh:NO];
-//    }];
     
     _activityIndicatorView = [[DGActivityIndicatorView alloc] initWithType:(DGActivityIndicatorAnimationType)DGActivityIndicatorAnimationTypeBallClipRotatePulse tintColor:[MainViewController colorWithHexString:@"#0092ff"]];
     _activityIndicatorView.frame = CGRectMake((self.view.frame.size.width - 100)/2, (self.view.frame.size.height - 200)/2, 100, 100);
@@ -132,15 +130,11 @@
 
 
 - (void)br_selectedDetail:(UITapGestureRecognizer*)tap{
-    DetailStationViewController *vc = [[DetailStationViewController alloc] init];
+    NewStationDetailViewController *vc = getControllerFromStoryBoard(@"Station", @"stationDetailID");
     NSDictionary *dic = (id)tap.accessibilityElements;
+    vc.ischenck = YES;
     vc.ID = dic[@"ID"];
-    vc.isTeacher = YES;
-    vc.updateBlock = ^(id info) {
-        [self getDataSourceFromHttpIsFooterRefresh:NO];
-    };
     [self.navigationController pushViewController:vc animated:YES];
-    
 }
 
 - (void)didReceiveMemoryWarning {

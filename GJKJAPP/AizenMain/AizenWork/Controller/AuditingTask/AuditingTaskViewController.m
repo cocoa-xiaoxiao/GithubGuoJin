@@ -24,6 +24,11 @@
 #import "PersonTaskViewController.h"
 #import "TeacherDetailTaskViewController.h"
 
+
+#import "ZLNavTabBarController.h"
+#import "NewYSTaskViewController.h"
+#import "NewWSTaskViewController.h"
+
 @interface AuditingTaskViewController ()<CZPickerViewDelegate,CZPickerViewDataSource,UITextViewDelegate>
 
 @property(nonatomic,strong) UIView *contentView;
@@ -60,15 +65,32 @@
     
     [[self rdv_tabBarController] setTabBarHidden:YES animated:YES];
     self.view.backgroundColor = [UIColor colorWithRed:248/255.0 green:248/255.0 blue:248/255.0 alpha:1];
-    _statusArr = [[NSArray alloc]initWithObjects:@"未审核",@"已审核", nil];
-    _viewArr = [[NSArray alloc]initWithObjects:@"默认",@"按学生", nil];
     
     UIBarButtonItem *backBtnItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(backAction:)];
     [backBtnItem setTintColor:[UIColor whiteColor]];
     self.navigationItem.leftBarButtonItem = backBtnItem ;
     
-    [self startLayout];
+    [self detailLayout];
 }
+-(void) detailLayout{
+    
+    NewYSTaskViewController *tongguoVC = [[NewYSTaskViewController alloc] init];
+    tongguoVC.title = @"已审核";
+    
+    NewWSTaskViewController *daishenVC = [[NewWSTaskViewController alloc] init];
+    daishenVC.title = @"未审核";
+    
+    ZLNavTabBarController *navTabBarController = [[ZLNavTabBarController alloc] init];
+    navTabBarController.subViewControllers = @[tongguoVC,daishenVC];
+    navTabBarController.navTabBarColor = [UIColor whiteColor];
+    navTabBarController.mainViewBounces = YES;
+    navTabBarController.selectedToIndex = 2;
+    navTabBarController.unchangedToIndex = 1;
+    navTabBarController.showArrayButton = NO;
+    [navTabBarController addParentController:self];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+};
+
 
 -(void)backAction:(UIBarButtonItem *)sender{
     [[self rdv_tabBarController] setTabBarHidden:NO animated:YES];

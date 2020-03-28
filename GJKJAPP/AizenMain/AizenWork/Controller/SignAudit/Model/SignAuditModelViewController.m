@@ -30,20 +30,21 @@
     
     UILabel *addressLab;
     
-    
+    BOOL ischeckIn;
 }
 
 @end
 
 @implementation SignAuditModelViewController
 
--(id) init_Value:(int)init_number width:(CGFloat *)init_width height:(CGFloat *)init_height dataDic:(NSMutableDictionary *)init_dic{
+-(id) init_Value:(int)init_number width:(CGFloat *)init_width height:(CGFloat *)init_height dataDic:(NSMutableDictionary *)init_dic ischeckIn:(BOOL)checkIn{
     self  = [super init];
     if(self != nil){
         number = init_number;
         width = init_width;
         height = init_height;
         dataDic = init_dic;
+        ischeckIn = checkIn;
     }
     return self;
 }
@@ -89,17 +90,36 @@
     [detailView addSubview:nameLab];
     
     NSRange rang = {0,10};
-    NSString *CheckOutDate = [dataDic objectForKey:@"CheckInDate"];
-    if (CheckOutDate.length == 0) {
-        CheckOutDate = [dataDic objectForKey:@"CheckOutDate"];
-    }
-    NSString *timeStartStr = [[[CheckOutDate stringByReplacingOccurrencesOfString:@"/Date(" withString:@""] stringByReplacingOccurrencesOfString:@")/" withString:@""]substringWithRange:rang];
+    NSString *CheckInData = [dataDic objectForKey:@"CheckInDate"];
+    NSString *CheckOutDate = [dataDic objectForKey:@"CheckOutDate"];
+    NSString *timeStartStr = [[[CheckInData stringByReplacingOccurrencesOfString:@"/Date(" withString:@""] stringByReplacingOccurrencesOfString:@")/" withString:@""]substringWithRange:rang];
+    NSString *timeEndStr = [[[CheckOutDate stringByReplacingOccurrencesOfString:@"/Date(" withString:@""] stringByReplacingOccurrencesOfString:@")/" withString:@""]substringWithRange:rang];
+
     
     timeLab = [[UILabel alloc]init];
     timeLab.frame = CGRectMake(nameLab.frame.origin.x, nameLab.frame.size.height + nameLab.frame.origin.y, detailView.frame.size.width * 0.7, imgView.frame.size.height * 0.3);
-    timeLab.text = [NSString stringWithFormat:@"打卡时间:%@",[PhoneInfo timestampSwitchTime:[timeStartStr integerValue]  andFormatter:@"YYYY-MM-dd HH:mm:ss"]];
+    
+    if (ischeckIn) {
+        if ([timeStartStr integerValue] > 0) {
+         timeLab.text = [NSString stringWithFormat:@"打卡时间:%@",[PhoneInfo timestampSwitchTime:[timeStartStr integerValue]  andFormatter:@"YYYY-MM-dd HH:mm:ss"]];
+            timeLab.textColor = [UIColor colorWithRed:210/255.0 green:210/255.0 blue:210/255.0 alpha:1];
+        }else{
+            timeLab.text = @"未打卡";
+            timeLab.textColor = [UIColor systemPinkColor];
+        }
+    }else{
+        if ([timeEndStr integerValue] > 0) {
+         timeLab.text = [NSString stringWithFormat:@"打卡时间:%@",[PhoneInfo timestampSwitchTime:[timeEndStr integerValue]  andFormatter:@"YYYY-MM-dd HH:mm:ss"]];
+            timeLab.textColor = [UIColor colorWithRed:210/255.0 green:210/255.0 blue:210/255.0 alpha:1];
+        }else{
+            timeLab.text = @"未打卡";
+            timeLab.textColor = [UIColor systemPinkColor];
+        }
+    }
+    
+    
     timeLab.font = [UIFont systemFontOfSize:13.0];
-    timeLab.textColor = [UIColor colorWithRed:210/255.0 green:210/255.0 blue:210/255.0 alpha:1];
+    
     [detailView addSubview:timeLab];
     
     
@@ -107,9 +127,9 @@
     addressLab.frame = CGRectMake(nameLab.frame.origin.x, timeLab.frame.size.height + timeLab.frame.origin.y, detailView.frame.size.width * 0.7, imgView.frame.size.height * 0.3);
     addressLab.textColor = [UIColor colorWithRed:210/255.0 green:210/255.0 blue:210/255.0 alpha:1];
     addressLab.font = [UIFont systemFontOfSize:13.0];
-    NSString * inPlace = [dataDic objectForKey:@"CheckInPlace"];
-    if (inPlace.length == 0) {
-        inPlace = [dataDic objectForKey:@"CheckOutPlace"];
+    NSString * inPlace = [NSString checkNull:[dataDic objectForKey:@"CheckInPlace"]];
+    if (!ischeckIn) {
+        inPlace = [NSString checkNull:[dataDic objectForKey:@"CheckOutPlace"]];
     }
     addressLab.text = [NSString stringWithFormat:@"打卡地点:%@",inPlace];
     [detailView addSubview:addressLab];

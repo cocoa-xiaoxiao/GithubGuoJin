@@ -267,9 +267,18 @@
     NSString *CurrTime = [PhoneInfo getNowTimeTimestamp3];
     NSString *Token = [AizenMD5 MD5ForUpper16Bate: [NSString stringWithFormat:@"%@%@GJCheck%@",ID,CurrTime,CurrAdminID]];
     [_activityIndicatorView startAnimating];
-    NSString *url = [NSString stringWithFormat:@"%@/ApiCheckWork/ConfirmCheckOut?AdminID=%@&ID=%@&Remark=%@&TimeStamp=%@&Token=%@",kCacheHttpRoot,CurrAdminID,ID,Remark,CurrTime,Token];
     
-    [AizenHttp asynRequest:url httpMethod:@"GET" params:nil success:^(id result) {
+    NSString *url = [NSString stringWithFormat:@"%@/ApiCheckWork/ConfirmCheckOut",kCacheHttpRoot];
+    NSLog(@"%@",url);
+    NSDictionary *param = @{@"AdminID":CurrAdminID,
+                            @"ID":ID,
+                            @"Remark":Remark,
+                            @"TimeStamp":CurrTime,
+                            @"Token":Token
+    };
+    
+    
+    [AizenHttp asynRequest:url httpMethod:@"GET" params:param success:^(id result) {
         NSDictionary *jsonDic = result;
         [_activityIndicatorView stopAnimating];
 

@@ -58,6 +58,7 @@
 @property (nonatomic, strong) UILabel *stopLab;
 
 @property(nonatomic,strong) DGActivityIndicatorView *activityIndicatorView;
+@property (nonatomic, strong) NSDictionary *dataDic;
 
 @end
 
@@ -75,6 +76,22 @@
     [self startLayout];
 }
 
+-(void)httpHelp
+{
+    NSString *activity = [AizenStorage readUserDataWithKey:@"batchID"];
+    NSString *url2 = [NSString stringWithFormat:@"%@/ApiActivityWeekly/GetWeeklyConfig?ActivityID=%@",kCacheHttpRoot,activity];
+    
+    [_activityIndicatorView startAnimating];
+    [AizenHttp asynRequest:url2 httpMethod:@"GET" params:nil success:^(id result) {
+        [_activityIndicatorView stopAnimating];
+        NSDictionary *jsonDic = [result objectForKey:@"AppendData"];
+        self.dataDic = jsonDic;
+        [self detailLayout];
+    } failue:^(NSError *error) {
+        [_activityIndicatorView stopAnimating];
+        [BaseViewController br_showAlterMsg:@"请求失败，请重试"];
+    }];
+}
 
 -(void) startLayout{
     _contentView = [[IQPreviousNextView alloc]init];
@@ -103,7 +120,7 @@
     [_submitBtn addTarget:self action:@selector(submitAction:) forControlEvents:UIControlEventTouchUpInside];
     [_contentView addSubview:_submitBtn];
     
-    [self detailLayout];
+    [self httpHelp];
 }
 
 
@@ -172,6 +189,12 @@
 
 
 -(void) detailLayout{
+    NSString *key1 = [NSString checkNull:[self.dataDic objectForKey:@"Field1"]];
+    NSString *key2 = [NSString checkNull:[self.dataDic objectForKey:@"Field2"]];
+    NSString *key3 = [NSString checkNull:[self.dataDic objectForKey:@"Field3"]];
+    NSString *key4 = [NSString checkNull:[self.dataDic objectForKey:@"Field4"]];
+    NSString *key5 = [NSString checkNull:[self.dataDic objectForKey:@"Field5"]];
+    
     _dateView = [[UIView alloc]init];
     _dateView.frame = CGRectMake(0, intervalHeight, _contentView.frame.size.width, _contentView.frame.size.height * 0.06);
     _dateView.backgroundColor = [UIColor whiteColor];
@@ -249,7 +272,7 @@
     _workContentVal.accessibilityLabel = @"workContent";
     _workContentVal.textColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
     _workContentVal.font = [UIFont systemFontOfSize:18.0];
-    _workContentVal.text = @"工作内容";
+    _workContentVal.text = key1;
     [_workContentView addSubview:_workContentVal];
     
     
@@ -269,7 +292,7 @@
     _problemVal.accessibilityLabel = @"problem";
     _problemVal.textColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
     _problemVal.font = [UIFont systemFontOfSize:18.0];
-    _problemVal.text = @"遇到的问题";
+    _problemVal.text = key2;
     [_problemView addSubview:_problemVal];
     
     
@@ -290,7 +313,7 @@
     _solveVal.accessibilityLabel = @"solve";
     _solveVal.textColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
     _solveVal.font = [UIFont systemFontOfSize:18.0];
-    _solveVal.text = @"解决方案";
+    _solveVal.text = key3;
     [_solveView addSubview:_solveVal];
     
     
@@ -311,7 +334,7 @@
     _lightVal.accessibilityLabel = @"light";
     _lightVal.textColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
     _lightVal.font = [UIFont systemFontOfSize:18.0];
-    _lightVal.text = @"工作亮点";
+    _lightVal.text = key4;
     [_lightView addSubview:_lightVal];
     
     
@@ -331,7 +354,7 @@
     _insufficientVal.accessibilityLabel = @"insufficient";
     _insufficientVal.textColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
     _insufficientVal.font = [UIFont systemFontOfSize:18.0];
-    _insufficientVal.text = @"存在不足";
+    _insufficientVal.text = key5;
     [_insufficientView addSubview:_insufficientVal];
     
     
@@ -428,29 +451,34 @@
 
 #pragma mark - UITextViewDelegate
 - (void)textViewDidEndEditing:(UITextView *)textView{
+    NSString *key1 = [NSString checkNull:[self.dataDic objectForKey:@"Field1"]];
+    NSString *key2 = [NSString checkNull:[self.dataDic objectForKey:@"Field2"]];
+    NSString *key3 = [NSString checkNull:[self.dataDic objectForKey:@"Field3"]];
+    NSString *key4 = [NSString checkNull:[self.dataDic objectForKey:@"Field4"]];
+    NSString *key5 = [NSString checkNull:[self.dataDic objectForKey:@"Field5"]];
     if([textView.accessibilityLabel isEqualToString:@"workContent"]){
         if(textView.text.length < 1){
-            textView.text = @"工作内容";
+            textView.text = key1;
             textView.textColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
         }
     }else if([textView.accessibilityLabel isEqualToString:@"problem"]){
         if(textView.text.length < 1){
-            textView.text = @"遇到的问题";
+            textView.text = key2;
             textView.textColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
         }
     }else if([textView.accessibilityLabel isEqualToString:@"solve"]){
         if(textView.text.length < 1){
-            textView.text = @"解决方案";
+            textView.text = key3;
             textView.textColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
         }
     }else if([textView.accessibilityLabel isEqualToString:@"light"]){
         if(textView.text.length < 1){
-            textView.text = @"工作亮点";
+            textView.text = key4;
             textView.textColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
         }
     }else if([textView.accessibilityLabel isEqualToString:@"insufficient"]){
         if(textView.text.length < 1){
-            textView.text = @"存在不足";
+            textView.text = key5;
             textView.textColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
         }
     }
@@ -458,28 +486,34 @@
     
 }
 - (void)textViewDidBeginEditing:(UITextView *)textView{
+    NSString *key1 = [NSString checkNull:[self.dataDic objectForKey:@"Field1"]];
+    NSString *key2 = [NSString checkNull:[self.dataDic objectForKey:@"Field2"]];
+    NSString *key3 = [NSString checkNull:[self.dataDic objectForKey:@"Field3"]];
+    NSString *key4 = [NSString checkNull:[self.dataDic objectForKey:@"Field4"]];
+    NSString *key5 = [NSString checkNull:[self.dataDic objectForKey:@"Field5"]];
+    
     if([textView.accessibilityLabel isEqualToString:@"workContent"]){
-        if([textView.text isEqualToString:@"工作内容"]){
+        if([textView.text isEqualToString:key1]){
             textView.text=@"";
             textView.textColor=[UIColor blackColor];
         }
     }else if([textView.accessibilityLabel isEqualToString:@"problem"]){
-        if([textView.text isEqualToString:@"遇到的问题"]){
+        if([textView.text isEqualToString:key2]){
             textView.text=@"";
             textView.textColor=[UIColor blackColor];
         }
     }else if([textView.accessibilityLabel isEqualToString:@"solve"]){
-        if([textView.text isEqualToString:@"解决方案"]){
+        if([textView.text isEqualToString:key3]){
             textView.text=@"";
             textView.textColor=[UIColor blackColor];
         }
     }else if([textView.accessibilityLabel isEqualToString:@"light"]){
-        if([textView.text isEqualToString:@"工作亮点"]){
+        if([textView.text isEqualToString:key4]){
             textView.text=@"";
             textView.textColor=[UIColor blackColor];
         }
     }else if([textView.accessibilityLabel isEqualToString:@"insufficient"]){
-        if([textView.text isEqualToString:@"存在不足"]){
+        if([textView.text isEqualToString:key5]){
             textView.text=@"";
             textView.textColor=[UIColor blackColor];
         }

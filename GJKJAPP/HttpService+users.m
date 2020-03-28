@@ -1209,4 +1209,34 @@
     }];
     return task;
 }
+
++(NSURLSessionDataTask *)sxtaskDetail:(NSString *)TaskID success:(SuccessResponseBlock)success failure:(FailureResponseBlock)failure
+{
+    NSString *api = [RequestHelper requestApiWith:GJAPIType_GetByID];
+    NSDictionary *param = @{@"TaskID":TaskID,
+                            };
+    NSURLSessionDataTask *task = [HttpService dataTaskWithMethodType:HTTPMethodTypeGET api:api parameters:param success:^(id responseObject) {
+        if (responseObject) {
+            success(responseObject);
+        }
+    } failure:^(NSError *error) {
+        failure(error);
+    }];
+    return task;
+}
+
++(NSURLSessionDataTask *)sxtaskDetailRecord:(NSString *)ActivityTaskDetailID success:(SuccessResponseBlock)success failure:(FailureResponseBlock)failure
+{
+    NSString *api = [RequestHelper requestApiWith:GJAPIType_GetRecordListByDetailID];
+    NSDictionary *param = @{@"ActivityTaskDetailID":ActivityTaskDetailID,
+                            };
+    NSURLSessionDataTask *task = [HttpService dataTaskWithMethodType:HTTPMethodTypeGET api:api parameters:param success:^(id responseObject) {
+        if (responseObject) {
+            success(responseObject);
+        }
+    } failure:^(NSError *error) {
+        failure(error);
+    }];
+    return task;
+}
 @end

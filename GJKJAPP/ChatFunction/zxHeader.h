@@ -60,6 +60,7 @@ blue:((CGFloat)(rgbValue & 0xFF)) / 255.0 alpha:(a)]
 #define     DEFAULT_GREEN_COLOR              WBColor(2.0, 187.0, 0.0, 1.0f)
 #define     DEFAULT_TEXT_GRAY_COLOR         [UIColor grayColor]
 #define     DEFAULT_LINE_GRAY_COLOR          WBColor(188.0, 188.0, 188.0, 0.6f)
+#define     DEFAULT_APPTHEME_COLOR          WBColor(94.0, 174.0, 240.0, 1.0)
 
 #pragma mark - Path
 #define     PATH_DOCUMENT                   [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]

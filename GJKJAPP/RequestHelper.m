@@ -205,6 +205,12 @@
         case GJAPIType_GetOverCheckTeamRecordList:
             apiStr = @"/ApiInternshipInspectionTeamInfo/GetOverCheckTeamRecordList";
             break;
+        case GJAPIType_GetRecordListByDetailID:
+            apiStr = @"/ApiActivityTaskInfo/GetRecordListByDetailID";
+            break;
+        case GJAPIType_GetByID:
+            apiStr = @"/ApiActivityTaskInfo/GetByID";
+            break;
         default:
             break;
     }

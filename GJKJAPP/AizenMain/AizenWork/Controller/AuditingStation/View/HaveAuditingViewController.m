@@ -15,6 +15,7 @@
 #import "MainViewController.h"
 #import "HaveStationListViewController.h"
 #import "DetailStationViewController.h"
+#import "NewStationDetailViewController.h"
 @interface HaveAuditingViewController ()
 {
     int _page;
@@ -42,13 +43,6 @@
     _scrollView.frame = CGRectMake(0, 0, _contentView.frame.size.width, _contentView.frame.size.height);
     _scrollView.contentSize = CGSizeMake(_contentView.frame.size.width, _contentView.frame.size.height * 2);
     [_contentView addSubview:_scrollView];
-//
-//    WS(ws);
-//    self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-//        [ws getDataSourceFromHttpIsFooterRefresh:NO];
-//    }];
-    
-    
     [self getDataSourceFromHttpIsFooterRefresh:NO];
 }
 
@@ -103,9 +97,6 @@
     CGFloat height = _scrollView.frame.size.height / 4;
     
     for(int i = 0;i<[dataArr count];i++){
-//        NoStationListViewController *detailView = [[NoStationListViewController alloc]init_Value:i width:&width height:&height dataDic:[dataArr objectAtIndex:i]];
-//        detailView.view.frame = CGRectMake(0, i * height, width, height);
-//        [_scrollView addSubview:detailView.view];
         HaveStationListViewController *detailView = [[HaveStationListViewController alloc]init_Value:i width:&width height:&height dataDic:[dataArr objectAtIndex:i]];
         detailView.view.frame = CGRectMake(0, i * height, width, height);
         [_scrollView addSubview:detailView.view];
@@ -118,8 +109,10 @@
 }
 
 - (void)br_selectedDetail:(UITapGestureRecognizer*)tap{
-    DetailStationViewController *vc = [[DetailStationViewController alloc] init];
+    
+    NewStationDetailViewController *vc = getControllerFromStoryBoard(@"Station", @"stationDetailID");
     NSDictionary *dic = (id)tap.accessibilityElements;
+    vc.ischenck = NO;
     vc.ID = dic[@"ID"];
     [self.navigationController pushViewController:vc animated:YES];
     

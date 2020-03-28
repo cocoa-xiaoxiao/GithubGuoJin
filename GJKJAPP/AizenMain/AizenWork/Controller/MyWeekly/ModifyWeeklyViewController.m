@@ -57,6 +57,8 @@
 @property (nonatomic, strong) NSDictionary *detailDict_http;
 @property(nonatomic,strong) DGActivityIndicatorView *activityIndicatorView;
 
+@property (nonatomic, strong) NSDictionary  *configDict;
+
 
 @end
 
@@ -113,19 +115,30 @@
     [_activityIndicatorView startAnimating];
     
     NSString *weeklyID = [[_dataDic objectForKey:@"ID"] stringValue];
+    NSString *activity = [AizenStorage readUserDataWithKey:@"batchID"];
     NSString *url = [NSString stringWithFormat:@"%@/ApiActivityWeekly/GetByID?WeeklyID=%@",kCacheHttpRoot,weeklyID];
     NSLog(@"%@",url);
-    [AizenHttp asynRequest:url httpMethod:@"GET" params:nil success:^(id result) {
-        [_activityIndicatorView stopAnimating];
-        NSDictionary *jsonDic = result;
-        if([[jsonDic objectForKey:@"ResultType"] integerValue] == 0){
-            NSArray *dataArr = [jsonDic objectForKey:@"AppendData"];
-            [self detailLayout:dataArr];
-            self.detailDict_http = [[dataArr firstObject] copy];
-        }
+    NSString *url2 = [NSString stringWithFormat:@"%@/ApiActivityWeekly/GetWeeklyConfig?ActivityID=%@",kCacheHttpRoot,activity];
+    
+    [AizenHttp asynRequest:url2 httpMethod:@"GET" params:nil success:^(id result) {
+        
+        NSDictionary *jsonDic = [result objectForKey:@"AppendData"];
+         
+        [AizenHttp asynRequest:url httpMethod:@"GET" params:nil success:^(id result) {
+               [_activityIndicatorView stopAnimating];
+
+               if([[result objectForKey:@"ResultType"] integerValue] == 0){
+                   [self detailLayout:[result objectForKey:@"AppendData"] configDict:jsonDic];
+               }
+               else{
+                   [BaseViewController br_showAlterMsg:@"数据错误，请重试"];
+               }
+           } failue:^(NSError *error) {
+
+           }];
     } failue:^(NSError *error) {
         [_activityIndicatorView stopAnimating];
-        NSLog(@"请求失败--修改周记");
+        [BaseViewController br_showAlterMsg:@"请求失败，请重试"];
     }];
 }
 
@@ -231,7 +244,15 @@
 }
 
 
--(void) detailLayout:(NSArray *)dataArr{
+-(void) detailLayout:(NSArray *)dataArr configDict:(NSDictionary *)dataDict{
+    
+    self.configDict= dataDict;
+    self.detailDict_http = [dataArr objectAtIndex:0];
+    NSString *key1 = [NSString checkNull:[self.configDict objectForKey:@"Field1"]];
+    NSString *key2 = [NSString checkNull:[self.configDict objectForKey:@"Field2"]];
+    NSString *key3 = [NSString checkNull:[self.configDict objectForKey:@"Field3"]];
+    NSString *key4 = [NSString checkNull:[self.configDict objectForKey:@"Field4"]];
+    NSString *key5 = [NSString checkNull:[self.configDict objectForKey:@"Field5"]];
     
     dataArr = [GJToolsHelp processDictionaryIsNSNull:dataArr];
 
@@ -259,19 +280,26 @@
     
     
     NSRange rang = {0,10};
-    NSString *DateTime = [[[[[dataArr objectAtIndex:0] objectForKey:@"CreateDate"] stringByReplacingOccurrencesOfString:@"/Date(" withString:@""] stringByReplacingOccurrencesOfString:@")/" withString:@""]substringWithRange:rang];
-    NSString *DateStr = [PhoneInfo timestampSwitchTime:[DateTime integerValue] andFormatter:@"yyyy-MM-dd"];
+    NSString *DateStr=@"";
+    if (![[[dataArr objectAtIndex:0] objectForKey:@"CreateDate"]isEqualToString:@""]) {
+        NSString *DateTime = [[[[[dataArr objectAtIndex:0] objectForKey:@"CreateDate"] stringByReplacingOccurrencesOfString:@"/Date(" withString:@""] stringByReplacingOccurrencesOfString:@")/" withString:@""]substringWithRange:rang];
+        DateStr = [PhoneInfo timestampSwitchTime:[DateTime integerValue] andFormatter:@"yyyy-MM-dd"];
+    }
     _dateVal.textColor = [UIColor blackColor];
     _dateVal.text = DateStr;
     
+    NSString *BeginStr = @"";
+    if (![[[dataArr objectAtIndex:0] objectForKey:@"BeginDate"]isEqualToString:@""]) {
+        NSString *BeginTime = [[[[[dataArr objectAtIndex:0] objectForKey:@"BeginDate"] stringByReplacingOccurrencesOfString:@"/Date(" withString:@""] stringByReplacingOccurrencesOfString:@")/" withString:@""]substringWithRange:rang];
+        BeginStr = [PhoneInfo timestampSwitchTime:[BeginTime integerValue] andFormatter:@"yyyy-MM-dd"];
+    }
     
-    NSString *BeginTime = [[[[[dataArr objectAtIndex:0] objectForKey:@"BeginDate"] stringByReplacingOccurrencesOfString:@"/Date(" withString:@""] stringByReplacingOccurrencesOfString:@")/" withString:@""]substringWithRange:rang];
-    NSString *BeginStr = [PhoneInfo timestampSwitchTime:[BeginTime integerValue] andFormatter:@"yyyy-MM-dd"];
-    
-    
-    NSString *EndTime = [[[[[dataArr objectAtIndex:0] objectForKey:@"EndDate"] stringByReplacingOccurrencesOfString:@"/Date(" withString:@""] stringByReplacingOccurrencesOfString:@")/" withString:@""]substringWithRange:rang];
-    NSString *EndStr = [PhoneInfo timestampSwitchTime:[EndTime integerValue] andFormatter:@"yyyy-MM-dd"];
-    
+    NSString *EndStr = @"";
+    if (![[[dataArr objectAtIndex:0] objectForKey:@"EndDate"] isEqualToString:@""]) {
+        NSString *EndTime = [[[[[dataArr objectAtIndex:0] objectForKey:@"EndDate"] stringByReplacingOccurrencesOfString:@"/Date(" withString:@""] stringByReplacingOccurrencesOfString:@")/" withString:@""]substringWithRange:rang];
+        EndStr = [PhoneInfo timestampSwitchTime:[EndTime integerValue] andFormatter:@"yyyy-MM-dd"];
+    }
+
     _startLab.text = BeginStr;
     _stopLab.text = EndStr;
     
@@ -331,9 +359,9 @@
     _workContentVal.frame = CGRectMake(_workContentView.frame.size.width * 0.05, _workContentView.frame.size.height * 0.05, _workContentView.frame.size.width * 0.9, _workContentView.frame.size.height * 0.9);
     _workContentVal.delegate = self;
     _workContentVal.accessibilityLabel = @"workContent";
+    _workContentVal.text = key1;
     _workContentVal.textColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
     _workContentVal.font = [UIFont systemFontOfSize:18.0];
-    _workContentVal.text = @"工作内容";
     [_workContentView addSubview:_workContentVal];
     _workContentVal.textColor = [UIColor blackColor];
     _workContentVal.text = [[dataArr objectAtIndex:0] objectForKey:@"Field1"];
@@ -354,9 +382,9 @@
     _problemVal.frame = CGRectMake(_problemView.frame.size.width * 0.05, _problemView.frame.size.height * 0.05, _problemView.frame.size.width * 0.9, _problemView.frame.size.height * 0.9);
     _problemVal.delegate = self;
     _problemVal.accessibilityLabel = @"problem";
+    _problemVal.text = key2;
     _problemVal.textColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
     _problemVal.font = [UIFont systemFontOfSize:18.0];
-    _problemVal.text = @"遇到的问题";
     [_problemView addSubview:_problemVal];
     _problemVal.text = [[dataArr objectAtIndex:0] objectForKey:@"Field2"];
     
@@ -381,9 +409,9 @@
     _solveVal.frame = CGRectMake(_solveView.frame.size.width * 0.05, _solveView.frame.size.height * 0.05, _solveView.frame.size.width * 0.9, _solveView.frame.size.height * 0.9);
     _solveVal.delegate = self;
     _solveVal.accessibilityLabel = @"solve";
+    _solveVal.text = key3;
     _solveVal.textColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
     _solveVal.font = [UIFont systemFontOfSize:18.0];
-    _solveVal.text = @"解决方案";
     [_solveView addSubview:_solveVal];
     _solveVal.text = [[dataArr objectAtIndex:0] objectForKey:@"Field3"];
     _solveVal.textColor = [UIColor blackColor];
@@ -406,9 +434,9 @@
     _lightVal.frame = CGRectMake(_lightView.frame.size.width * 0.05, _lightView.frame.size.height * 0.05, _lightView.frame.size.width * 0.9, _lightView.frame.size.height * 0.9);
     _lightVal.delegate = self;
     _lightVal.accessibilityLabel = @"light";
+    _lightVal.text = key4;
     _lightVal.textColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
     _lightVal.font = [UIFont systemFontOfSize:18.0];
-    _lightVal.text = @"工作亮点";
     [_lightView addSubview:_lightVal];
     _lightVal.text = [[dataArr objectAtIndex:0] objectForKey:@"Field4"];
     _lightVal.textColor = [UIColor blackColor];
@@ -430,9 +458,9 @@
     _insufficientVal.frame = CGRectMake(_insufficientView.frame.size.width * 0.05, _insufficientView.frame.size.height * 0.05, _insufficientView.frame.size.width * 0.9, _insufficientView.frame.size.height * 0.9);
     _insufficientVal.delegate = self;
     _insufficientVal.accessibilityLabel = @"insufficient";
+    _insufficientVal.text = key5;
     _insufficientVal.textColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
     _insufficientVal.font = [UIFont systemFontOfSize:18.0];
-    _insufficientVal.text = @"存在不足";
     [_insufficientView addSubview:_insufficientVal];
     _insufficientVal.text = [[dataArr objectAtIndex:0] objectForKey:@"Field5"];
     _insufficientVal.textColor = [UIColor blackColor];
@@ -517,29 +545,34 @@
 
 #pragma mark - UITextViewDelegate
 - (void)textViewDidEndEditing:(UITextView *)textView{
+    NSString *key1 = [NSString checkNull:[self.configDict objectForKey:@"Field1"]];
+    NSString *key2 = [NSString checkNull:[self.configDict objectForKey:@"Field2"]];
+    NSString *key3 = [NSString checkNull:[self.configDict objectForKey:@"Field3"]];
+    NSString *key4 = [NSString checkNull:[self.configDict objectForKey:@"Field4"]];
+    NSString *key5 = [NSString checkNull:[self.configDict objectForKey:@"Field5"]];
     if([textView.accessibilityLabel isEqualToString:@"workContent"]){
         if(textView.text.length < 1){
-            textView.text = @"工作内容";
+            textView.text = key1;
             textView.textColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
         }
     }else if([textView.accessibilityLabel isEqualToString:@"problem"]){
         if(textView.text.length < 1){
-            textView.text = @"遇到的问题";
+            textView.text = key2;
             textView.textColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
         }
     }else if([textView.accessibilityLabel isEqualToString:@"solve"]){
         if(textView.text.length < 1){
-            textView.text = @"解决方案";
+            textView.text = key3;
             textView.textColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
         }
     }else if([textView.accessibilityLabel isEqualToString:@"light"]){
         if(textView.text.length < 1){
-            textView.text = @"工作亮点";
+            textView.text = key4;
             textView.textColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
         }
     }else if([textView.accessibilityLabel isEqualToString:@"insufficient"]){
         if(textView.text.length < 1){
-            textView.text = @"存在不足";
+            textView.text = key5;
             textView.textColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
         }
     }
@@ -547,28 +580,34 @@
     
 }
 - (void)textViewDidBeginEditing:(UITextView *)textView{
+    NSString *key1 = [NSString checkNull:[self.configDict objectForKey:@"Field1"]];
+    NSString *key2 = [NSString checkNull:[self.configDict objectForKey:@"Field2"]];
+    NSString *key3 = [NSString checkNull:[self.configDict objectForKey:@"Field3"]];
+    NSString *key4 = [NSString checkNull:[self.configDict objectForKey:@"Field4"]];
+    NSString *key5 = [NSString checkNull:[self.configDict objectForKey:@"Field5"]];
+    
     if([textView.accessibilityLabel isEqualToString:@"workContent"]){
-        if([textView.text isEqualToString:@"工作内容"]){
+        if([textView.text isEqualToString:key1]){
             textView.text=@"";
             textView.textColor=[UIColor blackColor];
         }
     }else if([textView.accessibilityLabel isEqualToString:@"problem"]){
-        if([textView.text isEqualToString:@"遇到的问题"]){
+        if([textView.text isEqualToString:key2]){
             textView.text=@"";
             textView.textColor=[UIColor blackColor];
         }
     }else if([textView.accessibilityLabel isEqualToString:@"solve"]){
-        if([textView.text isEqualToString:@"解决方案"]){
+        if([textView.text isEqualToString:key3]){
             textView.text=@"";
             textView.textColor=[UIColor blackColor];
         }
     }else if([textView.accessibilityLabel isEqualToString:@"light"]){
-        if([textView.text isEqualToString:@"工作亮点"]){
+        if([textView.text isEqualToString:key4]){
             textView.text=@"";
             textView.textColor=[UIColor blackColor];
         }
     }else if([textView.accessibilityLabel isEqualToString:@"insufficient"]){
-        if([textView.text isEqualToString:@"存在不足"]){
+        if([textView.text isEqualToString:key5]){
             textView.text=@"";
             textView.textColor=[UIColor blackColor];
         }

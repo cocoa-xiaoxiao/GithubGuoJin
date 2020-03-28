@@ -18,6 +18,7 @@
 #import "MyTaskDetailViewController.h"
 #import "MainViewController.h"
 #import "DetailTaskViewController.h"
+#import "XXDetailTaskVC.h"
 
 @interface MyTaskViewController ()
 
@@ -93,13 +94,6 @@
         [_activityIndicatorView stopAnimating];
         NSLog(@"请求失败--我负责的任务");
     }];
-    
-    
-    
-    
-    
-    
-    
 }
 
 
@@ -126,20 +120,22 @@
 
 -(void) taskAction:(UITapGestureRecognizer *)sender{
     NSMutableDictionary *dataDic = sender.accessibilityElements;
-    DetailTaskViewController *detailTask = [[DetailTaskViewController alloc]init];
-    detailTask.taskID = [dataDic objectForKey:@"ID"];
-    detailTask.ActivityTaskID = [dataDic valueForKey:@"ActivityTaskID"];
-    if ([detailTask.ActivityTaskID isKindOfClass:[NSNull class]]) {
-        detailTask.ActivityTaskID = @"";
+    
+    XXDetailTaskVC *vc = [[XXDetailTaskVC alloc]init];
+    vc.taskID = [dataDic objectForKey:@"ID"];
+    vc.ActivityTaskID = [dataDic valueForKey:@"ActivityTaskID"];
+    if ([vc.ActivityTaskID isKindOfClass:[NSNull class]]) {
+        vc.ActivityTaskID = @"";
     }
-    detailTask.flagRole = @"student";
-    detailTask.updateBlock = ^(id info) {
-        [self handleHttp];
-    };
-    UIBarButtonItem *backBtn = [[UIBarButtonItem alloc] initWithTitle:self.navigationItem.title style:UIBarButtonItemStylePlain target:nil action:nil];
-    [backBtn setTintColor:[UIColor whiteColor]];
-    self.navigationItem.backBarButtonItem = backBtn;
-    [self.navigationController pushViewController:detailTask animated:YES];
+    vc.flagRole = @"student";
+    [self.navigationController pushViewController:vc animated:NO];
+//    detailTask.updateBlock = ^(id info) {
+//        [self handleHttp];
+//    };
+//    UIBarButtonItem *backBtn = [[UIBarButtonItem alloc] initWithTitle:self.navigationItem.title style:UIBarButtonItemStylePlain target:nil action:nil];
+//    [backBtn setTintColor:[UIColor whiteColor]];
+//    self.navigationItem.backBarButtonItem = backBtn;
+//    [self.navigationController pushViewController:detailTask animated:YES];
 }
 
 

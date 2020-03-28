@@ -246,9 +246,17 @@
     
     [_activityIndicatorView startAnimating];
 
-    NSString *url = [NSString stringWithFormat:@"%@/ApiCheckWork/ConfirmCheckIn?AdminID=%@&ID=%@&Remark=%@&TimeStamp=%@&Token=%@",kCacheHttpRoot,CurrAdminID,ID,Remark,CurrTime,Token];
+    NSString *url = [NSString stringWithFormat:@"%@/ApiCheckWork/ConfirmCheckIn",kCacheHttpRoot];
     NSLog(@"%@",url);
-    [AizenHttp asynRequest:url httpMethod:@"GET" params:nil success:^(id result) {
+    NSDictionary *param = @{@"AdminID":CurrAdminID,
+                            @"ID":ID,
+                            @"Remark":Remark,
+                            @"TimeStamp":CurrTime,
+                            @"Token":Token
+    };
+    
+    
+    [AizenHttp asynRequest:url httpMethod:@"GET" params:param success:^(id result) {
         NSDictionary *jsonDic = result;
         
         [_activityIndicatorView stopAnimating];
@@ -278,10 +286,7 @@
         [_activityIndicatorView stopAnimating];
         [_activityIndicatorView stopAnimating];
         [BaseViewController br_showAlterMsg:@"提交失败，请重试"];
-
     }];
-    
-    
 }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{

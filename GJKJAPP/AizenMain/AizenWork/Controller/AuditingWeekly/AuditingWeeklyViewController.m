@@ -21,6 +21,11 @@
 #import "MainViewController.h"
 #import "AuditingStudentWeeklyViewController.h"
 
+
+#import "NewYSAuditingWeeklyViewController.h"
+#import "NewWSAuditingWeeklyViewController.h"
+#import "ZLNavTabBarController.h"
+
 @interface AuditingWeeklyViewController ()<CZPickerViewDelegate,CZPickerViewDataSource,UITextViewDelegate>
 
 @property(nonatomic,strong) UIView *contentView;
@@ -76,8 +81,25 @@
     [[self rdv_tabBarController] setTabBarHidden:NO animated:YES];
     [self.navigationController popViewControllerAnimated:YES];
 }
+-(void) startLayout{
+    NewWSAuditingWeeklyViewController *notView = [[NewWSAuditingWeeklyViewController alloc] init];
+    notView.title = @"未审核";
+    
+    NewYSAuditingWeeklyViewController *haveView = [[NewYSAuditingWeeklyViewController alloc] init];
+    haveView.title = @"已审核";
+    
+    ZLNavTabBarController *navTabBarController = [[ZLNavTabBarController alloc] init];
+    navTabBarController.subViewControllers = @[ haveView,notView];
+    navTabBarController.navTabBarColor = [UIColor clearColor];
+    navTabBarController.mainViewBounces = YES;
+    navTabBarController.selectedToIndex = 2;
+    navTabBarController.unchangedToIndex = 1;
+    navTabBarController.showArrayButton = NO;
+    [navTabBarController addParentController:self];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+}
 
-
+/*
 -(void) startLayout{
     _contentView = [[UIView alloc]init];
     _contentView.frame = CGRectMake(0, HEIGHT_NAVBAR + HEIGHT_STATUSBAR, self.view.frame.size.width, self.view.frame.size.height - HEIGHT_STATUSBAR - HEIGHT_NAVBAR);
@@ -186,7 +208,7 @@
     [self handleHttp];
 }
 
-
+*/
 
 
 -(void) handleHttp{

@@ -16,6 +16,7 @@
 @property (nonatomic,copy) NSString *phoneNumber;
 @property(nonatomic,copy)  NSString *phonename;
 @property(nonatomic,copy)  NSString *friendId;
+@property (nonatomic, assign) int CheckState;
 @property NSInteger sectionNumber;
 @property NSInteger recordID;
 @property BOOL rowSelected;

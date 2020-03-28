@@ -56,7 +56,7 @@
     haveView.title = @"已审核";
     
     ZLNavTabBarController *navTabBarController = [[ZLNavTabBarController alloc] init];
-    navTabBarController.subViewControllers = @[notView, haveView];
+    navTabBarController.subViewControllers = @[ haveView,notView];
     navTabBarController.navTabBarColor = [UIColor clearColor];
     navTabBarController.mainViewBounces = YES;
     navTabBarController.selectedToIndex = 2;

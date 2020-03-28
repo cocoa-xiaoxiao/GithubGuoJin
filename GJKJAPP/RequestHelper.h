@@ -74,6 +74,8 @@ typedef NS_ENUM(NSUInteger,MMAPIType)
     GJAPIType_GetStatisticsList,//中期检查
     GJAPIType_GetNoCheckTeamRecordList,//报告待审核
     GJAPIType_GetOverCheckTeamRecordList,//报告已审核
+    GJAPIType_GetRecordListByDetailID,//任务详情记录
+    GJAPIType_GetByID,//任务详情
 };
 @interface RequestHelper : NSObject
 

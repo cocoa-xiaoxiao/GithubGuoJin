@@ -16,6 +16,7 @@
 #import "PersonModel.h"
 #import "XOMyStdTableViewCell.h"
 #import "MainViewController.h"
+#import "APPAlertView.h"
 @interface XOMyStuDSViewController (){
     int _page;
 }
@@ -89,6 +90,7 @@
         model.name1 = [dict objectForKey:@"UserName"];
         model.phoneNumber = [NSString checkNull:[dict objectForKey:@"Mobile"]];;
         model.tel = [dict objectForKey:@"EnterpriseName"];
+        model.friendId = [dict objectForKey:@"ID"];
         [array addObject:model];
     }
     return array;
@@ -118,9 +120,10 @@
 }
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     PersonModel *model = self.tableArray[indexPath.row];
-    StudentDetailViewController *student = [[StudentDetailViewController alloc]init];
-    student.person = model;
-    [self.navigationController pushViewController:student animated:YES];
+    APPShenheView *alert =[[APPShenheView alloc]AlertFactoryshenheStudentID:model.friendId successblock:^(id  _Nonnull responseObject) {
+        
+    }];
+    [alert show];
 }
 -(NSMutableArray *)tableArray
 {

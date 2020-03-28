@@ -38,7 +38,7 @@
     People *getObj = existArr[0];
     NSString *CurrAdminID = [getObj.USERID stringValue];
     NSString *batchID = [AizenStorage readUserDataWithKey:@"batchID"];
-    NSString *url = [NSString stringWithFormat:@"%@/ApiActivity/GetMyApplyList?AdminID=%@&ActivityID=%@",kCacheHttpRoot,@"281",@"1"];
+    NSString *url = [NSString stringWithFormat:@"%@/ApiActivity/GetMyApplyList?AdminID=%@&ActivityID=%@",kCacheHttpRoot,CurrAdminID,batchID];
     NSLog(@"%@",url);
     [AizenHttp asynRequest:url httpMethod:@"GET" params:nil success:^(id result) {
         [_activityIndicatorView stopAnimating];
@@ -58,7 +58,10 @@
         model.name1 = [dict objectForKey:@"InUserName"];
         model.phoneNumber = [NSString checkNull:[dict objectForKey:@"InMobile"]];;
         model.tel = [dict objectForKey:@"EnterpriseName"];
-        [self.tableArray addObject:model];
+        model.CheckState = [[dict objectForKey:@"CheckState"] intValue];
+        if (!model.CheckState) {
+            [self.tableArray addObject:model];
+        }
     }
 }
 -(void)startLayout

@@ -7,59 +7,43 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
-            uuid = "7324F61E-BE82-4D04-A422-856F19856D5B"
+            uuid = "AD756A4F-AB09-4FC7-B4A6-20BFA3ED0A73"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            scope = "0"
+            scope = "1"
             stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C98B2176-E033-4031-AC0A-87F84CAEA01D"
+            uuid = "E5B42150-8CFB-4E01-8C3A-F05155CF8A69"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GJKJAPP/AizenMain/AizenMe/MyViewController.m"
+            filePath = "GJKJAPP/AizenMain/AizenWork/Controller/AddStation/UnitFiveVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "228"
-            endingLineNumber = "228"
-            landmarkName = "-alertView:clickedButtonAtIndex:"
+            startingLineNumber = "272"
+            endingLineNumber = "272"
+            landmarkName = "-submit:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "BFB11C1B-0A94-4BD5-AAA4-CDB8DC069B6D"
-            shouldBeEnabled = "Yes"
+            uuid = "065830C5-62FF-4D8D-AC55-108BA94A35E9"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GJKJAPP/AizenMain/AizenMe/NewMeViewController.m"
+            filePath = "Pods/AFNetworking/AFNetworking/AFURLRequestSerialization.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "475"
-            endingLineNumber = "475"
-            landmarkName = "-alertView:clickedButtonAtIndex:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BE9C6612-F16E-4921-BCD0-F882CFC74FE2"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GJKJAPP/AizenMain/AizenWork/Controller/MyStudents/View/StudentDetailViewController.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
-            landmarkName = "-br_selectedCallTelAction:"
+            startingLineNumber = "377"
+            endingLineNumber = "377"
+            landmarkName = "-requestWithMethod:URLString:parameters:error:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
