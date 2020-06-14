@@ -26,6 +26,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self startLayout];
+    
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     [self getDataSourceFromHttp];
 }
 -(void)startLayout
@@ -37,6 +42,7 @@
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.tableFooterView = [UIView new];
     [_tableView registerNib:[UINib nibWithNibName:@"MyteacherTableViewCell" bundle:nil] forCellReuseIdentifier:@"laoshiCellID"];
+    [_tableView br_configFitIos11AdjustNo];
     [self.view addSubview:_tableView];
 }
 -(void)getDataSourceFromHttp
@@ -57,6 +63,7 @@
     }];
 }
 -(void) detailLayout:(NSArray *)dataArr{
+    [self.tableArray removeAllObjects];
     for (int i = 0; i < dataArr.count; i++) {
         NSDictionary *dict = dataArr[i];
         PersonModel *model = [[PersonModel alloc]init];

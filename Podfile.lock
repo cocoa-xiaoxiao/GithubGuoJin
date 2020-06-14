@@ -59,7 +59,7 @@ PODS:
   - ZXingObjC/All (3.2.2)
 
 DEPENDENCIES:
-  - AFNetworking (~> 3.2.1)
+  - AFNetworking
   - BGDB_OC (~> 1.6)
   - BlocksKit (~> 2.2.5)
   - CZPicker (~> 0.4.3)
@@ -125,6 +125,6 @@ SPEC CHECKSUMS:
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
   ZXingObjC: 2c95a0dc52daac69b23ec78fad8fa2fec05f8981
 
-PODFILE CHECKSUM: be98a67bdfb20233a3425fa25621dca300d92e1f
+PODFILE CHECKSUM: 6ed39bc275e46dc70089ab9e24d88ff4abfc0cd9
 
 COCOAPODS: 1.7.0.beta.3

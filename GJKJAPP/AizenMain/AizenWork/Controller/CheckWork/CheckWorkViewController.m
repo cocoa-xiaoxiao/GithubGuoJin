@@ -953,7 +953,7 @@
     NSString *CurrDate = [PhoneInfo getCurrentTimes:@"YYYY-MM-dd HH:mm:ss"];
     NSString *CurrTimeStamp = [PhoneInfo getNowTimeTimestamp3];
     NSString *CurrToken = [AizenMD5 MD5ForUpper16Bate:[NSString stringWithFormat:@"%@%@%@GJCheck%@%@",CurrAdminID,[PhoneInfo getCurrentTimes:@"yyyyMMdd"],CurrTimeStamp,CurrLat,CurrLon]];
-    
+    NSString *DESCRIBE = _decrTextView.text;
 //    __block NSString *CheckOutPic = @"";
 //    [self.ImgArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
 //
@@ -987,7 +987,7 @@
     }
    
     
-    NSString *url = [NSString stringWithFormat:@"%@/ApiCheckWork/CheckOut?StudentID=%@&CheckOutDate=%@&CheckOutLon=%@&CheckOutLat=%@&CheckOutPlace=%@&CheckInIMEI=%@&TimeStamp=%@&Token=%@&CheckOutPic=%@",kCacheHttpRoot,CurrAdminID,CurrDate,CurrLon,CurrLat,CurrLocation,CurrUDID,CurrTimeStamp,CurrToken,CheckOutPic];
+    NSString *url = [NSString stringWithFormat:@"%@/ApiCheckWork/CheckOut?StudentID=%@&CheckOutDate=%@&CheckOutLon=%@&CheckOutLat=%@&CheckOutPlace=%@&CheckInIMEI=%@&TimeStamp=%@&Token=%@&CheckOutPic=%@&CheckOutDescription=%@",kCacheHttpRoot,CurrAdminID,CurrDate,CurrLon,CurrLat,CurrLocation,CurrUDID,CurrTimeStamp,CurrToken,CheckOutPic,DESCRIBE];
     NSString *urlencode = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
     
@@ -1069,6 +1069,7 @@
     NSString *CurrTimeStamp = [PhoneInfo getNowTimeTimestamp3];
     NSString *CurrToken = [AizenMD5 MD5ForUpper16Bate:[NSString stringWithFormat:@"%@%@%@GJCheck%@%@",CurrAdminID,[PhoneInfo getCurrentTimes:@"yyyyMMdd"],CurrTimeStamp,CurrLat,CurrLon]];
     //CheckInPic
+    NSString *DESCRIBE = _decrTextView.text;
     
      NSString *CheckOutPic = @"";
     for (NSDictionary *obj in self.ImgArr) {
@@ -1090,7 +1091,7 @@
 //
 //    }];
     
-    NSString *url = [NSString stringWithFormat:@"%@/ApiCheckWork/CheckIn?StudentID=%@&CheckInDate=%@&CheckInLon=%@&CheckInLat=%@&CheckInPlace=%@&CheckInIMEI=%@&TimeStamp=%@&Token=%@&CheckInPic=%@",kCacheHttpRoot,CurrAdminID,CurrDate,CurrLon,CurrLat,CurrLocation,CurrUDID,CurrTimeStamp,CurrToken,CheckOutPic];
+    NSString *url = [NSString stringWithFormat:@"%@/ApiCheckWork/CheckIn?StudentID=%@&CheckInDate=%@&CheckInLon=%@&CheckInLat=%@&CheckInPlace=%@&CheckInIMEI=%@&TimeStamp=%@&Token=%@&CheckInPic=%@&CheckInDescription=%@",kCacheHttpRoot,CurrAdminID,CurrDate,CurrLon,CurrLat,CurrLocation,CurrUDID,CurrTimeStamp,CurrToken,CheckOutPic,DESCRIBE];
     NSString *urlencode = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     NSLog(@"%@",url);

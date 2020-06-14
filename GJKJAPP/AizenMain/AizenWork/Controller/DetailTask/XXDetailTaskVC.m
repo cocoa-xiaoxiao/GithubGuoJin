@@ -13,6 +13,7 @@
 #import "SXTaskRecordVC.h"
 #import "SXTaskHeadVC.h"
 #import "APPAlertView.h"
+#import "LDPublicWebViewController.h"
 @interface XXDetailTaskVC ()<MCHoveringListViewDelegate,APPAlertViewDelegate>
 @property (nonatomic , strong) SXTaskDynamicVC * demo1;
 @property (nonatomic , strong) SXTaskRecordVC * demo2;
@@ -31,6 +32,7 @@
     self.navigationController.navigationBar.translucent = NO;
     self.demo1 = [SXTaskDynamicVC new];
     self.demo1.taskId = self.taskID;
+
     self.demo2 = [SXTaskRecordVC new];
     self.demo2.taskId = self.taskID;
     self.headVC = getControllerFromStoryBoard(@"sxTask", @"SXTaskHeadID");
@@ -42,8 +44,24 @@
         weakself.headVC.view.frame = CGRectMake(0, 0, weakself.view.frame.size.width, height);
         [weakself initViewFrom:cansubmit];
     };
-    
-    
+    self.headVC.lookDetailFuj = ^(NSString * _Nonnull url) {
+        LDPublicWebViewController *web = [[LDPublicWebViewController alloc] init];
+        web.webUrl = url.fullImg;
+        web.title = @"查看附件";
+        [weakself.navigationController pushViewController:web animated:YES];
+    };
+    self.demo1.lookUplodAccessory = ^(NSString * _Nonnull url) {
+        LDPublicWebViewController *web = [[LDPublicWebViewController alloc] init];
+        web.webUrl = url.fullImg;
+        web.title = @"查看附件";
+        [weakself.navigationController pushViewController:web animated:YES];
+    };
+    self.demo2.taskRecordAccessory = ^(NSString * _Nonnull url) {
+        LDPublicWebViewController *web = [[LDPublicWebViewController alloc] init];
+        web.webUrl = url.fullImg;
+        web.title = @"查看附件";
+        [weakself.navigationController pushViewController:web animated:YES];
+    };
 //    [self httprequest];
 }
 

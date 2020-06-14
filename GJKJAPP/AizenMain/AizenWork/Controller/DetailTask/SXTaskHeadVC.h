@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *detailReqLb;
 @property (weak, nonatomic) IBOutlet UILabel *detailFujianLb;
 @property (nonatomic, copy) NSString *taskID;
-
+@property (nonatomic, copy) void (^lookDetailFuj)(NSString *url);
 @property (nonatomic, copy) void (^bulidBlock)(CGFloat height , NSInteger cansub,NSString *jianfen);
 @end
 

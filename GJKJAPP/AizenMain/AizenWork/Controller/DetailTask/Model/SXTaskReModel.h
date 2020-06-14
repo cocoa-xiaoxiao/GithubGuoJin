@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *CheckAttachment;
 @property (nonatomic, copy) NSString *SubmitContent;
 @property (nonatomic, copy) NSString *CheckContent;
+@property (nonatomic, copy) NSString *CheckAttachmentAll; //提交附件
+@property (nonatomic, copy) NSString *SubmitAttachmentAll; //提交附件
 @end
 
 NS_ASSUME_NONNULL_END

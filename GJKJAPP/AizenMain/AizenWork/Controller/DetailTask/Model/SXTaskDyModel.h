@@ -19,7 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *OverdueScore; //超期
 @property (nonatomic, copy) NSString *TeacherScore; //审核
 @property (nonatomic, copy) NSString *FinalScore; //最终
-
+@property (nonatomic, copy) NSString *CheckAttachmentAll; //提交附件
+@property (nonatomic, copy) NSString *SubmitAttachmentAll; //提交附件
 @end
 
 NS_ASSUME_NONNULL_END

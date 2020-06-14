@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SXTaskRecordVC : UIViewController
 @property (nonatomic , strong) QQtableView * tableView;
 @property (nonatomic, copy) NSString *taskId;
+@property (nonatomic, copy)void(^taskRecordAccessory)(NSString *url);
 @end
 
 NS_ASSUME_NONNULL_END

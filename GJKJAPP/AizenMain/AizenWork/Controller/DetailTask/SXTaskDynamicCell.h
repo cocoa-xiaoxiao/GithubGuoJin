@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *checkBtn;
 @property (weak, nonatomic) IBOutlet UILabel *overBtn;
 @property (weak, nonatomic) IBOutlet UILabel *finalBtn;
-
+@property (nonatomic, copy) void(^selectAcc)(NSString *str);
 @end
 
 NS_ASSUME_NONNULL_END

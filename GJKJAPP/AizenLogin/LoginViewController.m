@@ -156,7 +156,6 @@
             
             
             /*-----------------------登录请求-----------------------*/
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
             UInt64 currTime = [[NSDate date] timeIntervalSince1970]*1000;
             NSString *currTimeStr = [NSString stringWithFormat:@"%ld",currTime];
 

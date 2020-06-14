@@ -202,6 +202,14 @@
 }
 -(void)choose:(UIButton *)sender
 {
+//    NSArray * arr=@[(__bridge NSString *) kUTTypeContent,
+//                            (__bridge NSString *) kUTTypeData,
+//                            (__bridge NSString *) kUTTypePackage,
+//                            (__bridge NSString *) kUTTypeDiskImage,
+//                            @"com.apple.iwork.pages.pages",
+//                            @"com.apple.iwork.numbers.numbers",
+//                            @"com.apple.iwork.keynote.key"];
+//    UIDocumentPickerViewController *controller = [[UIDocumentPickerViewController alloc]initWithDocumentTypes:arr inMode:UIDocumentPickerModeOpen];
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
     [imagePicker setDelegate:self];

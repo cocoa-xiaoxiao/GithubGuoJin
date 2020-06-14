@@ -58,6 +58,8 @@
         NSRange rang = {0,10};
         NSString *StartTime =[PhoneInfo timestampSwitchTime:[[[[[dict objectForKey:@"UpdateDate"] stringByReplacingOccurrencesOfString:@"/Date(" withString:@""] stringByReplacingOccurrencesOfString:@")/" withString:@""]substringWithRange:rang]integerValue] andFormatter:@"YYYY-MM-dd"];
         model.UpdateDate = StartTime;
+        model.SubmitAttachmentAll = [NSString checkNull:[dict objectForKey:@"SubmitAttachment"]];
+        model.CheckAttachmentAll = [NSString checkNull:[dict objectForKey:@"CheckAttachment"]];
         [array addObject:model];
     }
     self.dataArray = [array mutableCopy];
@@ -82,8 +84,21 @@
     cell.thnameLb.text = model.CheckName;
     cell.thtimeLb.text = model.UpdateDate;
     [cell.thAttachBtn setTitle:model.CheckAttachment forState:UIControlStateNormal];
+    
+    cell.dtAttachBtn.accessibilityValue = model.SubmitAttachmentAll;
+    cell.thAttachBtn.accessibilityValue = model.CheckAttachmentAll;
+    [cell.dtAttachBtn addTarget:self action:@selector(selector:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.thAttachBtn addTarget:self action:@selector(selector:) forControlEvents:UIControlEventTouchUpInside];
     cell.thcontentLb.text = model.CheckContent;
+    
     return cell;
+}
+
+-(void)selector:(UIButton *)sender
+{
+    if (_taskRecordAccessory) {
+        self.taskRecordAccessory(sender.accessibilityValue);
+    }
 }
 - (QQtableView *)tableView
 {

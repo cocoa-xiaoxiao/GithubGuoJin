@@ -42,11 +42,17 @@
 
 @property(nonatomic,strong) UIView *placeView;
 @property(nonatomic,strong) UILabel *placeLab;
-@property(nonatomic,strong) UITextView *placeValue;
+@property(nonatomic,strong) UILabel *placeValue;
+
+@property(nonatomic,strong) UIView *DescribeView;
+@property(nonatomic,strong) UILabel *DescribeLab;
+@property(nonatomic,strong) UILabel *DescribeValue;
 
 @property(nonatomic,strong) UIView *remarkView;
 @property(nonatomic,strong) UILabel *remarkLab;
 @property(nonatomic,strong) UITextView *remarkValue;
+
+
 
 @property(nonatomic,strong) UIButton *confirmBtn;
 
@@ -55,7 +61,7 @@
 @end
 
 @implementation SignsuccessDetailViewController
-
+//http://120.78.148.58:18/ApiCheckWork/GetByID?ID=6128
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -177,52 +183,102 @@
     
 
     _placeView = [[UIView alloc]init];
-    _placeView.frame = CGRectMake(_detailView.frame.size.width * 0.05, _dateView.frame.size.height + _dateView.frame.origin.y, _detailView.frame.size.width * 0.9, _detailView.frame.size.height * 0.2);
+    _placeView.frame = CGRectMake(_detailView.frame.size.width * 0.05, _dateView.frame.size.height + _dateView.frame.origin.y, _detailView.frame.size.width * 0.9, _detailView.frame.size.height * 0.1);
     [_detailView addSubview:_placeView];
     
     
     _placeLab = [[UILabel alloc]init];
-    _placeLab.frame = CGRectMake(0, 0, _placeView.frame.size.width * 0.25, _placeView.frame.size.height * 0.5);
+    _placeLab.frame = CGRectMake(0, 0, _placeView.frame.size.width * 0.25, _placeView.frame.size.height);
     _placeLab.textColor = [UIColor colorWithRed:133/255.0 green:142/255.0 blue:153/255.0 alpha:1];
     _placeLab.font = [UIFont systemFontOfSize:16.0];
     _placeLab.text = @"打卡地点:";
     [_placeView addSubview:_placeLab];
     
     
-    _placeValue = [[UITextView alloc]init];
+    _placeValue = [[UILabel alloc]init];
     _placeValue.frame = CGRectMake(_placeLab.frame.size.width, 0, _placeView.frame.size.width * 0.75, _placeView.frame.size.height);
     _placeValue.textColor = [UIColor blackColor];
     _placeValue.font = [UIFont systemFontOfSize:16.0];
     _placeValue.text = [_getArr objectForKey:@"CheckInPlace"];
     _placeValue.textAlignment = NSTextAlignmentLeft;
-    [_placeValue setEditable:NO];
     [_placeView addSubview:_placeValue];
     
     
+    _DescribeView = [[UIView alloc]init];
+       _DescribeView.frame = CGRectMake(_detailView.frame.size.width * 0.05, _placeView.frame.size.height + _placeView.frame.origin.y, _detailView.frame.size.width * 0.9, _detailView.frame.size.height * 0.1);
+       [_detailView addSubview:_DescribeView];
+       
+       
+       _DescribeLab = [[UILabel alloc]init];
+       _DescribeLab.frame = CGRectMake(0, 0, _placeView.frame.size.width * 0.25, _placeView.frame.size.height);
+       _DescribeLab.textColor = [UIColor colorWithRed:133/255.0 green:142/255.0 blue:153/255.0 alpha:1];
+       _DescribeLab.font = [UIFont systemFontOfSize:16.0];
+       _DescribeLab.text = @"学生备注:";
+       [_DescribeView addSubview:_DescribeLab];
+       
+       
+       _DescribeValue = [[UILabel alloc]init];
+       _DescribeValue.frame = CGRectMake(_placeLab.frame.size.width, 0, _placeView.frame.size.width * 0.75, _placeView.frame.size.height);
+       _DescribeValue.textColor = [UIColor blackColor];
+       _DescribeValue.font = [UIFont systemFontOfSize:16.0];
+       _DescribeValue.text = [dataArr.firstObject objectForKey:@"CheckInDescription"];
+       _DescribeValue.textAlignment = NSTextAlignmentLeft;
+       [_DescribeView addSubview:_DescribeValue];
     
-    _remarkView = [[UIView alloc]init];
-    _remarkView.frame = CGRectMake(_detailView.frame.size.width * 0.05, _placeView.frame.size.height + _placeView.frame.origin.y, _detailView.frame.size.width * 0.9, _detailView.frame.size.height * 0.2);
-    [_detailView addSubview:_remarkView];
-    
-    
-    _remarkLab = [[UILabel alloc]init];
-    _remarkLab.frame = CGRectMake(0, 0, _remarkView.frame.size.width * 0.25, _remarkView.frame.size.height * 0.5);
-    _remarkLab.textColor = [UIColor colorWithRed:133/255.0 green:142/255.0 blue:153/255.0 alpha:1];
-    _remarkLab.font = [UIFont systemFontOfSize:16.0];
-    _remarkLab.text = @"备注内容:";
-    [_remarkView addSubview:_remarkLab];
-    
-    
-    _remarkValue = [[UITextView alloc]init];
-    _remarkValue.frame = CGRectMake(_remarkLab.frame.size.width, 0, _remarkView.frame.size.width * 0.75, _remarkView.frame.size.height);
-    _remarkValue.textColor = [UIColor blackColor];
-    _remarkValue.font = [UIFont systemFontOfSize:16.0];
-    _remarkValue.textAlignment = NSTextAlignmentLeft;
-    [_remarkView addSubview:_remarkValue];
-    
-    
-    
-    
+    NSString *inpic = [dataArr.firstObject objectForKey:@"CheckInPic"];
+    if (inpic.length > 0) {
+        NSArray *picArr = [inpic componentsSeparatedByString:@"|"];
+        
+        for (int i = 0 ; i < picArr.count; i ++) {
+            UIImageView *image = [[UIImageView alloc]init];
+            NSString *picurl = picArr[i];
+            [image br_SDWebSetImageWithURL:[NSURL URLWithString:picurl.fullImg] placeholderImage:nil];
+            
+            CGFloat height = 66;
+            CGFloat distance = (WIDTH_SCREEN-40 - 4*66)/3;
+            image.frame = CGRectMake(20 + i*(height+distance), _DescribeView.frame.size.height + _DescribeView.frame.origin.y, height, height);
+            [_detailView addSubview:image];
+        }
+        _remarkView = [[UIView alloc]init];
+        _remarkView.frame = CGRectMake(_detailView.frame.size.width * 0.05, _DescribeView.frame.size.height + _DescribeView.frame.origin.y + 76, _detailView.frame.size.width * 0.9, _detailView.frame.size.height * 0.4);
+        [_detailView addSubview:_remarkView];
+        
+        
+        _remarkLab = [[UILabel alloc]init];
+        _remarkLab.frame = CGRectMake(0, 0, _remarkView.frame.size.width * 0.25, _remarkView.frame.size.height * 0.25);
+        _remarkLab.textColor = [UIColor colorWithRed:133/255.0 green:142/255.0 blue:153/255.0 alpha:1];
+        _remarkLab.font = [UIFont systemFontOfSize:16.0];
+        _remarkLab.text = @"备注内容:";
+        [_remarkView addSubview:_remarkLab];
+        
+        
+        _remarkValue = [[UITextView alloc]init];
+        _remarkValue.frame = CGRectMake(0, _remarkView.frame.size.height*0.25, _remarkView.frame.size.width, _remarkView.frame.size.height*0.75);
+        _remarkValue.textColor = [UIColor blackColor];
+        _remarkValue.font = [UIFont systemFontOfSize:16.0];
+        _remarkValue.textAlignment = NSTextAlignmentLeft;
+        [_remarkView addSubview:_remarkValue];
+    }else{
+        _remarkView = [[UIView alloc]init];
+        _remarkView.frame = CGRectMake(_detailView.frame.size.width * 0.05, _DescribeView.frame.size.height + _DescribeView.frame.origin.y, _detailView.frame.size.width * 0.9, _detailView.frame.size.height * 0.4);
+        [_detailView addSubview:_remarkView];
+        
+        
+        _remarkLab = [[UILabel alloc]init];
+        _remarkLab.frame = CGRectMake(0, 0, _remarkView.frame.size.width * 0.25, _remarkView.frame.size.height * 0.25);
+        _remarkLab.textColor = [UIColor colorWithRed:133/255.0 green:142/255.0 blue:153/255.0 alpha:1];
+        _remarkLab.font = [UIFont systemFontOfSize:16.0];
+        _remarkLab.text = @"审核内容:";
+        [_remarkView addSubview:_remarkLab];
+        
+        
+        _remarkValue = [[UITextView alloc]init];
+        _remarkValue.frame = CGRectMake(0, _remarkView.frame.size.height*0.25, _remarkView.frame.size.width, _remarkView.frame.size.height*0.75);
+        _remarkValue.textColor = [UIColor blackColor];
+        _remarkValue.font = [UIFont systemFontOfSize:16.0];
+        _remarkValue.textAlignment = NSTextAlignmentLeft;
+        [_remarkView addSubview:_remarkValue];
+    }
     
     _confirmBtn = [[UIButton alloc]init];
     _confirmBtn.frame = CGRectMake(0, _detailView.frame.size.height * 0.88, _detailView.frame.size.width, _detailView.frame.size.height * 0.12);

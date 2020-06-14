@@ -1,6 +1,6 @@
 target 'GJKJAPP' do
 platform:ios,"8.0"
-pod 'AFNetworking','~> 3.2.1'
+pod 'AFNetworking'
 #pod 'SDWebImage','~> 4.4.1'
 pod 'RDVTabBarController','~> 1.1.9'
 pod 'BGDB_OC','~> 1.6'

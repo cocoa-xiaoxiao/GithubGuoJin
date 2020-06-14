@@ -65,6 +65,8 @@
         model.OverdueScore = [NSString checkNull:[dict objectForKey:@"OverdueScore"]];
         model.TeacherScore = [NSString checkNull:[dict objectForKey:@"TeacherScore"]];
         model.FinalScore = [NSString checkNull:[dict objectForKey:@"FinalScore"]];
+        model.SubmitAttachmentAll = [NSString checkNull:[dict objectForKey:@"SubmitAttachment"]];
+        model.CheckAttachmentAll = [NSString checkNull:[dict objectForKey:@"CheckAttachment"]];
         [array addObject:model];
     }
     self.dataArray = [array mutableCopy];
@@ -90,7 +92,23 @@
     cell.checkBtn.text = [NSString stringWithFormat:@"审核评分:%@",model.TeacherScore];
     cell.overBtn.text = [NSString stringWithFormat:@"超期罚分:%@",model.OverdueScore];
     cell.finalBtn.text = [NSString stringWithFormat:@"最终得分:%@",model.FinalScore];
+    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(gotoBack:)];
+    cell.submitLb.userInteractionEnabled = YES;
+    tap1.accessibilityValue = model.SubmitAttachmentAll;
+    [cell.submitLb addGestureRecognizer:tap1];
+    
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(gotoBack:)];
+    tap2.accessibilityValue = model.CheckAttachmentAll;
+    cell.checkLb.userInteractionEnabled = YES;
+    [cell.checkLb addGestureRecognizer:tap2];
     return cell;
+}
+
+-(void)gotoBack:(UITapGestureRecognizer*)tap
+{
+    if (self.lookUplodAccessory) {
+        self.lookUplodAccessory(tap.accessibilityValue);
+    }
 }
 
 - (QQtableView *)tableView
